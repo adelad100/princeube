@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>If You Like Tyler the Creator's Flower Boy Era, Listen to These Artists | Prince Ube</title>
+  <meta name="description" content="Flower Boy changed the sound of rap. Here are five artists carrying that same energy in 2026 — introspective, jazz-inflected, and built for listeners who pay attention." />
+  <meta name="keywords" content="artists like Tyler the Creator, Flower Boy era, jazz rap, ube soul, Prince Ube, Saba, Kali Uchis, Steve Lacy, underground hip hop 2026, introspective rap" />
+
+  <!-- Open Graph -->
+
+  <meta property="og:title" content="If You Like Tyler the Creator's Flower Boy Era, Listen to These Artists" />
+  <meta property="og:description" content="Five artists carrying the Flower Boy energy into 2026." />
+  <meta property="og:url" content="https://princeube.com/blog/tyler-the-creator-flower-boy-artists" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Prince Ube" />
+
+  <!-- Schema Markup -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "If You Like Tyler the Creator's Flower Boy Era, Listen to These Artists",
+    "description": "Flower Boy changed the sound of rap. Here are five artists carrying that same energy in 2026 — introspective, jazz-inflected, and built for listeners who pay attention.",
+    "author": {
+      "@type": "Person",
+      "name": "Prince Ube",
+      "url": "https://princeube.com"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Prince Ube",
+      "url": "https://princeube.com"
+    },
+    "datePublished": "2026-04-07",
+    "url": "https://princeube.com/blog/tyler-the-creator-flower-boy-artists",
+    "mainEntityOfPage": "https://princeube.com/blog/tyler-the-creator-flower-boy-artists",
+    "keywords": ["Tyler the Creator", "Flower Boy", "jazz rap", "ube soul", "Prince Ube", "Saba", "Kali Uchis", "Steve Lacy", "underground hip hop", "introspective rap"]
+  }
+  </script>
+
+  <link rel="canonical" href="https://princeube.com/blog/tyler-the-creator-flower-boy-artists" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black: #000000;
+      --white: #ffffff;
+      --cream: #f0ece6;
+      --grey: #999;
+      --light-grey: #2a2a2a;
+      --accent: #c8b89a;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--black);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(10,10,10,0.85);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 300;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      opacity: 0.9;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    /* Main layout */
+    main {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 8rem 2rem 6rem;
+    }
+
+    /* Header */
+    .post-header {
+      margin-bottom: 4rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .post-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      border: 1px solid rgba(200,184,154,0.3);
+      padding: 0.3rem 0.8rem;
+    }
+
+    .post-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+      font-weight: 300;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 1.5rem;
+      color: var(--white);
+    }
+
+    .post-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .post-meta {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .post-meta span::before {
+      content: '—';
+      margin-right: 0.5rem;
+      opacity: 0.4;
+    }
+
+    .post-meta span:first-child::before {
+      display: none;
+    }
+
+    .divider {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.4;
+      margin: 2.5rem 0;
+    }
+
+    /* Intro */
+    .post-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--cream);
+      margin-bottom: 3rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    /* Artist entries */
+    .artist-entry {
+      margin-bottom: 3.5rem;
+      padding-bottom: 3.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      animation: fadeUp 0.7s ease both;
+    }
+
+    .artist-entry:last-of-type {
+      border-bottom: none;
+    }
+
+    .artist-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      opacity: 0.7;
+      margin-bottom: 0.4rem;
+    }
+
+    .artist-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      margin-bottom: 0.3rem;
+      color: var(--white);
+    }
+
+    .artist-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 1.2rem;
+    }
+
+    .artist-body {
+      font-size: 0.97rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .artist-body p + p {
+      margin-top: 1rem;
+    }
+
+    .highlight {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    /* Featured artist (Prince Ube) */
+    .artist-entry.featured {
+      background: rgba(200,184,154,0.04);
+      border: 1px solid rgba(200,184,154,0.12);
+      padding: 2rem;
+      margin-left: -2rem;
+      margin-right: -2rem;
+      border-bottom: 1px solid rgba(200,184,154,0.12);
+    }
+
+    .featured-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1rem;
+      opacity: 0.8;
+    }
+
+    .listen-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200,184,154,0.3);
+      padding-bottom: 2px;
+      transition: border-color 0.3s, color 0.3s;
+    }
+
+    .listen-link:hover {
+      color: var(--white);
+      border-color: var(--white);
+    }
+
+    /* Closing */
+    .post-closing {
+      margin-top: 4rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .post-closing p {
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 1rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover {
+      color: var(--white);
+    }
+
+    .back-link::before {
+      content: '← ';
+    }
+
+    /* Footer */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    footer p {
+      font-size: 0.68rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--grey);
+      opacity: 0.5;
+    }
+
+    /* Animation */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .artist-entry:nth-child(1) { animation-delay: 0.15s; }
+    .artist-entry:nth-child(2) { animation-delay: 0.25s; }
+    .artist-entry:nth-child(3) { animation-delay: 0.35s; }
+    .artist-entry:nth-child(4) { animation-delay: 0.45s; }
+    .artist-entry:nth-child(5) { animation-delay: 0.55s; }
+
+    @media (max-width: 600px) {
+      nav { padding: 1.2rem 1.5rem; }
+      main { padding: 7rem 1.5rem 4rem; }
+      .artist-entry.featured {
+        margin-left: -1.5rem;
+        margin-right: -1.5rem;
+        padding: 1.5rem;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+  <nav>
+    <a href="https://princeube.com" class="nav-logo">Prince Ube</a>
+    <ul class="nav-links">
+      <li><a href="https://princeube.com">Home</a></li>
+      <li><a href="https://princeube.com/blog">Blog</a></li>
+      <li><a href="https://linktr.ee/prince_ube">Listen</a></li>
+    </ul>
+  </nav>
+
+  <main>
+
+```
+<header class="post-header">
+  <span class="post-tag">Music Discovery</span>
+  <h1 class="post-title">If You Like Tyler the Creator's <em>Flower Boy</em> Era, Listen to These Artists</h1>
+  <div class="post-meta">
+    <span>Prince Ube</span>
+    <span>April 2026</span>
+    <span>5 min read</span>
+  </div>
+</header>
+
+<p class="post-intro">
+  Flower Boy didn't just change Tyler — it changed what rap was allowed to sound like.
+  Lush production. Introspective honesty. Unhurried delivery. A whole world built
+  around a feeling rather than a flex. If that era hit different for you, these
+  five artists are worth your time.
+</p>
+
+<div class="divider"></div>
+
+<!-- Artist 1: Tyler -->
+<article class="artist-entry">
+  <div class="artist-number">01</div>
+  <h2 class="artist-name">Tyler, the Creator</h2>
+  <div class="artist-tag">Golf Wang · Los Angeles, CA</div>
+  <div class="artist-body">
+    <p>Start here if you haven't already. <span class="highlight">Flower Boy</span> (2017) is the record that cracked Tyler open — lush orchestration, confessional writing, and a willingness to be vulnerable inside a genre that often punishes it. The jazz-inflected production on tracks like "See You Again" and "Garden Shed" set a new bar for what rap could sound like when you gave it room to breathe.</p>
+    <p>Igor and Call Me If You Get Lost continued the thread. But Flower Boy is where the door opened. Everything on this list walks through that door.</p>
+  </div>
+</article>
+
+<!-- Artist 2: Saba -->
+<article class="artist-entry">
+  <div class="artist-number">02</div>
+  <h2 class="artist-name">Saba</h2>
+  <div class="artist-tag">Pivot Gang · Chicago, IL</div>
+  <div class="artist-body">
+    <p>Chicago's Saba makes rap that thinks. <span class="highlight">CARE FOR ME</span> (2018) is a grief record disguised as a hip hop album — jazz-inflected production, introspective storytelling, and a calm precision in the delivery that rewards close listening. If Flower Boy taught you that rap could be emotionally open, Saba shows you how deep that openness can go.</p>
+    <p>His flow is conversational and unhurried. He doesn't rush to impress. He trusts the material, and the material delivers. Essential for any Flower Boy listener who wants to go further.</p>
+  </div>
+</article>
+
+<!-- Artist 3: Prince Ube (featured) -->
+<article class="artist-entry featured">
+  <div class="featured-label">✦ Discovery Pick</div>
+  <div class="artist-number">03</div>
+  <h2 class="artist-name">Prince Ube</h2>
+  <div class="artist-tag">Ube Soul · New Jersey</div>
+  <div class="artist-body">
+    <p>Prince Ube is a New Jersey artist who produces, writes, records, mixes, and designs all his own artwork — a complete world-builder in the same spirit as Tyler. His self-coined genre is <span class="highlight">"ube soul"</span> — luxury rap with jazz textures, lo-fi warmth, and a flow so unhurried it almost sounds like he's talking to you directly.</p>
+    <p>The Flower Boy influence is explicit. San_francisco, one of his most-streamed tracks, was written under the direct influence of that era — an old California love rendered in calm, expensive-sounding production. Girl_of_my_dream? has reached listeners across 10+ countries with zero promotion, something in its quiet emotional honesty traveling further than the algorithm. Boss_talk is his graduation record — the Flower Boy equivalent of someone who took the losses, changed the tempo, and came out moving slower and more deliberately on the other side.</p>
+    <p>If Tyler's Flower Boy era is the blueprint, Prince Ube is one of the few artists building something genuinely new from it rather than copying the surface.</p>
+    <a href="https://linktr.ee/prince_ube" class="listen-link">Listen on Apple Music & Spotify →</a>
+  </div>
+</article>
+
+<!-- Artist 4: Kali Uchis -->
+<article class="artist-entry">
+  <div class="artist-number">04</div>
+  <h2 class="artist-name">Kali Uchis</h2>
+  <div class="artist-tag">Independent · Colombia / Virginia</div>
+  <div class="artist-body">
+    <p>Kali Uchis occupies a space between R&B, soul, and rap that Flower Boy listeners tend to gravitate toward naturally. Her production palette — warm, retro, layered — shares DNA with Tyler's lushest work. The tone is always a little dreamy, a little melancholy, and entirely her own.</p>
+    <p><span class="highlight">Isolation</span> (2018) is the entry point. If you connected with the emotional softness of Flower Boy, Kali Uchis will feel like a natural next step. She appeared on Tyler's "After the Storm" for a reason — they're building in the same neighborhood.</p>
+  </div>
+</article>
+
+<!-- Artist 5: Steve Lacy -->
+<article class="artist-entry">
+  <div class="artist-number">05</div>
+  <h2 class="artist-name">Steve Lacy</h2>
+  <div class="artist-tag">The Internet · Compton, CA</div>
+  <div class="artist-body">
+    <p>Steve Lacy played guitar on Flower Boy. That's not a coincidence — it's a direct bloodline. His own work as a solo artist carries the same spirit: genre-fluid, emotionally open, built around texture and feeling rather than conventional rap structure.</p>
+    <p><span class="highlight">Apollo XXI</span> and <span class="highlight">Gemini Rights</span> are both essential. Lacy makes music that doesn't announce itself loudly. It settles in. If you've been living with Flower Boy for years, his catalog will feel like a room in the same house.</p>
+  </div>
+</article>
+
+<div class="post-closing">
+  <p>The through-line across all five of these artists is the same: music that doesn't rush you. Production that rewards headphones. Writing that trusts the listener to keep up. Flower Boy opened that door. These artists are what's behind it.</p>
+  <p>If you're new to Prince Ube, start with <em>boss_talk</em> or <em>girl_of_my_dream?</em> on Apple Music or Spotify. Both are available now.</p>
+  <a href="https://princeube.com/blog" class="back-link">Back to Blog</a>
+</div>
+```
+
+  </main>
+
+  <footer>
+    <p>© 2026 Prince Ube · Ube Soul · princeube.com</p>
+  </footer>
+
+</body>
+</html>
