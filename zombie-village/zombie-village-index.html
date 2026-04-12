@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zombie Village Chapter One — Prince Ube</title>
+<meta name="description" content="Zombie Village Chapter One — a 5-track conceptual mixtape by Prince Ube. Underground hip-hop, horror, comedy. Play the game. Stream the tape. Ube Soul meets horrorcore.">
+<meta name="keywords" content="Prince Ube, Zombie Village, ube soul, Y2K luxury rap, underground hip hop, jazz rap, horrorcore, concept EP, Tyler the Creator, Earl Sweatshirt, Odd Future, underground rap, browser game, indie music">
+<meta property="og:title" content="Zombie Village Chapter One — Prince Ube">
+<meta property="og:description" content="5-track conceptual mixtape. Underground hip-hop meets horror comedy. Play the game. Stream the tape.">
+<meta property="og:type" content="music.album">
+<meta property="og:url" content="https://princeube.com/zombie-village">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Special+Elite&family=DM+Sans:ital,wght@0,400;0,700;1,400&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicAlbum",
+  "name": "Zombie Village Chapter One",
+  "albumProductionType": "MixtapeAlbum",
+  "albumReleaseType": "EP",
+  "byArtist": {
+    "@type": "MusicGroup",
+    "name": "Prince Ube",
+    "url": "https://princeube.com",
+    "genre": ["ube soul", "Y2K luxury rap", "underground hip hop", "jazz rap", "horrorcore", "concept rap"],
+    "description": "Minneapolis-born, Atlanta-raised. Ube soul and Y2K luxury rap. Producer, writer, engineer, designer — all one person.",
+    "sameAs": [
+      "https://music.apple.com/us/artist/prince-ube/1718194640",
+      "https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE",
+      "https://youtube.com/@prince_ube",
+      "https://princeube.bandcamp.com",
+      "https://instagram.com/prince_ube_"
+    ]
+  },
+  "description": "A conceptual, infinitely looping mixtape blending aggressive glitchy production with deadpan comedy. Prince Ube vs. The Demon. Underground hip-hop meets horrorcore. Influenced by early Odd Future, Tyler the Creator's Goblin era, Earl Sweatshirt, and Raider Klan.",
+  "genre": ["underground hip hop", "horrorcore", "concept rap", "jazz rap", "ube soul"],
+  "numTracks": 5,
+  "track": [
+    {
+      "@type": "MusicRecording",
+      "name": "chapter_1",
+      "position": 1,
+      "description": "The setup. Creepy, conversational, raw. A terrifying Demon tries to intimidate an incredibly unimpressed Prince Ube."
+    },
+    {
+      "@type": "MusicRecording",
+      "name": "HOLD_UP!",
+      "position": 2,
+      "description": "The escalation. Aggressive, glitchy, chaotic. Hard-hitting with blown-out saturation. Ube dismisses the Demon with manic energy."
+    },
+    {
+      "@type": "MusicRecording",
+      "name": "zombie_dream",
+      "position": 3,
+      "description": "The haze. Slower, dusty, psychedelic. Built on a classic saturated breakbeat. Ube sinks into the hallucinatory village."
+    },
+    {
+      "@type": "MusicRecording",
+      "name": "RIP_UBE",
+      "position": 4,
+      "description": "The climax. Fast-paced, dense, claustrophobic. Rapid-fire lyrical sprints against aggressive synths."
+    },
+    {
+      "@type": "MusicRecording",
+      "name": "BACK_FROM_THE_DEAD",
+      "position": 5,
+      "description": "The trap. Exhausted dialogue erupts into frantic chanting before cutting off — looping perfectly back to track one. There is no escape."
+    }
+  ]
+}
+</script>
+
+<style>
+:root {
+  --green-dark: #0d1a0d;
+  --green-mid: #1a3a1a;
+  --green-accent: #2d5a1e;
+  --green-glow: #4a7a3a;
+  --green-bright: #5a9a4a;
+  --black: #0a0a0a;
+  --white: #e0e0e0;
+  --grey: #666;
+  --red-dark: #3a1a1a;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--black);
+  color: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  cursor: crosshair;
+}
+
+/* ===== NOISE OVERLAY ===== */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ===== SCANLINES ===== */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.1) 3px,
+    rgba(0,0,0,0.1) 6px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 40px 20px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 20%, rgba(45,90,30,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 80%, rgba(45,90,30,0.1) 0%, transparent 50%),
+    linear-gradient(180deg, #080d08 0%, var(--green-dark) 30%, var(--black) 100%);
+}
+
+/* Animated fog particles */
+.fog {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 200px;
+  background: linear-gradient(0deg, rgba(45,90,30,0.08) 0%, transparent 100%);
+  animation: fogDrift 12s ease-in-out infinite;
+}
+
+.fog:nth-child(2) {
+  animation-delay: -4s;
+  opacity: 0.5;
+  height: 150px;
+}
+
+@keyframes fogDrift {
+  0%, 100% { transform: translateX(-5%); }
+  50% { transform: translateX(5%); }
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 600px;
+}
+
+.hero-label {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  letter-spacing: 6px;
+  color: var(--grey);
+  margin-bottom: 12px;
+  animation: fadeIn 1s ease 0.2s both;
+}
+
+.hero-title {
+  font-family: 'Creepster', cursive;
+  font-size: clamp(56px, 15vw, 120px);
+  color: var(--green-accent);
+  text-shadow: 
+    0 0 40px rgba(45,90,30,0.4),
+    0 0 80px rgba(45,90,30,0.2),
+    4px 4px 0 var(--black);
+  line-height: 0.85;
+  animation: fadeIn 1s ease 0.4s both;
+}
+
+.hero-title span {
+  display: block;
+  font-size: 0.65em;
+  color: var(--green-glow);
+  letter-spacing: 6px;
+}
+
+.hero-chapter {
+  font-family: 'Special Elite', cursive;
+  font-size: 16px;
+  color: var(--green-glow);
+  letter-spacing: 4px;
+  margin-top: 8px;
+  animation: fadeIn 1s ease 0.6s both;
+}
+
+.hero-cover {
+  width: min(280px, 70vw);
+  margin: 30px auto;
+  border: 2px solid var(--green-accent);
+  box-shadow: 
+    0 0 40px rgba(45,90,30,0.3),
+    0 0 80px rgba(45,90,30,0.1);
+  animation: fadeIn 1s ease 0.8s both;
+  transition: transform 0.3s ease;
+}
+
+.hero-cover:hover {
+  transform: scale(1.02);
+}
+
+.hero-tagline {
+  font-family: 'Special Elite', cursive;
+  font-size: 15px;
+  color: var(--grey);
+  max-width: 400px;
+  margin: 0 auto 30px;
+  line-height: 1.6;
+  animation: fadeIn 1s ease 1s both;
+}
+
+.hero-cta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  animation: fadeIn 1s ease 1.2s both;
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 16px 40px;
+  background: var(--green-accent);
+  color: var(--black);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  text-decoration: none;
+  letter-spacing: 3px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.btn-primary:hover::before {
+  transform: translateX(100%);
+}
+
+.btn-primary:hover {
+  background: var(--green-bright);
+  box-shadow: 0 0 30px rgba(74,122,58,0.5);
+}
+
+.btn-secondary {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: var(--green-glow);
+  text-decoration: none;
+  letter-spacing: 2px;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.btn-secondary:hover {
+  opacity: 1;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: var(--grey);
+  animation: bounce 2s infinite;
+  z-index: 2;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(8px); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== TRACKLIST ===== */
+.tracklist-section {
+  padding: 80px 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.section-title {
+  font-family: 'Creepster', cursive;
+  font-size: 36px;
+  color: var(--green-accent);
+  text-shadow: 0 0 20px rgba(45,90,30,0.3);
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.track-item {
+  padding: 24px 0;
+  border-bottom: 1px solid rgba(45,90,30,0.15);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: all 0.3s;
+  cursor: default;
+}
+
+.track-item:hover {
+  padding-left: 8px;
+  border-bottom-color: var(--green-accent);
+}
+
+.track-num {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: var(--green-accent);
+  min-width: 24px;
+  padding-top: 4px;
+}
+
+.track-info {
+  flex: 1;
+}
+
+.track-name {
+  font-family: 'Special Elite', cursive;
+  font-size: 22px;
+  color: var(--white);
+  margin-bottom: 6px;
+}
+
+.track-role {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: var(--green-glow);
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.track-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--grey);
+  line-height: 1.6;
+}
+
+.track-vibe {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.vibe-tag {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 7px;
+  color: var(--green-glow);
+  background: rgba(45,90,30,0.15);
+  padding: 4px 8px;
+  border: 1px solid rgba(45,90,30,0.2);
+}
+
+/* ===== THE LOOP ===== */
+.loop-section {
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+}
+
+.loop-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(45,90,30,0.08) 0%, transparent 70%);
+}
+
+.loop-quote {
+  font-family: 'Creepster', cursive;
+  font-size: clamp(24px, 6vw, 42px);
+  color: var(--green-accent);
+  text-shadow: 0 0 30px rgba(45,90,30,0.3);
+  max-width: 600px;
+  margin: 0 auto 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.loop-attribution {
+  font-family: 'Special Elite', cursive;
+  font-size: 14px;
+  color: var(--grey);
+  position: relative;
+  z-index: 1;
+}
+
+/* ===== GAME SECTION ===== */
+.game-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.game-frame {
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  margin: 30px auto;
+  border: 2px solid var(--green-accent);
+  box-shadow: 0 0 40px rgba(45,90,30,0.2);
+  background: var(--black);
+}
+
+.game-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.game-instructions {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: var(--grey);
+  letter-spacing: 1px;
+  margin-top: 12px;
+}
+
+/* ===== STREAM ===== */
+.stream-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.stream-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  max-width: 500px;
+  margin: 30px auto 0;
+}
+
+.stream-btn {
+  display: block;
+  padding: 16px 20px;
+  background: var(--green-dark);
+  border: 1px solid var(--green-accent);
+  color: var(--green-glow);
+  text-decoration: none;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  transition: all 0.3s;
+}
+
+.stream-btn:hover {
+  background: var(--green-accent);
+  color: var(--black);
+  box-shadow: 0 0 25px rgba(45,90,30,0.4);
+  transform: translateY(-2px);
+}
+
+/* ===== LORE ===== */
+.lore-section {
+  padding: 60px 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.lore-text {
+  font-family: 'Special Elite', cursive;
+  font-size: 15px;
+  color: var(--grey);
+  line-height: 1.8;
+  text-align: center;
+}
+
+.lore-text em {
+  color: var(--green-glow);
+  font-style: normal;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  padding: 40px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(45,90,30,0.1);
+}
+
+.footer-brand {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 8px;
+  color: var(--grey);
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--green-glow);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links a:hover {
+  color: var(--green-bright);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  .hero { padding: 30px 16px; }
+  .tracklist-section { padding: 50px 16px; }
+  .game-frame { height: 350px; }
+  .stream-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== GLITCH TEXT EFFECT ===== */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+}
+
+.glitch::before {
+  animation: glitch1 3s infinite;
+  color: rgba(255,0,0,0.3);
+  z-index: -1;
+}
+
+.glitch::after {
+  animation: glitch2 3s infinite;
+  color: rgba(0,255,0,0.3);
+  z-index: -1;
+}
+
+@keyframes glitch1 {
+  0%, 90%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  92% { clip-path: inset(40% 0 20% 0); transform: translate(-3px, 1px); }
+  94% { clip-path: inset(10% 0 60% 0); transform: translate(3px, -1px); }
+  96% { clip-path: inset(0 0 0 0); transform: translate(0); }
+}
+
+@keyframes glitch2 {
+  0%, 88%, 100% { clip-path: inset(0 0 0 0); transform: translate(0); }
+  90% { clip-path: inset(60% 0 10% 0); transform: translate(2px, 2px); }
+  93% { clip-path: inset(20% 0 40% 0); transform: translate(-2px, -1px); }
+  95% { clip-path: inset(0 0 0 0); transform: translate(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="fog"></div>
+  <div class="fog"></div>
+  
+  <div class="hero-content">
+    <div class="hero-label">PRINCE UBE PRESENTS</div>
+    <h1 class="hero-title glitch" data-text="Zombie Village">
+      Zombie
+      <span>Village</span>
+    </h1>
+    <div class="hero-chapter">Chapter One</div>
+    <img class="hero-cover" src="cover.jpg" alt="Zombie Village Chapter One cover art — Prince Ube">
+    <p class="hero-tagline">
+      A 5-track conceptual mixtape. Prince Ube vs. The Demon.<br>
+      Underground hip-hop meets horror comedy.<br>
+      The tape loops. There is no escape.
+    </p>
+    
+    <div class="hero-cta">
+      <a href="#play" class="btn-primary">▶ PLAY THE GAME</a>
+      <a href="#stream" class="btn-secondary">STREAM THE TAPE ↓</a>
+    </div>
+  </div>
+  
+  <div class="scroll-indicator">↓ SCROLL ↓</div>
+</section>
+
+<!-- TRACKLIST -->
+<section class="tracklist-section">
+  <h2 class="section-title">The Tape</h2>
+  
+  <div class="track-item">
+    <span class="track-num">01</span>
+    <div class="track-info">
+      <div class="track-name">chapter_1</div>
+      <div class="track-role">THE SETUP</div>
+      <div class="track-desc">A terrifying, cavernous Demon tries to intimidate Prince Ube. Ube is not scared. He is just incredibly annoyed.</div>
+      <div class="track-vibe">
+        <span class="vibe-tag">creepy</span>
+        <span class="vibe-tag">conversational</span>
+        <span class="vibe-tag">raw</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="track-item">
+    <span class="track-num">02</span>
+    <div class="track-info">
+      <div class="track-name">HOLD_UP!</div>
+      <div class="track-role">THE ESCALATION</div>
+      <div class="track-desc">The Demon presses. Ube drowns him out. Aggressive, glitchy, chaotic. Blown-out saturation and thick dry vocals.</div>
+      <div class="track-vibe">
+        <span class="vibe-tag">aggressive</span>
+        <span class="vibe-tag">glitch</span>
+        <span class="vibe-tag">mosh pit</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="track-item">
+    <span class="track-num">03</span>
+    <div class="track-info">
+      <div class="track-name">zombie_dream</div>
+      <div class="track-role">THE HAZE</div>
+      <div class="track-desc">The adrenaline fades. Ube sinks into the psychedelic reality of the village. Dusty breakbeats. Hypnotic head-nod groove.</div>
+      <div class="track-vibe">
+        <span class="vibe-tag">psychedelic</span>
+        <span class="vibe-tag">lo-fi</span>
+        <span class="vibe-tag">dusty</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="track-item">
+    <span class="track-num">04</span>
+    <div class="track-info">
+      <div class="track-name">RIP_UBE</div>
+      <div class="track-role">THE CLIMAX</div>
+      <div class="track-desc">Rapid-fire lyrical sprints through claustrophobic synths. The Demon shadows every bar. Peak manic energy.</div>
+      <div class="track-vibe">
+        <span class="vibe-tag">fast</span>
+        <span class="vibe-tag">dense</span>
+        <span class="vibe-tag">lyrical</span>
+      </div>
+    </div>
+  </div>
+  
+  <div class="track-item">
+    <span class="track-num">05</span>
+    <div class="track-info">
+      <div class="track-name">BACK_FROM_THE_DEAD</div>
+      <div class="track-role">THE TRAP</div>
+      <div class="track-desc">Ube tries to quit the tape. The Demon won't let him. The track cuts off — and loops perfectly back to track one. There is no escape.</div>
+      <div class="track-vibe">
+        <span class="vibe-tag">infinite loop</span>
+        <span class="vibe-tag">fourth wall</span>
+        <span class="vibe-tag">chaos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE LOOP QUOTE -->
+<section class="loop-section">
+  <div class="loop-quote">"How many times do we have to do this?"</div>
+  <div class="loop-attribution">— The Demon</div>
+</section>
+
+<!-- GAME -->
+<section class="game-section" id="play">
+  <h2 class="section-title">Enter the Village</h2>
+  <p style="font-family: 'Special Elite', cursive; color: var(--grey); margin-bottom: 10px; font-size: 14px;">
+    Run. Collect tapes. Avoid the undead. Survive all 5 tracks to escape.
+  </p>
+  <div class="game-frame">
+    <iframe src="zombie-village-game.html" title="Zombie Village Game" allow="autoplay"></iframe>
+  </div>
+  <div class="game-instructions">ARROW KEYS OR TAP BUTTONS TO PLAY</div>
+</section>
+
+<!-- STREAM -->
+<section class="stream-section" id="stream">
+  <h2 class="section-title">Stream the Tape</h2>
+  <p style="font-family: 'Special Elite', cursive; color: var(--grey); font-size: 14px;">
+    Zombie Village Chapter One — out now everywhere.
+  </p>
+  <div class="stream-grid">
+    <a href="https://music.apple.com/us/artist/prince-ube/1718194640" target="_blank" class="stream-btn">APPLE MUSIC</a>
+    <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE" target="_blank" class="stream-btn">SPOTIFY</a>
+    <a href="https://youtube.com/@prince_ube" target="_blank" class="stream-btn">YOUTUBE</a>
+    <a href="https://princeube.bandcamp.com" target="_blank" class="stream-btn">BANDCAMP</a>
+  </div>
+</section>
+
+<!-- LORE -->
+<section class="lore-section">
+  <p class="lore-text">
+    <em>Zombie Village</em> is the basement underneath the penthouse.<br><br>
+    Prince Ube built his world on luxury — calm flow, expensive sound, jazz textures, quiet confidence. But every penthouse has a foundation. This tape is what's underneath: raw, glitchy, unpolished, and trapped in an infinite loop with a Demon who won't shut up.<br><br>
+    Produced, written, recorded, mixed, and designed by one person.<br>
+    Minneapolis born. Atlanta raised.<br><br>
+    <em>The music was never a side project. It was the thing.</em>
+  </p>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">PRINCE UBE · UBE SOUL · Y2K LUXURY RAP</div>
+  <div class="footer-links">
+    <a href="https://princeube.com">Home</a>
+    <a href="https://music.apple.com/us/artist/prince-ube/1718194640">Apple Music</a>
+    <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE">Spotify</a>
+    <a href="https://youtube.com/@prince_ube">YouTube</a>
+    <a href="https://princeube.bandcamp.com">Bandcamp</a>
+    <a href="https://instagram.com/prince_ube_">Instagram</a>
+    <a href="https://ehorovillage.com">Ehoro Village</a>
+  </div>
+</footer>
+
+<script>
+// Parallax on scroll
+window.addEventListener('scroll', () => {
+  const scrolled = window.pageYOffset;
+  const hero = document.querySelector('.hero-bg');
+  if (hero) {
+    hero.style.transform = `translateY(${scrolled * 0.3}px)`;
+  }
+});
+
+// Intersection observer for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.track-item').forEach((el, i) => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = `all 0.5s ease ${i * 0.1}s`;
+  observer.observe(el);
+});
+</script>
+</body>
+</html>

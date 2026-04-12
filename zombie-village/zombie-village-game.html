@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>Zombie Village — Prince Ube</title>
+<meta name="description" content="Play Zombie Village — the interactive browser game for Prince Ube's Zombie Village Chapter One EP. Underground hip-hop meets horror. Ube Soul. Y2K Luxury Rap.">
+<meta name="keywords" content="Prince Ube, Zombie Village, ube soul, Y2K luxury rap, underground hip hop, jazz rap, Tyler the Creator, browser game, indie game, concept EP">
+<meta property="og:title" content="Zombie Village — Prince Ube">
+<meta property="og:description" content="Escape the Zombie Village. A browser game by Prince Ube.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Press+Start+2P&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #0a0a0a;
+  overflow: hidden;
+  font-family: 'DM Sans', sans-serif;
+  color: #e0e0e0;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#title-screen {
+  position: fixed; inset: 0;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  background: linear-gradient(180deg, #0d1a0d 0%, #0a0f0a 40%, #050805 100%);
+  z-index: 100;
+  cursor: pointer;
+}
+
+#title-screen::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,255,0,0.03) 2px,
+    rgba(0,255,0,0.03) 4px
+  );
+  pointer-events: none;
+}
+
+.title-prince {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 14px;
+  letter-spacing: 6px;
+  color: #888;
+  margin-bottom: 8px;
+  animation: flicker 3s infinite;
+}
+
+.title-zombie {
+  font-family: 'Creepster', cursive;
+  font-size: 72px;
+  color: #2d5a1e;
+  text-shadow: 
+    0 0 20px rgba(45,90,30,0.6),
+    0 0 40px rgba(45,90,30,0.3),
+    3px 3px 0 #0a0a0a;
+  line-height: 0.9;
+  letter-spacing: 4px;
+}
+
+.title-village {
+  font-family: 'Creepster', cursive;
+  font-size: 48px;
+  color: #4a7a3a;
+  text-shadow: 
+    0 0 15px rgba(74,122,58,0.4),
+    2px 2px 0 #0a0a0a;
+  letter-spacing: 8px;
+}
+
+.title-chapter {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  color: #555;
+  margin-top: 20px;
+  letter-spacing: 3px;
+}
+
+.title-tap {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #3a6a2a;
+  margin-top: 40px;
+  animation: pulse 2s infinite;
+}
+
+.cover-art {
+  width: 200px;
+  height: auto;
+  margin-bottom: 30px;
+  border: 2px solid #2d5a1e;
+  box-shadow: 0 0 30px rgba(45,90,30,0.3);
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.3; }
+  94% { opacity: 1; }
+  96% { opacity: 0.5; }
+  97% { opacity: 1; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* GAME UI */
+#game-container {
+  position: fixed; inset: 0;
+  display: none;
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+}
+
+#hud {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hud-left, .hud-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hud-tapes {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  color: #4a7a3a;
+}
+
+.hud-track {
+  font-family: 'Creepster', cursive;
+  font-size: 18px;
+  color: #2d5a1e;
+  text-shadow: 0 0 10px rgba(45,90,30,0.5);
+  text-align: right;
+  max-width: 200px;
+}
+
+.hud-score {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #666;
+}
+
+/* DEATH SCREEN */
+#death-screen {
+  position: fixed; inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5,8,5,0.95);
+  z-index: 50;
+  cursor: pointer;
+}
+
+.death-text {
+  font-family: 'Creepster', cursive;
+  font-size: 42px;
+  color: #2d5a1e;
+  text-shadow: 0 0 30px rgba(45,90,30,0.5);
+  margin-bottom: 8px;
+}
+
+.death-sub {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.death-tap {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 9px;
+  color: #3a6a2a;
+  animation: pulse 2s infinite;
+}
+
+/* WIN SCREEN */
+#win-screen {
+  position: fixed; inset: 0;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(180deg, #0d1a0d 0%, #050805 100%);
+  z-index: 50;
+  padding: 20px;
+}
+
+.win-title {
+  font-family: 'Creepster', cursive;
+  font-size: 36px;
+  color: #4a7a3a;
+  text-shadow: 0 0 20px rgba(74,122,58,0.4);
+  margin-bottom: 10px;
+}
+
+.win-sub {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 30px;
+  text-align: center;
+  max-width: 300px;
+}
+
+.stream-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 280px;
+}
+
+.stream-link {
+  display: block;
+  padding: 14px 20px;
+  background: #1a2a1a;
+  border: 1px solid #2d5a1e;
+  color: #4a7a3a;
+  text-decoration: none;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  text-align: center;
+  letter-spacing: 2px;
+  transition: all 0.2s;
+}
+
+.stream-link:hover {
+  background: #2d5a1e;
+  color: #e0e0e0;
+  box-shadow: 0 0 20px rgba(45,90,30,0.4);
+}
+
+.win-site {
+  margin-top: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: #555;
+}
+
+.win-site a {
+  color: #4a7a3a;
+  text-decoration: none;
+}
+
+/* MOBILE CONTROLS */
+#mobile-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 0; right: 0;
+  display: none;
+  justify-content: center;
+  gap: 80px;
+  z-index: 20;
+  pointer-events: none;
+}
+
+.mobile-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(45,90,30,0.2);
+  border: 2px solid rgba(45,90,30,0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: rgba(74,122,58,0.6);
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.mobile-btn:active {
+  background: rgba(45,90,30,0.5);
+}
+
+@media (pointer: coarse) {
+  #mobile-controls { display: flex; }
+}
+
+/* SCANLINE OVERLAY */
+#scanlines {
+  position: fixed; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.15) 2px,
+    rgba(0,0,0,0.15) 4px
+  );
+  pointer-events: none;
+  z-index: 30;
+}
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoGame",
+  "name": "Zombie Village",
+  "description": "An interactive browser game experience for Prince Ube's Zombie Village Chapter One EP. Side-scrolling action through a haunted village soundtracked by underground hip-hop.",
+  "author": {
+    "@type": "Person",
+    "name": "Prince Ube",
+    "url": "https://princeube.com"
+  },
+  "genre": ["Action", "Music"],
+  "gamePlatform": "Web Browser",
+  "applicationCategory": "Game",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "associatedMedia": {
+    "@type": "MusicAlbum",
+    "name": "Zombie Village Chapter One",
+    "byArtist": {
+      "@type": "MusicGroup",
+      "name": "Prince Ube",
+      "genre": ["ube soul", "Y2K luxury rap", "underground hip hop", "jazz rap", "horrorcore"]
+    }
+  }
+}
+</script>
+</head>
+<body>
+
+<!-- TITLE SCREEN -->
+<div id="title-screen">
+  <div class="title-prince">PRINCE UBE</div>
+  <div class="title-zombie">Zombie</div>
+  <div class="title-village">Village</div>
+  <div class="title-chapter">CHAPTER ONE</div>
+  <div class="title-tap">TAP TO ENTER THE VILLAGE</div>
+</div>
+
+<!-- GAME -->
+<div id="game-container">
+  <canvas id="game"></canvas>
+  <div id="hud">
+    <div class="hud-left">
+      <span class="hud-tapes">📼 <span id="tape-count">0</span></span>
+    </div>
+    <div class="hud-right">
+      <div>
+        <div class="hud-track" id="track-name">chapter_1</div>
+        <div class="hud-score" id="distance">0m</div>
+      </div>
+    </div>
+  </div>
+  <div id="mobile-controls">
+    <div class="mobile-btn" id="btn-jump">↑</div>
+    <div class="mobile-btn" id="btn-duck">↓</div>
+  </div>
+</div>
+
+<!-- DEATH -->
+<div id="death-screen">
+  <div class="death-text">Welcome back, Ube.</div>
+  <div class="death-sub">"How many times do we have to do this?"</div>
+  <div class="death-tap">TAP TO RESTART</div>
+</div>
+
+<!-- WIN -->
+<div id="win-screen">
+  <div class="win-title">You escaped.</div>
+  <div class="win-sub">Zombie Village Chapter One — out now. Stream the full EP.</div>
+  <div class="stream-links">
+    <a href="https://music.apple.com/us/artist/prince-ube/1718194640" target="_blank" class="stream-link">APPLE MUSIC</a>
+    <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE" target="_blank" class="stream-link">SPOTIFY</a>
+    <a href="https://youtube.com/@prince_ube" target="_blank" class="stream-link">YOUTUBE</a>
+    <a href="https://princeube.bandcamp.com" target="_blank" class="stream-link">BANDCAMP</a>
+  </div>
+  <div class="win-site"><a href="https://princeube.com">princeube.com</a></div>
+</div>
+
+<div id="scanlines"></div>
+
+<script>
+const ASSETS = {
+  head: 'head.png',
+  zombie: 'zombie.png'
+};
+
+// ============ GAME CONFIG ============
+const TRACKS = [
+  { name: 'chapter_1', color: '#1a3a1a', distance: 0 },
+  { name: 'HOLD_UP!', color: '#2a1a1a', distance: 500 },
+  { name: 'zombie_dream', color: '#1a1a2a', distance: 1200 },
+  { name: 'RIP_UBE', color: '#2a0a0a', distance: 2000 },
+  { name: 'BACK_FROM_THE_DEAD', color: '#0a2a0a', distance: 2800 }
+];
+
+const WIN_DISTANCE = 3500;
+const GRAVITY = 0.6;
+const JUMP_FORCE = -12;
+const PLAYER_SIZE = 50;
+const GROUND_Y_RATIO = 0.75;
+
+// ============ GAME STATE ============
+let canvas, ctx;
+let gameState = 'title'; // title, playing, dead, win
+let player, obstacles, collectibles, particles, bgElements;
+let distance, tapes, groundY, canvasW, canvasH;
+let gameSpeed, frameCount;
+let keys = {};
+let currentTrack = 0;
+let deathCount = 0;
+let screenShake = 0;
+
+// ============ IMAGES ============
+const headImg = new Image();
+headImg.src = ASSETS.head;
+const zombieImg = new Image();
+zombieImg.src = ASSETS.zombie;
+
+// ============ INIT ============
+function init() {
+  canvas = document.getElementById('game');
+  ctx = canvas.getContext('2d');
+  resize();
+  window.addEventListener('resize', resize);
+
+  // Input
+  window.addEventListener('keydown', e => {
+    keys[e.code] = true;
+    if (e.code === 'Space' || e.code === 'ArrowUp') e.preventDefault();
+  });
+  window.addEventListener('keyup', e => keys[e.code] = false);
+
+  // Title screen
+  document.getElementById('title-screen').addEventListener('click', startGame);
+  document.getElementById('title-screen').addEventListener('touchstart', e => {
+    e.preventDefault(); startGame();
+  });
+
+  // Death screen
+  document.getElementById('death-screen').addEventListener('click', startGame);
+  document.getElementById('death-screen').addEventListener('touchstart', e => {
+    e.preventDefault(); startGame();
+  });
+
+  // Mobile controls
+  const btnJump = document.getElementById('btn-jump');
+  const btnDuck = document.getElementById('btn-duck');
+  
+  btnJump.addEventListener('touchstart', e => { e.preventDefault(); keys['ArrowUp'] = true; });
+  btnJump.addEventListener('touchend', e => { e.preventDefault(); keys['ArrowUp'] = false; });
+  btnDuck.addEventListener('touchstart', e => { e.preventDefault(); keys['ArrowDown'] = true; });
+  btnDuck.addEventListener('touchend', e => { e.preventDefault(); keys['ArrowDown'] = false; });
+
+  requestAnimationFrame(gameLoop);
+}
+
+function resize() {
+  canvasW = window.innerWidth;
+  canvasH = window.innerHeight;
+  canvas.width = canvasW;
+  canvas.height = canvasH;
+  groundY = canvasH * GROUND_Y_RATIO;
+}
+
+function startGame() {
+  document.getElementById('title-screen').style.display = 'none';
+  document.getElementById('death-screen').style.display = 'none';
+  document.getElementById('win-screen').style.display = 'none';
+  document.getElementById('game-container').style.display = 'block';
+
+  player = {
+    x: canvasW * 0.15,
+    y: groundY - PLAYER_SIZE,
+    vy: 0,
+    width: PLAYER_SIZE,
+    height: PLAYER_SIZE,
+    grounded: true,
+    ducking: false,
+    bobOffset: 0
+  };
+
+  obstacles = [];
+  collectibles = [];
+  particles = [];
+  bgElements = [];
+  distance = 0;
+  tapes = 0;
+  gameSpeed = 4;
+  frameCount = 0;
+  currentTrack = 0;
+  screenShake = 0;
+  gameState = 'playing';
+
+  // Generate initial bg elements
+  for (let i = 0; i < 15; i++) {
+    bgElements.push(createBgElement(Math.random() * canvasW));
+  }
+
+  updateHUD();
+}
+
+// ============ BACKGROUND ELEMENTS ============
+function createBgElement(x) {
+  const types = ['tree', 'grave', 'house', 'bush', 'lantern'];
+  const type = types[Math.floor(Math.random() * types.length)];
+  const depth = 0.3 + Math.random() * 0.7; // parallax depth
+  return { x, type, depth, height: 40 + Math.random() * 100 };
+}
+
+function drawBgElement(el) {
+  const alpha = el.depth * 0.4;
+  ctx.save();
+  ctx.globalAlpha = alpha;
+  
+  const baseY = groundY - el.height * el.depth;
+  const scale = el.depth;
+  
+  switch(el.type) {
+    case 'tree':
+      // Trunk
+      ctx.fillStyle = '#1a2a1a';
+      ctx.fillRect(el.x - 4*scale, baseY, 8*scale, el.height*scale);
+      // Canopy - overgrown, organic
+      ctx.fillStyle = '#0d2a0d';
+      ctx.beginPath();
+      ctx.arc(el.x, baseY - 10*scale, 25*scale, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#0a1f0a';
+      ctx.beginPath();
+      ctx.arc(el.x - 10*scale, baseY, 18*scale, 0, Math.PI*2);
+      ctx.fill();
+      // Vines
+      ctx.strokeStyle = '#1a3a1a';
+      ctx.lineWidth = 1;
+      for (let v = 0; v < 3; v++) {
+        ctx.beginPath();
+        ctx.moveTo(el.x - 15*scale + v*15*scale, baseY - 5*scale);
+        ctx.lineTo(el.x - 18*scale + v*15*scale, baseY + 30*scale);
+        ctx.stroke();
+      }
+      break;
+    case 'grave':
+      ctx.fillStyle = '#222';
+      ctx.fillRect(el.x - 8*scale, baseY + 10*scale, 16*scale, 24*scale);
+      ctx.beginPath();
+      ctx.arc(el.x, baseY + 10*scale, 8*scale, Math.PI, 0);
+      ctx.fill();
+      // Cross scratch
+      ctx.strokeStyle = '#333';
+      ctx.lineWidth = 2*scale;
+      ctx.beginPath();
+      ctx.moveTo(el.x, baseY + 14*scale);
+      ctx.lineTo(el.x, baseY + 28*scale);
+      ctx.moveTo(el.x - 5*scale, baseY + 19*scale);
+      ctx.lineTo(el.x + 5*scale, baseY + 19*scale);
+      ctx.stroke();
+      break;
+    case 'house':
+      ctx.fillStyle = '#111a11';
+      ctx.fillRect(el.x - 20*scale, baseY, 40*scale, 35*scale);
+      // Roof
+      ctx.fillStyle = '#0a150a';
+      ctx.beginPath();
+      ctx.moveTo(el.x - 25*scale, baseY);
+      ctx.lineTo(el.x, baseY - 20*scale);
+      ctx.lineTo(el.x + 25*scale, baseY);
+      ctx.closePath();
+      ctx.fill();
+      // Window glow
+      ctx.fillStyle = `rgba(45,90,30,${0.2 + Math.sin(frameCount*0.05)*0.1})`;
+      ctx.fillRect(el.x - 8*scale, baseY + 8*scale, 7*scale, 7*scale);
+      ctx.fillRect(el.x + 2*scale, baseY + 8*scale, 7*scale, 7*scale);
+      break;
+    case 'bush':
+      ctx.fillStyle = '#0d1f0d';
+      ctx.beginPath();
+      ctx.arc(el.x, baseY + 15*scale, 15*scale, 0, Math.PI*2);
+      ctx.fill();
+      ctx.fillStyle = '#0a1a0a';
+      ctx.beginPath();
+      ctx.arc(el.x + 10*scale, baseY + 18*scale, 10*scale, 0, Math.PI*2);
+      ctx.fill();
+      break;
+    case 'lantern':
+      ctx.fillStyle = '#1a1a1a';
+      ctx.fillRect(el.x - 2, baseY, 4, 40*scale);
+      // Glow
+      const glowR = 8 + Math.sin(frameCount*0.08)*3;
+      const grad = ctx.createRadialGradient(el.x, baseY, 0, el.x, baseY, glowR*scale);
+      grad.addColorStop(0, 'rgba(45,90,30,0.6)');
+      grad.addColorStop(1, 'rgba(45,90,30,0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.arc(el.x, baseY, glowR*scale, 0, Math.PI*2);
+      ctx.fill();
+      break;
+  }
+  ctx.restore();
+}
+
+// ============ OBSTACLES & COLLECTIBLES ============
+function spawnObstacle() {
+  const type = Math.random() > 0.4 ? 'zombie' : 'flying';
+  obstacles.push({
+    x: canvasW + 50,
+    y: type === 'zombie' ? groundY - 45 : groundY - 90 - Math.random()*40,
+    width: 40,
+    height: type === 'zombie' ? 45 : 30,
+    type,
+    frame: 0
+  });
+}
+
+function spawnCollectible() {
+  const y = groundY - 60 - Math.random() * 80;
+  collectibles.push({
+    x: canvasW + 30,
+    y,
+    width: 20,
+    height: 14,
+    collected: false
+  });
+}
+
+// ============ PARTICLES ============
+function addParticle(x, y, color) {
+  for (let i = 0; i < 5; i++) {
+    particles.push({
+      x, y,
+      vx: (Math.random()-0.5)*6,
+      vy: (Math.random()-0.5)*6,
+      life: 30,
+      color
+    });
+  }
+}
+
+// ============ UPDATE ============
+function update() {
+  if (gameState !== 'playing') return;
+
+  frameCount++;
+  distance += gameSpeed * 0.1;
+  
+  // Increase speed over time
+  gameSpeed = 4 + distance * 0.002;
+  if (gameSpeed > 10) gameSpeed = 10;
+
+  // Track progression
+  for (let i = TRACKS.length - 1; i >= 0; i--) {
+    if (distance >= TRACKS[i].distance) {
+      if (currentTrack !== i) {
+        currentTrack = i;
+        screenShake = 10;
+        addParticle(player.x, player.y, '#4a7a3a');
+      }
+      break;
+    }
+  }
+
+  // Check win
+  if (distance >= WIN_DISTANCE) {
+    gameState = 'win';
+    document.getElementById('game-container').style.display = 'none';
+    document.getElementById('win-screen').style.display = 'flex';
+    return;
+  }
+
+  // Player physics
+  if ((keys['Space'] || keys['ArrowUp'] || keys['KeyW']) && player.grounded) {
+    player.vy = JUMP_FORCE;
+    player.grounded = false;
+  }
+
+  player.ducking = keys['ArrowDown'] || keys['KeyS'];
+  
+  if (!player.grounded) {
+    player.vy += GRAVITY;
+    player.y += player.vy;
+    if (player.y >= groundY - PLAYER_SIZE) {
+      player.y = groundY - PLAYER_SIZE;
+      player.vy = 0;
+      player.grounded = true;
+    }
+  }
+
+  // Bob animation
+  if (player.grounded && !player.ducking) {
+    player.bobOffset = Math.sin(frameCount * 0.1) * 3;
+  } else {
+    player.bobOffset = 0;
+  }
+
+  // Spawn obstacles
+  const spawnRate = Math.max(50, 90 - distance * 0.01);
+  if (frameCount % Math.floor(spawnRate) === 0) spawnObstacle();
+  if (frameCount % 70 === 0) spawnCollectible();
+
+  // Move obstacles
+  obstacles.forEach(o => {
+    o.x -= gameSpeed;
+    o.frame++;
+  });
+  obstacles = obstacles.filter(o => o.x > -60);
+
+  // Move collectibles
+  collectibles.forEach(c => {
+    c.x -= gameSpeed;
+  });
+  collectibles = collectibles.filter(c => c.x > -30 && !c.collected);
+
+  // Move bg elements
+  bgElements.forEach(el => {
+    el.x -= gameSpeed * el.depth * 0.5;
+  });
+  bgElements = bgElements.filter(el => el.x > -60);
+  if (bgElements.length < 12) {
+    bgElements.push(createBgElement(canvasW + Math.random() * 200));
+  }
+
+  // Collision detection
+  const px = player.x;
+  const py = player.y + (player.ducking ? PLAYER_SIZE * 0.4 : 0);
+  const pw = player.width * 0.6;
+  const ph = player.ducking ? PLAYER_SIZE * 0.6 : PLAYER_SIZE;
+
+  for (let o of obstacles) {
+    if (px < o.x + o.width*0.7 && px + pw > o.x + o.width*0.15 &&
+        py < o.y + o.height*0.8 && py + ph > o.y + o.height*0.1) {
+      die();
+      return;
+    }
+  }
+
+  // Collectible pickup
+  for (let c of collectibles) {
+    if (!c.collected &&
+        px < c.x + c.width && px + pw > c.x &&
+        py < c.y + c.height && py + ph > c.y) {
+      c.collected = true;
+      tapes++;
+      addParticle(c.x, c.y, '#4a7a3a');
+    }
+  }
+
+  // Particles
+  particles.forEach(p => {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.life--;
+  });
+  particles = particles.filter(p => p.life > 0);
+
+  // Screen shake decay
+  if (screenShake > 0) screenShake--;
+
+  updateHUD();
+}
+
+function die() {
+  gameState = 'dead';
+  deathCount++;
+  document.getElementById('game-container').style.display = 'none';
+  document.getElementById('death-screen').style.display = 'flex';
+}
+
+function updateHUD() {
+  document.getElementById('tape-count').textContent = tapes;
+  document.getElementById('track-name').textContent = TRACKS[currentTrack].name;
+  document.getElementById('distance').textContent = Math.floor(distance) + 'm';
+}
+
+// ============ DRAW ============
+function draw() {
+  if (gameState !== 'playing') return;
+
+  // Shake offset
+  const sx = screenShake > 0 ? (Math.random()-0.5) * screenShake : 0;
+  const sy = screenShake > 0 ? (Math.random()-0.5) * screenShake : 0;
+  ctx.save();
+  ctx.translate(sx, sy);
+
+  // Sky gradient based on current track
+  const tc = TRACKS[currentTrack].color;
+  const skyGrad = ctx.createLinearGradient(0, 0, 0, canvasH);
+  skyGrad.addColorStop(0, '#050805');
+  skyGrad.addColorStop(0.6, tc);
+  skyGrad.addColorStop(1, '#0a0a0a');
+  ctx.fillStyle = skyGrad;
+  ctx.fillRect(0, 0, canvasW, canvasH);
+
+  // Fog effect
+  const fogGrad = ctx.createLinearGradient(0, groundY - 100, 0, groundY);
+  fogGrad.addColorStop(0, 'transparent');
+  fogGrad.addColorStop(1, `rgba(45,90,30,${0.05 + Math.sin(frameCount*0.02)*0.02})`);
+  ctx.fillStyle = fogGrad;
+  ctx.fillRect(0, groundY - 100, canvasW, 100);
+
+  // Background elements
+  bgElements.sort((a, b) => a.depth - b.depth);
+  bgElements.forEach(drawBgElement);
+
+  // Ground
+  ctx.fillStyle = '#0d1a0d';
+  ctx.fillRect(0, groundY, canvasW, canvasH - groundY);
+  
+  // Ground line
+  ctx.strokeStyle = '#1a3a1a';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  ctx.moveTo(0, groundY);
+  ctx.lineTo(canvasW, groundY);
+  ctx.stroke();
+
+  // Ground texture - dirt patches
+  ctx.fillStyle = '#111f11';
+  for (let gx = (-frameCount * gameSpeed * 0.5) % 120; gx < canvasW; gx += 120) {
+    ctx.fillRect(gx, groundY + 5, 30, 3);
+    ctx.fillRect(gx + 60, groundY + 12, 20, 2);
+  }
+
+  // Collectibles (cassette tapes)
+  collectibles.forEach(c => {
+    if (c.collected) return;
+    ctx.save();
+    ctx.translate(c.x + 10, c.y + 7);
+    // Tape body
+    ctx.fillStyle = '#2a2a2a';
+    ctx.fillRect(-10, -7, 20, 14);
+    ctx.strokeStyle = '#4a7a3a';
+    ctx.strokeRect(-10, -7, 20, 14);
+    // Reels
+    ctx.fillStyle = '#4a7a3a';
+    ctx.beginPath();
+    ctx.arc(-3, 0, 3, 0, Math.PI*2);
+    ctx.arc(3, 0, 3, 0, Math.PI*2);
+    ctx.fill();
+    // Label
+    ctx.fillStyle = '#1a3a1a';
+    ctx.fillRect(-8, -5, 16, 4);
+    // Glow
+    ctx.globalAlpha = 0.3 + Math.sin(frameCount*0.1)*0.1;
+    const tGrad = ctx.createRadialGradient(0, 0, 0, 0, 0, 18);
+    tGrad.addColorStop(0, 'rgba(45,90,30,0.3)');
+    tGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = tGrad;
+    ctx.fillRect(-18, -18, 36, 36);
+    ctx.restore();
+  });
+
+  // Obstacles
+  obstacles.forEach(o => {
+    if (o.type === 'zombie') {
+      // Draw zombie head sprite
+      const bobY = Math.sin(o.frame * 0.1) * 3;
+      ctx.save();
+      ctx.translate(o.x + o.width/2, o.y + bobY);
+      // Green glow behind zombie
+      ctx.globalAlpha = 0.3;
+      ctx.shadowColor = '#00ff00';
+      ctx.shadowBlur = 15;
+      ctx.drawImage(zombieImg, -o.width/2, -5, o.width, o.height);
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
+      ctx.drawImage(zombieImg, -o.width/2, -5, o.width, o.height);
+      // Zombie eyes glow
+      ctx.fillStyle = `rgba(0,255,0,${0.5 + Math.sin(o.frame*0.15)*0.3})`;
+      ctx.beginPath();
+      ctx.arc(-6, -5 + o.height*0.35, 2, 0, Math.PI*2);
+      ctx.arc(6, -5 + o.height*0.35, 2, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    } else {
+      // Flying obstacle - bat-like
+      ctx.save();
+      ctx.translate(o.x + 15, o.y + 15);
+      ctx.fillStyle = '#1a3a1a';
+      // Wings
+      const wingAngle = Math.sin(o.frame * 0.2) * 0.4;
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(-18, -8 + Math.sin(o.frame*0.2)*8);
+      ctx.lineTo(-10, 2);
+      ctx.closePath();
+      ctx.fill();
+      ctx.beginPath();
+      ctx.moveTo(0, 0);
+      ctx.lineTo(18, -8 + Math.sin(o.frame*0.2)*8);
+      ctx.lineTo(10, 2);
+      ctx.closePath();
+      ctx.fill();
+      // Body
+      ctx.fillStyle = '#0d1f0d';
+      ctx.beginPath();
+      ctx.arc(0, 0, 6, 0, Math.PI*2);
+      ctx.fill();
+      // Eyes
+      ctx.fillStyle = '#4a7a3a';
+      ctx.beginPath();
+      ctx.arc(-2, -2, 1.5, 0, Math.PI*2);
+      ctx.arc(2, -2, 1.5, 0, Math.PI*2);
+      ctx.fill();
+      ctx.restore();
+    }
+  });
+
+  // Player
+  ctx.save();
+  const drawY = player.y + player.bobOffset;
+  const drawH = player.ducking ? PLAYER_SIZE * 0.6 : PLAYER_SIZE;
+  const drawYOffset = player.ducking ? PLAYER_SIZE * 0.4 : 0;
+  
+  // Shadow under player
+  ctx.fillStyle = 'rgba(0,0,0,0.3)';
+  ctx.beginPath();
+  ctx.ellipse(player.x + PLAYER_SIZE/2, groundY + 2, PLAYER_SIZE*0.35, 4, 0, 0, Math.PI*2);
+  ctx.fill();
+  
+  // Player head
+  ctx.drawImage(headImg, player.x, drawY + drawYOffset, PLAYER_SIZE, drawH);
+  
+  // Crown glow effect
+  ctx.globalAlpha = 0.15 + Math.sin(frameCount*0.05)*0.05;
+  const crownGrad = ctx.createRadialGradient(
+    player.x + PLAYER_SIZE/2, drawY + drawYOffset, 0,
+    player.x + PLAYER_SIZE/2, drawY + drawYOffset, PLAYER_SIZE
+  );
+  crownGrad.addColorStop(0, 'rgba(74,122,58,0.3)');
+  crownGrad.addColorStop(1, 'transparent');
+  ctx.fillStyle = crownGrad;
+  ctx.beginPath();
+  ctx.arc(player.x + PLAYER_SIZE/2, drawY + drawYOffset + PLAYER_SIZE/2, PLAYER_SIZE, 0, Math.PI*2);
+  ctx.fill();
+  ctx.restore();
+
+  // Particles
+  particles.forEach(p => {
+    ctx.globalAlpha = p.life / 30;
+    ctx.fillStyle = p.color;
+    ctx.fillRect(p.x, p.y, 3, 3);
+  });
+  ctx.globalAlpha = 1;
+
+  // Track transition flash
+  if (screenShake > 5) {
+    ctx.globalAlpha = (screenShake - 5) / 10;
+    ctx.fillStyle = '#2d5a1e';
+    ctx.fillRect(0, 0, canvasW, canvasH);
+    ctx.globalAlpha = 1;
+  }
+
+  ctx.restore();
+}
+
+// ============ GAME LOOP ============
+function gameLoop() {
+  update();
+  draw();
+  requestAnimationFrame(gameLoop);
+}
+
+// ============ START ============
+window.addEventListener('load', init);
+</script>
+</body>
+</html>
