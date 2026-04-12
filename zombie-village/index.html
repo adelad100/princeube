@@ -439,20 +439,38 @@ body::before {
   text-align: center;
 }
 
-.game-frame {
-  width: 100%;
-  max-width: 800px;
-  height: 500px;
+.game-launch-btn {
+  display: inline-block;
+  padding: 20px 50px;
+  background: var(--green-accent);
+  color: var(--black);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  text-decoration: none;
+  letter-spacing: 3px;
   margin: 30px auto;
-  border: 2px solid var(--green-accent);
-  box-shadow: 0 0 40px rgba(45,90,30,0.2);
-  background: var(--black);
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
 }
 
-.game-frame iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+.game-launch-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.game-launch-btn:hover::before {
+  transform: translateX(100%);
+}
+
+.game-launch-btn:hover {
+  background: var(--green-bright);
+  box-shadow: 0 0 30px rgba(74,122,58,0.5);
+  transform: translateY(-2px);
 }
 
 .game-instructions {
@@ -555,7 +573,6 @@ body::before {
 @media (max-width: 600px) {
   .hero { padding: 30px 16px; }
   .tracklist-section { padding: 50px 16px; }
-  .game-frame { height: 350px; }
   .stream-grid { grid-template-columns: 1fr; }
 }
 
@@ -724,10 +741,10 @@ body::before {
   <p style="font-family: 'Special Elite', cursive; color: var(--grey); margin-bottom: 10px; font-size: 14px;">
     Run. Collect tapes. Avoid the undead. Survive all 5 tracks to escape.
   </p>
-  <div class="game-frame">
-    <iframe src="zombie-village-game.html" title="Zombie Village Game" allow="autoplay"></iframe>
-  </div>
-  <div class="game-instructions">ARROW KEYS OR TAP BUTTONS TO PLAY</div>
+  <a href="zombie-village-game.html" class="game-launch-btn">
+    ▶ PLAY ZOMBIE VILLAGE
+  </a>
+  <div class="game-instructions">WORKS ON MOBILE & DESKTOP · SOUND ON</div>
 </section>
 
 <!-- STREAM -->
