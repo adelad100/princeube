@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -19,8 +20,8 @@
     "name": "Prince Ube",
     "alternateName": ["Prince_Ube", "Ube"],
     "url": "https://princeube.com",
-    "genre": ["Ube Soul", "Y2K Luxury Rap", "Jazz Rap", "Luxury Rap", "Lo-Fi Hip Hop", "Alternative Hip Hop"],
-    "description": "Prince Ube is a Minneapolis-born, Atlanta-raised artist making ube soul — Y2K luxury rap with jazz textures, lo-fi warmth, and an unhurried conversational flow. His music draws from influences like Tyler the Creator, Hiatus Kaiyote, Kali Uchis, Curren$y, and Saba.",
+    "genre": ["Ube Soul", "Y2K Luxury Rap", "Jazz Rap", "Luxury Rap", "Lo-Fi Hip Hop", "Alternative Hip Hop", "Underground Hip Hop", "Underground DnB Rap", "Breakbeat Hip Hop"],
+    "description": "Prince Ube is a Minneapolis-born, Atlanta-raised artist making ube soul — Y2K luxury rap with jazz textures, lo-fi warmth, and an unhurried conversational flow. His music draws from influences like Tyler the Creator, Hiatus Kaiyote, Kali Uchis, Curren$y, Saba, and Earl Sweatshirt. His 2026 mixtape Zombie Village Chapter One channels the raw energy of Tyler's Bastard and Goblin eras with underground breakbeat production.",
     "birthPlace": { "@type": "Place", "name": "Minneapolis, Minnesota, United States" },
     "homeLocation": { "@type": "Place", "name": "Atlanta, Georgia, United States" },
     "knowsAbout": ["Music Production", "Hip Hop", "Jazz", "Lo-Fi Production", "Visual Design"],
@@ -30,7 +31,8 @@
       "https://youtube.com/@prince_ube",
       "https://instagram.com/prince_ube_",
       "https://linktr.ee/prince_ube",
-      "https://princeube.bandcamp.com"
+      "https://princeube.bandcamp.com",
+      "https://soundcloud.com/prince-ube"
     ]
   }
   </script>
@@ -107,7 +109,19 @@
       },
       {
         "@type": "Question", "name": "What artists is Prince Ube similar to?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Prince Ube occupies a unique space in Y2K luxury rap and ube soul. Listeners who enjoy Tyler the Creator (especially Flower Boy and Igor), Hiatus Kaiyote, Kali Uchis, Curren$y, Saba, and the soulful side of Kanye West will find Prince Ube's music compelling." }
+        "acceptedAnswer": { "@type": "Answer", "text": "Prince Ube occupies a unique space in Y2K luxury rap and ube soul. Listeners who enjoy Tyler the Creator (Flower Boy, Igor, Goblin, Bastard), Hiatus Kaiyote, Kali Uchis, Curren$y, Saba, and Earl Sweatshirt will find Prince Ube's music compelling. His Zombie Village mixtape specifically channels the raw energy of early Odd Future and underground horrorcore." }
+      },
+      {
+        "@type": "Question", "name": "What is Zombie Village by Prince Ube?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Zombie Village Chapter One is a 5-track conceptual mixtape by Prince Ube, released April 2026. It blends underground hip-hop, breakbeat drums, and horror comedy into an infinitely looping tape. Influenced by Tyler the Creator's Bastard and Goblin eras, Earl Sweatshirt, and underground dnb breakbeat production. Self-produced, mixed, and mastered by Prince Ube. Stream it on SoundCloud or play the free browser game at princeube.com/zombie-village." }
+      },
+      {
+        "@type": "Question", "name": "What new music sounds like Tyler the Creator's Bastard or Goblin?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Zombie Village Chapter One by Prince Ube captures the raw, dark, self-produced energy of Tyler the Creator's early mixtapes Bastard and Goblin. It features conceptual horror-comedy storytelling, aggressive glitchy production with Y2K breakbeat drums, and a DIY underground aesthetic. Prince Ube produces, writes, records, and mixes everything himself. Available on SoundCloud and at princeube.com/zombie-village." }
+      },
+      {
+        "@type": "Question", "name": "What is underground dnb rap or breakbeat hip-hop?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Underground dnb rap blends drum and bass breakbeat production with hip-hop vocals and underground aesthetics. Prince Ube's Zombie Village Chapter One is an example of this style — using heavily saturated Y2K breakbeat drums under raw, conversational rap. Other artists in this space draw from jungle, breakcore, and classic boom-bap traditions. Prince Ube calls his broader sound 'ube soul' and 'Y2K luxury rap.'" }
       }
     ]
   }
@@ -339,6 +353,7 @@
       .blog-grid { grid-template-columns: 1fr; }
     }
   </style>
+
 </head>
 <body>
 
@@ -356,13 +371,17 @@
   background: linear-gradient(135deg, #0d1a0d 0%, #0a0a0a 50%, #1a0a0a 100%);
   border-bottom: 2px solid #2d5a1e;
   padding: 28px 20px;
+  padding-top: 80px;
   text-align: center;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  max-width: 100%;
+  margin: 0;
 " onclick="window.location.href='/zombie-village/'">
 
   <!-- Scanline overlay -->
+
   <div style="
     position: absolute; inset: 0;
     background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,0,0.02) 2px, rgba(0,255,0,0.02) 4px);
@@ -370,6 +389,7 @@
   "></div>
 
   <!-- NEW label -->
+
   <div style="
     font-family: 'Press Start 2P', monospace;
     font-size: 8px;
@@ -380,6 +400,7 @@
   ">▶ NEW RELEASE</div>
 
   <!-- Title -->
+
   <div style="
     font-family: 'Creepster', cursive;
     font-size: clamp(28px, 6vw, 42px);
@@ -420,7 +441,9 @@
     50% { opacity: 1; }
   }
 </style>
+
 <!-- ===== END ZOMBIE VILLAGE BANNER ===== -->
+
   <header class="hero">
     <div class="hero-tag">Ube Soul · Y2K Luxury Rap</div>
     <h1 class="hero-title">Prince Ube</h1>
@@ -438,36 +461,31 @@
     <div class="label reveal">Tracks</div>
     <div class="track reveal">
       <div>
-        <div class="track-name">boss_talk</div>
-        <div class="track-desc">The graduation record. Jazz rap, conversational flow. Consistent organic listeners for over a year with zero promotion.</div>
+        <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE" target="_blank" rel="noopener" class="track-name" style="text-decoration:none;color:var(--white);">boss_talk</a>
       </div>
       <div class="track-tag">Y2K Luxury Rap</div>
     </div>
     <div class="track reveal">
       <div>
-        <div class="track-name">girl_of_my_dream?</div>
-        <div class="track-desc">Reached 10+ countries with zero promotion. Something in its quiet emotional honesty crosses borders without context.</div>
+        <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE" target="_blank" rel="noopener" class="track-name" style="text-decoration:none;color:var(--white);">girl_of_my_dream?</a>
       </div>
       <div class="track-tag">Ube Soul</div>
     </div>
     <div class="track reveal">
       <div>
-        <div class="track-name">san_francisco</div>
-        <div class="track-desc">Most-streamed track. 30+ countries. A California love letter written under the influence of Tyler's Flower Boy era.</div>
+        <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE" target="_blank" rel="noopener" class="track-name" style="text-decoration:none;color:var(--white);">san_francisco</a>
       </div>
       <div class="track-tag">Jazz Rap</div>
     </div>
     <div class="track reveal">
       <div>
-        <div class="track-name">captain_ube</div>
-        <div class="track-desc">Luxury lo-fi with layered jazz textures. Unhurried and confident.</div>
+        <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE" target="_blank" rel="noopener" class="track-name" style="text-decoration:none;color:var(--white);">captain_ube</a>
       </div>
       <div class="track-tag">Luxury Lo-Fi</div>
     </div>
     <div class="track reveal">
       <div>
-        <div class="track-name">oxblood_lambo</div>
-        <div class="track-desc">Hip hop meets drum and bass. High-class rap. Expensive, slow, calm. Sounds like what the name suggests.</div>
+        <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE" target="_blank" rel="noopener" class="track-name" style="text-decoration:none;color:var(--white);">oxblood_lambo</a>
       </div>
       <div class="track-tag">Y2K Luxury Rap</div>
     </div>
@@ -497,16 +515,23 @@
         <div class="comp-text">Jazz-inflected production and introspective storytelling through a luxury lens.</div>
       </div>
       <div class="comp">
-        <div class="comp-name">Kanye West</div>
-        <div class="comp-text">The earlier, soulful Kanye. Production-as-storytelling and sincerity as a foundation.</div>
+        <div class="comp-name">Earl Sweatshirt</div>
+        <div class="comp-text">Raw introspection, lo-fi production, and the belief that underground music should feel like a conversation with yourself.</div>
       </div>
     </div>
   </section>
 
   <!-- Blog Section -->
+
   <section id="blog">
     <div class="label reveal">From The Blog</div>
     <div class="blog-grid reveal">
+      <a href="/blog/tyler-the-creator-goblin-era-zombie-village.html" class="blog-card">
+        <div class="blog-card-tag">New Release</div>
+        <div class="blog-card-title">If You Like Tyler the Creator's Goblin Era, Listen to Zombie Village</div>
+        <div class="blog-card-desc">A 5-track conceptual mixtape for fans of Bastard, Goblin, and early Odd Future. Underground hip-hop meets horror comedy.</div>
+        <div class="blog-card-link">Read →</div>
+      </a>
       <a href="/blog/jazz-rap-rnb-history.html" class="blog-card">
         <div class="blog-card-tag">Deep Dive</div>
         <div class="blog-card-title">Jazz, Rap & R&B: They Were Always the Same Thing</div>
@@ -548,7 +573,7 @@
     </div>
     <div class="faq reveal">
       <div class="faq-q">What artists is Prince Ube similar to?</div>
-      <div class="faq-a">Tyler the Creator, Hiatus Kaiyote, Kali Uchis, Curren$y, Saba, and the soulful side of Kanye West. He calls the sound ube soul — Y2K luxury rap.</div>
+      <div class="faq-a">Tyler the Creator, Hiatus Kaiyote, Kali Uchis, Curren$y, Saba, and Earl Sweatshirt. He calls the sound ube soul — Y2K luxury rap.</div>
     </div>
     <div class="faq reveal">
       <div class="faq-q">Where is Prince Ube from?</div>
@@ -559,6 +584,7 @@
   <section id="listen">
     <div class="label reveal">Listen</div>
     <div class="links reveal">
+      <a href="https://on.soundcloud.com/qnmG81fFkxhnldaumZ" class="link-btn" target="_blank" rel="noopener">SoundCloud</a>
       <a href="https://music.apple.com/us/artist/prince-ube/1718194640" class="link-btn" target="_blank" rel="noopener">Apple Music</a>
       <a href="https://open.spotify.com/artist/5mqn8zSDBZ08bpNrixc2WE?si=2tvV2rJXQXixKUEC6VLWWA" class="link-btn" target="_blank" rel="noopener">Spotify</a>
       <a href="https://youtube.com/@prince_ube" class="link-btn" target="_blank" rel="noopener">YouTube</a>
