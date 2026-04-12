@@ -305,6 +305,57 @@ background: rgba(45,90,30,0.5);
 #mobile-controls { display: flex; }
 }
 
+/* TRACK PROGRESS BAR */
+#track-progress {
+position: fixed;
+top: 50px;
+left: 0; right: 0;
+height: 3px;
+background: rgba(45,90,30,0.15);
+z-index: 11;
+pointer-events: none;
+}
+
+#track-progress-fill {
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, #2d5a1e, #4a7a3a);
+box-shadow: 0 0 8px rgba(74,122,58,0.5);
+transition: width 0.3s ease;
+}
+
+#track-progress-fill.flash {
+background: #5a9a4a;
+box-shadow: 0 0 15px rgba(90,154,74,0.8);
+}
+
+/* LOOP FLASH */
+#loop-flash {
+position: fixed;
+inset: 0;
+display: none;
+align-items: center;
+justify-content: center;
+background: rgba(5,8,5,0.9);
+z-index: 40;
+pointer-events: none;
+}
+
+.loop-flash-text {
+font-family: ‘Creepster’, cursive;
+font-size: 42px;
+color: #2d5a1e;
+text-shadow: 0 0 30px rgba(45,90,30,0.5);
+animation: loopPulse 1.5s ease forwards;
+}
+
+@keyframes loopPulse {
+0% { opacity: 0; transform: scale(0.8); }
+30% { opacity: 1; transform: scale(1); }
+70% { opacity: 1; transform: scale(1); }
+100% { opacity: 0; transform: scale(1.1); }
+}
+
 /* SCANLINE OVERLAY */
 #scanlines {
 position: fixed; inset: 0;
@@ -380,6 +431,12 @@ z-index: 30;
       </div>
     </div>
   </div>
+  <div id="track-progress">
+    <div id="track-progress-fill"></div>
+  </div>
+  <div id="loop-flash">
+    <div class="loop-flash-text">Welcome back, Ube.</div>
+  </div>
   <div id="mobile-controls">
     <div class="mobile-btn" id="btn-jump">↑</div>
     <div class="mobile-btn" id="btn-duck">↓</div>
@@ -421,12 +478,12 @@ const ASSETS = {
 const TRACKS = [
   { name: 'welcome_to_zombie_village', color: '#1a3a1a', distance: 0, audio: 'zombie_intro_30_secs.mp3' },
   { name: 'HOLD_UP!', color: '#2a1a1a', distance: 500, audio: 'hold_up_30_secs.mp3' },
-  { name: 'zombie_dream', color: '#1a1a2a', distance: 1200, audio: 'zombie_intro_30_secs.mp3' },
+  { name: 'zombie_dream', color: '#1a1a2a', distance: 1200, audio: 'zombie_dream_30_secs.mp3' },
   { name: 'RIP_UBE', color: '#2a0a0a', distance: 2000, audio: 'RIP_UBE_30_seconds.mp3' },
-  { name: 'BACK_FROM_THE_DEAD', color: '#0a2a0a', distance: 2800, audio: 'hold_up_30_secs.mp3' }
+  { name: 'BACK_FROM_THE_DEAD', color: '#0a2a0a', distance: 2800, audio: 'back_from_the_dead_30_secs.mp3' }
 ];
 
-// Preload audio
+// Preload audio — gracefully handle missing files
 const audioElements = {};
 TRACKS.forEach(t => {
   if (t.audio) {
@@ -434,6 +491,10 @@ TRACKS.forEach(t => {
     a.loop = true;
     a.volume = 0.7;
     a.preload = 'auto';
+    a.addEventListener('error', () => {
+      // File doesn't exist yet — silently skip
+      delete audioElements[t.name];
+    });
     audioElements[t.name] = a;
   }
 });
@@ -442,12 +503,10 @@ let currentAudio = null;
 
 function playTrackAudio(trackIndex) {
   const track = TRACKS[trackIndex];
-  // Stop current audio
   if (currentAudio) {
     currentAudio.pause();
     currentAudio.currentTime = 0;
   }
-  // Play new track if it has audio
   if (track.audio && audioElements[track.name]) {
     currentAudio = audioElements[track.name];
     currentAudio.currentTime = 0;
@@ -466,6 +525,7 @@ function stopAllAudio() {
 }
 
 const WIN_DISTANCE = 3500;
+const LOOPS_BEFORE_EXIT = 2;
 const GRAVITY = 0.6;
 const JUMP_FORCE = -12;
 const PLAYER_SIZE = 50;
@@ -480,6 +540,7 @@ let gameSpeed, frameCount;
 let keys = {};
 let currentTrack = 0;
 let deathCount = 0;
+let loopCount = 0;
 let screenShake = 0;
 
 // ============ IMAGES ============
@@ -561,6 +622,7 @@ function startGame() {
   frameCount = 0;
   currentTrack = 0;
   screenShake = 0;
+  loopCount = 0;
   gameState = 'playing';
 
   // Start first track audio
@@ -729,18 +791,66 @@ function update() {
         screenShake = 10;
         addParticle(player.x, player.y, '#4a7a3a');
         playTrackAudio(i);
+        // Flash progress bar on track change
+        const fill = document.getElementById('track-progress-fill');
+        fill.classList.add('flash');
+        setTimeout(() => fill.classList.remove('flash'), 500);
       }
       break;
     }
   }
 
-  // Check win
+  // Update track progress bar
+  const nextTrackIndex = currentTrack + 1;
+  if (nextTrackIndex < TRACKS.length) {
+    const currentStart = TRACKS[currentTrack].distance;
+    const nextStart = TRACKS[nextTrackIndex].distance;
+    const progress = (distance - currentStart) / (nextStart - currentStart);
+    document.getElementById('track-progress-fill').style.width = (progress * 100) + '%';
+  } else {
+    // Last track — show progress to end
+    const currentStart = TRACKS[currentTrack].distance;
+    const progress = (distance - currentStart) / (WIN_DISTANCE - currentStart);
+    document.getElementById('track-progress-fill').style.width = (progress * 100) + '%';
+  }
+
+  // Check end of tape — LOOP or EXIT
   if (distance >= WIN_DISTANCE) {
-    gameState = 'win';
-    stopAllAudio();
-    document.getElementById('game-container').style.display = 'none';
-    document.getElementById('win-screen').style.display = 'flex';
-    return;
+    loopCount++;
+    if (loopCount >= LOOPS_BEFORE_EXIT) {
+      // After 2 loops, show streaming links
+      gameState = 'win';
+      stopAllAudio();
+      document.getElementById('game-container').style.display = 'none';
+      document.getElementById('win-screen').style.display = 'flex';
+      return;
+    } else {
+      // THE LOOP — reset game state but keep playing
+      stopAllAudio();
+      distance = 0;
+      currentTrack = 0;
+      gameSpeed = 4 + loopCount * 1.5; // slightly faster each loop
+      obstacles = [];
+      collectibles = [];
+      screenShake = 15;
+      
+      // Show "Welcome back, Ube" flash
+      const flash = document.getElementById('loop-flash');
+      flash.style.display = 'flex';
+      // Re-trigger animation
+      const textEl = flash.querySelector('.loop-flash-text');
+      textEl.style.animation = 'none';
+      void textEl.offsetHeight; // force reflow
+      textEl.style.animation = 'loopPulse 1.5s ease forwards';
+      
+      setTimeout(() => {
+        flash.style.display = 'none';
+        playTrackAudio(0);
+      }, 1500);
+      
+      updateHUD();
+      return;
+    }
   }
 
   // Player physics
