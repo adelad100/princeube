@@ -483,44 +483,76 @@ const TRACKS = [
   { name: 'BACK_FROM_THE_DEAD', color: '#0a2a0a', distance: 2800, audio: 'back_from_the_dead_30_secs.mp3' }
 ];
 
-// Preload audio — gracefully handle missing files
-const audioElements = {};
-TRACKS.forEach(t => {
-  if (t.audio) {
-    const a = new Audio(t.audio);
-    a.loop = true;
-    a.volume = 0.7;
-    a.preload = 'auto';
-    a.addEventListener('error', () => {
-      // File doesn't exist yet — silently skip
-      delete audioElements[t.name];
-    });
-    audioElements[t.name] = a;
-  }
-});
+// ============ WEB AUDIO API SYSTEM ============
+// Using Web Audio API to avoid browser autoplay blocking.
+// All audio buffers are decoded once on first user click,
+// then played through a single AudioContext which is
+// already unlocked from that interaction.
 
-let currentAudio = null;
+let audioCtx = null;
+const audioBuffers = {};
+let currentSource = null;
+let audioReady = false;
+
+async function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  
+  // Resume context (needed for Safari)
+  if (audioCtx.state === 'suspended') {
+    await audioCtx.resume();
+  }
+
+  // Load all tracks in parallel
+  const loadPromises = TRACKS.map(async (t) => {
+    if (!t.audio) return;
+    try {
+      const response = await fetch(t.audio);
+      if (!response.ok) return; // file doesn't exist, skip silently
+      const arrayBuffer = await response.arrayBuffer();
+      const audioBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+      audioBuffers[t.name] = audioBuffer;
+    } catch (e) {
+      // File missing or decode error — skip silently
+    }
+  });
+
+  await Promise.all(loadPromises);
+  audioReady = true;
+}
 
 function playTrackAudio(trackIndex) {
+  if (!audioCtx || !audioReady) return;
+  
   const track = TRACKS[trackIndex];
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
+  
+  // Stop current
+  if (currentSource) {
+    try { currentSource.stop(); } catch(e) {}
+    currentSource = null;
   }
-  if (track.audio && audioElements[track.name]) {
-    currentAudio = audioElements[track.name];
-    currentAudio.currentTime = 0;
-    currentAudio.play().catch(() => {});
-  } else {
-    currentAudio = null;
+  
+  // Play new
+  if (track.audio && audioBuffers[track.name]) {
+    const source = audioCtx.createBufferSource();
+    source.buffer = audioBuffers[track.name];
+    source.loop = true;
+    
+    // Create gain node for volume
+    const gainNode = audioCtx.createGain();
+    gainNode.gain.value = 0.7;
+    
+    source.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    source.start(0);
+    currentSource = source;
   }
 }
 
 function stopAllAudio() {
-  if (currentAudio) {
-    currentAudio.pause();
-    currentAudio.currentTime = 0;
-    currentAudio = null;
+  if (currentSource) {
+    try { currentSource.stop(); } catch(e) {}
+    currentSource = null;
   }
 }
 
@@ -595,11 +627,15 @@ function resize() {
   groundY = canvasH * GROUND_Y_RATIO;
 }
 
-function startGame() {
+async function startGame() {
   document.getElementById('title-screen').style.display = 'none';
   document.getElementById('death-screen').style.display = 'none';
   document.getElementById('win-screen').style.display = 'none';
   document.getElementById('game-container').style.display = 'block';
+
+  // Initialize audio on first user gesture — this unlocks playback
+  // on both Safari and Chrome
+  await initAudio();
 
   player = {
     x: canvasW * 0.15,
