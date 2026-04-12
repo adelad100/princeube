@@ -581,6 +581,45 @@ headImg.src = ASSETS.head;
 const zombieImg = new Image();
 zombieImg.src = ASSETS.zombie;
 
+let headLoaded = false;
+let zombieLoaded = false;
+headImg.onload = () => { headLoaded = true; };
+zombieImg.onload = () => { zombieLoaded = true; };
+headImg.onerror = () => { headLoaded = false; };
+zombieImg.onerror = () => { zombieLoaded = false; };
+
+// Fallback: draw a colored circle if image isn't loaded
+function drawHead(x, y, w, h) {
+  if (headLoaded) {
+    ctx.drawImage(headImg, x, y, w, h);
+  } else {
+    ctx.fillStyle = '#c8a882';
+    ctx.beginPath();
+    ctx.arc(x + w/2, y + h/2, w/2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#2d5a1e';
+    ctx.font = '10px sans-serif';
+    ctx.textAlign = 'center';
+    ctx.fillText('UBE', x + w/2, y + h/2 + 4);
+  }
+}
+
+function drawZombie(x, y, w, h) {
+  if (zombieLoaded) {
+    ctx.drawImage(zombieImg, x, y, w, h);
+  } else {
+    ctx.fillStyle = '#2d5a1e';
+    ctx.beginPath();
+    ctx.arc(x + w/2, y + h/2, w/2, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#0a0a0a';
+    ctx.beginPath();
+    ctx.arc(x + w/2 - 5, y + h/2 - 3, 3, 0, Math.PI * 2);
+    ctx.arc(x + w/2 + 5, y + h/2 - 3, 3, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
 // ============ INIT ============
 function init() {
   canvas = document.getElementById('game');
@@ -1083,10 +1122,10 @@ function draw() {
       ctx.globalAlpha = 0.3;
       ctx.shadowColor = '#00ff00';
       ctx.shadowBlur = 15;
-      ctx.drawImage(zombieImg, -o.width/2, -5, o.width, o.height);
+      drawZombie(-o.width/2, -5, o.width, o.height);
       ctx.globalAlpha = 1;
       ctx.shadowBlur = 0;
-      ctx.drawImage(zombieImg, -o.width/2, -5, o.width, o.height);
+      drawZombie(-o.width/2, -5, o.width, o.height);
       // Zombie eyes glow
       ctx.fillStyle = `rgba(0,255,0,${0.5 + Math.sin(o.frame*0.15)*0.3})`;
       ctx.beginPath();
@@ -1141,7 +1180,7 @@ function draw() {
   ctx.fill();
   
   // Player head
-  ctx.drawImage(headImg, player.x, drawY + drawYOffset, PLAYER_SIZE, drawH);
+  drawHead(player.x, drawY + drawYOffset, PLAYER_SIZE, drawH);
   
   // Crown glow effect
   ctx.globalAlpha = 0.15 + Math.sin(frameCount*0.05)*0.05;
@@ -1189,5 +1228,3 @@ window.addEventListener('load', init);
 
 </body>
 </html>
-
-
