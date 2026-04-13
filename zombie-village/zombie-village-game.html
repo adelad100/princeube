@@ -270,6 +270,32 @@ color: #4a7a3a;
 text-decoration: none;
 }
 
+/* SOUND TOGGLE */
+#sound-toggle {
+position: fixed;
+bottom: 110px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 20;
+font-family: ‘Press Start 2P’, monospace;
+font-size: 9px;
+color: #4a7a3a;
+background: rgba(10,10,10,0.8);
+border: 1px solid rgba(45,90,30,0.4);
+padding: 10px 18px;
+cursor: pointer;
+-webkit-tap-highlight-color: transparent;
+animation: pulse 2s infinite;
+text-align: center;
+letter-spacing: 1px;
+}
+
+#sound-toggle.on {
+color: #5a9a4a;
+border-color: #4a7a3a;
+animation: none;
+}
+
 /* MOBILE CONTROLS */
 #mobile-controls {
 position: fixed;
@@ -380,6 +406,7 @@ z-index: 30;
       </div>
     </div>
   </div>
+  <div id="sound-toggle" onclick="toggleSound()">🔇 TAP FOR SOUND</div>
   <div id="mobile-controls">
     <div class="mobile-btn" id="btn-jump">↑</div>
     <div class="mobile-btn" id="btn-duck">↓</div>
@@ -433,10 +460,14 @@ const JUMP_FORCE = -12;
 const PLAYER_SIZE = 50;
 const GROUND_Y_RATIO = 0.75;
 
-// ============ AUDIO SYSTEM (Web Audio API) ============
+// ============ AUDIO SYSTEM ============
+// Starts MUTED. User taps the sound button to enable.
+// This avoids all browser autoplay restrictions.
+let soundEnabled = false;
 let audioCtx = null;
 const audioBuffers = {};
 let currentSource = null;
+let currentGain = null;
 
 async function initAudio() {
   if (audioCtx) return;
@@ -456,8 +487,27 @@ async function initAudio() {
   } catch(e) {}
 }
 
+function toggleSound() {
+  soundEnabled = !soundEnabled;
+  const btn = document.getElementById('sound-toggle');
+  if (soundEnabled) {
+    btn.textContent = '🔊 SOUND ON';
+    btn.classList.add('on');
+    // Init audio on this user gesture and start playing
+    initAudio().then(() => {
+      if (gameState === 'playing') {
+        playTrackAudio(currentTrack);
+      }
+    });
+  } else {
+    btn.textContent = '🔇 TAP FOR SOUND';
+    btn.classList.remove('on');
+    stopAllAudio();
+  }
+}
+
 function playTrackAudio(trackIndex) {
-  if (!audioCtx) return;
+  if (!soundEnabled || !audioCtx) return;
   if (currentSource) { try { currentSource.stop(); } catch(e) {} currentSource = null; }
   const track = TRACKS[trackIndex];
   if (audioBuffers[track.name]) {
@@ -470,6 +520,7 @@ function playTrackAudio(trackIndex) {
     gain.connect(audioCtx.destination);
     src.start(0);
     currentSource = src;
+    currentGain = gain;
   }
 }
 
@@ -547,8 +598,8 @@ function startGame() {
   document.getElementById('win-screen').style.display = 'none';
   document.getElementById('game-container').style.display = 'block';
 
-  // Init audio on user gesture (non-blocking)
-  initAudio().then(() => { playTrackAudio(0); });
+  // Audio is user-controlled via the sound toggle button
+  // No auto-play needed
 
   player = {
     x: canvasW * 0.15,
