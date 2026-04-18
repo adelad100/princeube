@@ -201,6 +201,184 @@ color: #3a6a2a;
 animation: pulse 2s infinite;
 }
 
+/* TITLE SUBTITLE */
+.title-subtitle {
+font-family: ‘DM Sans’, sans-serif;
+font-size: 11px;
+color: #4a7a3a;
+font-style: italic;
+margin-top: 8px;
+margin-bottom: 30px;
+letter-spacing: 1px;
+opacity: 0.6;
+}
+
+/* PRESENCE METER — how much “you” you are */
+#presence-container {
+position: fixed;
+top: 60px;
+left: 12px;
+z-index: 10;
+pointer-events: none;
+}
+
+#presence-label {
+font-family: ‘Press Start 2P’, monospace;
+font-size: 7px;
+color: #4a7a3a;
+margin-bottom: 4px;
+letter-spacing: 2px;
+}
+
+#presence-meter {
+width: 100px;
+height: 6px;
+background: rgba(45,90,30,0.15);
+border: 1px solid rgba(45,90,30,0.3);
+overflow: hidden;
+}
+
+#presence-fill {
+height: 100%;
+width: 100%;
+background: linear-gradient(90deg, #2d5a1e, #5a9a4a);
+transition: width 0.3s ease, background 0.3s ease;
+}
+
+#presence-fill.low {
+background: linear-gradient(90deg, #6a2a2a, #4a1a1a);
+}
+
+/* STATE INDICATOR */
+#state-indicator {
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 15;
+font-family: ‘Creepster’, cursive;
+font-size: 80px;
+color: rgba(74,122,58,0);
+text-shadow: 0 0 30px rgba(74,122,58,0.6);
+pointer-events: none;
+transition: color 0.5s ease;
+}
+
+#state-indicator.flash-you {
+animation: flashYou 1s ease forwards;
+}
+
+#state-indicator.flash-zombie {
+animation: flashZombie 1s ease forwards;
+}
+
+@keyframes flashYou {
+0% { color: rgba(74,122,58,0); transform: translate(-50%, -50%) scale(0.8); }
+20% { color: rgba(90,154,74,1); transform: translate(-50%, -50%) scale(1.1); }
+80% { color: rgba(90,154,74,0.8); }
+100% { color: rgba(74,122,58,0); transform: translate(-50%, -50%) scale(1.2); }
+}
+
+@keyframes flashZombie {
+0% { color: rgba(106,42,42,0); transform: translate(-50%, -50%) scale(0.8); }
+20% { color: rgba(140,60,60,1); transform: translate(-50%, -50%) scale(1.1); }
+80% { color: rgba(140,60,60,0.8); }
+100% { color: rgba(106,42,42,0); transform: translate(-50%, -50%) scale(1.2); }
+}
+
+/* THOUGHT FRAGMENTS */
+#thought-fragment {
+position: fixed;
+top: 35%;
+left: 50%;
+transform: translateX(-50%);
+font-family: ‘DM Sans’, sans-serif;
+font-style: italic;
+font-size: 14px;
+color: rgba(224,224,224,0);
+text-align: center;
+max-width: 80%;
+z-index: 14;
+pointer-events: none;
+text-shadow: 0 0 10px rgba(0,0,0,0.8);
+transition: color 1s ease;
+}
+
+#thought-fragment.show {
+animation: thoughtFade 5s ease forwards;
+}
+
+@keyframes thoughtFade {
+0% { color: rgba(224,224,224,0); }
+20% { color: rgba(224,224,224,0.8); }
+80% { color: rgba(224,224,224,0.8); }
+100% { color: rgba(224,224,224,0); }
+}
+
+/* CHOICE SCREEN — The Demon’s dialog */
+#choice-screen {
+position: fixed; inset: 0;
+display: none;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+background: linear-gradient(180deg, #0d0d0d 0%, #000 100%);
+z-index: 50;
+padding: 30px;
+}
+
+.choice-title {
+font-family: ‘Creepster’, cursive;
+font-size: 32px;
+color: #5a2a2a;
+text-shadow: 0 0 20px rgba(90,42,42,0.5);
+margin-bottom: 16px;
+animation: fadeIn 1s ease 0.5s both;
+}
+
+.choice-dialog {
+font-family: ‘DM Sans’, sans-serif;
+font-style: italic;
+font-size: 18px;
+color: #aaa;
+text-align: center;
+max-width: 400px;
+line-height: 1.6;
+margin-bottom: 40px;
+animation: fadeIn 1s ease 1.5s both;
+}
+
+.choice-options {
+display: flex;
+flex-direction: column;
+gap: 16px;
+animation: fadeIn 1s ease 2.5s both;
+}
+
+.choice-btn {
+font-family: ‘Special Elite’, ‘Courier New’, monospace;
+font-size: 14px;
+color: #888;
+background: transparent;
+border: 1px solid #333;
+padding: 14px 32px;
+cursor: pointer;
+transition: all 0.3s;
+text-align: center;
+-webkit-tap-highlight-color: transparent;
+}
+
+.choice-btn:hover {
+color: #e0e0e0;
+border-color: #888;
+background: rgba(255,255,255,0.05);
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
 /* WIN SCREEN */
 #win-screen {
 position: fixed; inset: 0;
@@ -388,7 +566,8 @@ z-index: 30;
   <div class="title-zombie">Zombie</div>
   <div class="title-village">Village</div>
   <div class="title-chapter">CHAPTER ONE</div>
-  <div class="title-tap">TAP TO ENTER THE VILLAGE</div>
+  <div class="title-subtitle">a game about presence, drift, and the self</div>
+  <div class="title-tap">TAP TO ENTER</div>
 </div>
 
 <!-- GAME -->
@@ -406,6 +585,24 @@ z-index: 30;
       </div>
     </div>
   </div>
+
+  <!-- Presence meter — how much "you" you are right now -->
+
+  <div id="presence-container">
+    <div id="presence-label">PRESENCE</div>
+    <div id="presence-meter">
+      <div id="presence-fill"></div>
+    </div>
+  </div>
+
+  <!-- Thought fragments that fade in and out -->
+
+  <div id="thought-fragment"></div>
+
+  <!-- State indicator — YOU or ZOMBIE -->
+
+  <div id="state-indicator">YOU</div>
+
   <div id="sound-toggle" onclick="toggleSound()">🔇 TAP FOR SOUND</div>
   <div id="mobile-controls">
     <div class="mobile-btn" id="btn-jump">↑</div>
@@ -413,12 +610,23 @@ z-index: 30;
   </div>
 </div>
 
-<!-- DEATH -->
+<!-- DEATH — the Demon wins, you stayed zombie too long -->
 
 <div id="death-screen">
-  <div class="death-text">Welcome back, Ube.</div>
-  <div class="death-sub">"How many times do we have to do this?"</div>
-  <div class="death-tap">TAP TO RESTART</div>
+  <div class="death-text">You drifted too long.</div>
+  <div class="death-sub" id="death-quote">"How many times do we have to do this?"</div>
+  <div class="death-tap">TAP TO RETURN</div>
+</div>
+
+<!-- THE CHOICE — after a full loop, this appears instead of "you escaped" -->
+
+<div id="choice-screen">
+  <div class="choice-title">The Demon pauses.</div>
+  <div class="choice-dialog" id="choice-dialog">"You keep showing up. Why?"</div>
+  <div class="choice-options">
+    <div class="choice-btn" onclick="makeChoice('stay')">keep running</div>
+    <div class="choice-btn" onclick="makeChoice('leave')">step outside</div>
+  </div>
 </div>
 
 <!-- WIN -->
@@ -530,8 +738,8 @@ function stopAllAudio() {
 
 // ============ GAME STATE ============
 let canvas, ctx;
-let gameState = 'title'; // title, playing, dead, win
-let player, obstacles, collectibles, particles, bgElements;
+let gameState = 'title'; // title, playing, dead, win, choice
+let player, obstacles, collectibles, particles, bgElements, distractions, mirrors;
 let distance, tapes, groundY, canvasW, canvasH;
 let gameSpeed, frameCount;
 let keys = {};
@@ -540,11 +748,64 @@ let deathCount = 0;
 let loopCount = 0;
 let screenShake = 0;
 
+// ============ PRESENCE SYSTEM ============
+// Presence = how "you" you are right now. Drops over time and from distractions.
+// Rises from deliberate actions: jumping, catching tapes, looking at mirrors.
+// At 0 presence, you become Zombie Ube.
+// If zombie too long, you lose.
+let presence = 100;
+const PRESENCE_MAX = 100;
+const PRESENCE_DRIFT_RATE = 0.08; // slowly drifts down
+const PRESENCE_ZOMBIE_THRESHOLD = 25;
+const ZOMBIE_DEATH_TIME = 240; // 4 seconds at 60fps of being zombie = death
+let zombieTimer = 0;
+let isZombie = false;
+let wasZombieLastFrame = false;
+
+// ============ THOUGHT FRAGMENTS ============
+// Occasional reminders that appear and fade. Pulled from the manifesto.
+const THOUGHT_FRAGMENTS = [
+  "the music was never a side project",
+  "moving slow is the flex",
+  "minneapolis born. atlanta raised.",
+  "self-produced. self-designed. self-aware.",
+  "don't delete. don't restart.",
+  "humility before a higher power",
+  "the color felt like me",
+  "quiet hours. silent hours. alone.",
+  "faith grounding the luxury",
+  "you taught yourself this",
+  "stay here. stay present.",
+  "what do you actually want?",
+  "nice things, or being yourself?",
+  "you keep coming back here",
+  "the village remembers you",
+];
+let lastThoughtTime = 0;
+let thoughtInterval = 600; // every 10 seconds
+
+// ============ DEMON QUOTES ============
+const DEMON_DEATH_QUOTES = [
+  '"How many times do we have to do this?"',
+  '"You always come back."',
+  '"Was it worth drifting this far?"',
+  '"The loop is comfortable, isn\'t it?"',
+  '"You forgot you were here."',
+];
+
 // ============ IMAGES ============
 const headImg = new Image();
 headImg.src = ASSETS.head;
 const zombieImg = new Image();
 zombieImg.src = ASSETS.zombie;
+
+// ============ DRAWING HELPERS ============
+function drawHead(x, y, w, h) {
+  if (headImg.complete) ctx.drawImage(headImg, x, y, w, h);
+}
+function drawZombie(x, y, w, h) {
+  if (zombieImg.complete) ctx.drawImage(zombieImg, x, y, w, h);
+}
 
 // ============ INIT ============
 function init() {
@@ -596,10 +857,8 @@ function startGame() {
   document.getElementById('title-screen').style.display = 'none';
   document.getElementById('death-screen').style.display = 'none';
   document.getElementById('win-screen').style.display = 'none';
+  document.getElementById('choice-screen').style.display = 'none';
   document.getElementById('game-container').style.display = 'block';
-
-  // Audio is user-controlled via the sound toggle button
-  // No auto-play needed
 
   player = {
     x: canvasW * 0.15,
@@ -616,6 +875,8 @@ function startGame() {
   collectibles = [];
   particles = [];
   bgElements = [];
+  distractions = []; // shiny objects that lower presence when passed
+  mirrors = []; // mirrors that restore presence when you pass near
   distance = 0;
   tapes = 0;
   gameSpeed = 4;
@@ -623,6 +884,11 @@ function startGame() {
   currentTrack = 0;
   screenShake = 0;
   loopCount = 0;
+  presence = 100;
+  zombieTimer = 0;
+  isZombie = false;
+  wasZombieLastFrame = false;
+  lastThoughtTime = 0;
   gameState = 'playing';
 
   // Generate initial bg elements
@@ -631,6 +897,39 @@ function startGame() {
   }
 
   updateHUD();
+  updatePresenceMeter();
+  
+  // Show first thought after a moment
+  setTimeout(() => { if (gameState === 'playing') showThought(); }, 3000);
+}
+
+// ============ THOUGHT FRAGMENT DISPLAY ============
+function showThought(customText) {
+  const el = document.getElementById('thought-fragment');
+  el.textContent = customText || THOUGHT_FRAGMENTS[Math.floor(Math.random() * THOUGHT_FRAGMENTS.length)];
+  el.classList.remove('show');
+  void el.offsetHeight; // reflow
+  el.classList.add('show');
+}
+
+// ============ STATE FLASH ============
+function flashState(state) {
+  const el = document.getElementById('state-indicator');
+  el.textContent = state === 'zombie' ? 'zombie' : 'you';
+  el.classList.remove('flash-you', 'flash-zombie');
+  void el.offsetHeight;
+  el.classList.add(state === 'zombie' ? 'flash-zombie' : 'flash-you');
+}
+
+// ============ PRESENCE METER UPDATE ============
+function updatePresenceMeter() {
+  const fill = document.getElementById('presence-fill');
+  fill.style.width = presence + '%';
+  if (presence < PRESENCE_ZOMBIE_THRESHOLD) {
+    fill.classList.add('low');
+  } else {
+    fill.classList.remove('low');
+  }
 }
 
 // ============ BACKGROUND ELEMENTS ============
@@ -756,6 +1055,30 @@ function spawnCollectible() {
   });
 }
 
+// Shiny distractions — pass by these and lose presence
+// These represent "the next thing" — consumption, wanting more, drift
+function spawnDistraction() {
+  distractions.push({
+    x: canvasW + 40,
+    y: groundY - 30 - Math.random() * 20,
+    width: 18,
+    height: 18,
+    frame: 0,
+    triggered: false
+  });
+}
+
+// Mirrors — pass near these, gain presence, see yourself
+function spawnMirror() {
+  mirrors.push({
+    x: canvasW + 40,
+    y: groundY - 75,
+    width: 18,
+    height: 60,
+    triggered: false
+  });
+}
+
 // ============ PARTICLES ============
 function addParticle(x, y, color) {
   for (let i = 0; i < 5; i++) {
@@ -776,9 +1099,10 @@ function update() {
   frameCount++;
   distance += gameSpeed * 0.1;
   
-  // Increase speed over time
+  // Increase speed over time (but slower when zombie - you drift slower)
   gameSpeed = 4 + distance * 0.002;
   if (gameSpeed > 10) gameSpeed = 10;
+  if (isZombie) gameSpeed *= 0.85; // zombies move slower through life
 
   // Track progression
   for (let i = TRACKS.length - 1; i >= 0; i--) {
@@ -793,14 +1117,63 @@ function update() {
     }
   }
 
-  // Check end of tape — LOOP or EXIT
+  // ============ PRESENCE DRIFT ============
+  presence -= PRESENCE_DRIFT_RATE;
+  if (presence < 0) presence = 0;
+  
+  const nowZombie = presence < PRESENCE_ZOMBIE_THRESHOLD;
+  if (nowZombie && !isZombie) {
+    // Just became zombie
+    isZombie = true;
+    flashState('zombie');
+    zombieTimer = 0;
+  } else if (!nowZombie && isZombie) {
+    // Just returned to self
+    isZombie = false;
+    flashState('you');
+    zombieTimer = 0;
+    addParticle(player.x + PLAYER_SIZE/2, player.y + PLAYER_SIZE/2, '#5a9a4a');
+    addParticle(player.x + PLAYER_SIZE/2, player.y + PLAYER_SIZE/2, '#5a9a4a');
+    addParticle(player.x + PLAYER_SIZE/2, player.y + PLAYER_SIZE/2, '#5a9a4a');
+  }
+  
+  // Zombie timer — if you stay zombie too long, you lose
+  if (isZombie) {
+    zombieTimer++;
+    if (zombieTimer >= ZOMBIE_DEATH_TIME) {
+      die();
+      return;
+    }
+  }
+  
+  updatePresenceMeter();
+  
+  // ============ THOUGHT FRAGMENTS ============
+  // Show a thought every ~10 seconds, more often when drifting
+  const interval = isZombie ? 360 : 600;
+  if (frameCount - lastThoughtTime > interval && Math.random() < 0.01) {
+    showThought();
+    lastThoughtTime = frameCount;
+  }
+
+  // ============ END OF TAPE — CHOICE OR LOOP ============
   if (distance >= WIN_DISTANCE) {
     loopCount++;
     if (loopCount >= LOOPS_BEFORE_EXIT) {
-      gameState = 'win';
+      // After 2 full loops, the Demon pauses and asks you a question
+      gameState = 'choice';
       stopAllAudio();
       document.getElementById('game-container').style.display = 'none';
-      document.getElementById('win-screen').style.display = 'flex';
+      document.getElementById('choice-screen').style.display = 'flex';
+      // Different dialog based on how present you were
+      const dialogEl = document.getElementById('choice-dialog');
+      if (presence > 70) {
+        dialogEl.textContent = '"You stayed with yourself. I\'m surprised."';
+      } else if (presence > 40) {
+        dialogEl.textContent = '"You kept slipping. But you kept coming back."';
+      } else {
+        dialogEl.textContent = '"You barely remember being here."';
+      }
       return;
     } else {
       // THE LOOP — restart but keep going
@@ -810,7 +1183,10 @@ function update() {
       gameSpeed = 4 + loopCount * 1.5;
       obstacles = [];
       collectibles = [];
+      distractions = [];
+      mirrors = [];
       screenShake = 15;
+      showThought("welcome back, ube.");
       setTimeout(() => { playTrackAudio(0); }, 500);
       updateHUD();
       return;
@@ -821,6 +1197,8 @@ function update() {
   if ((keys['Space'] || keys['ArrowUp'] || keys['KeyW']) && player.grounded) {
     player.vy = JUMP_FORCE;
     player.grounded = false;
+    // Small presence boost for deliberate action
+    presence = Math.min(PRESENCE_MAX, presence + 1.5);
   }
 
   player.ducking = keys['ArrowDown'] || keys['KeyS'];
@@ -846,6 +1224,12 @@ function update() {
   const spawnRate = Math.max(50, 90 - distance * 0.01);
   if (frameCount % Math.floor(spawnRate) === 0) spawnObstacle();
   if (frameCount % 70 === 0) spawnCollectible();
+  
+  // Spawn distractions — shiny things that pull you out of yourself
+  if (frameCount % 180 === 0 && Math.random() < 0.7) spawnDistraction();
+  
+  // Spawn mirrors — chances to see yourself and come back
+  if (frameCount % 250 === 0 && Math.random() < 0.6) spawnMirror();
 
   // Move obstacles
   obstacles.forEach(o => {
@@ -859,6 +1243,19 @@ function update() {
     c.x -= gameSpeed;
   });
   collectibles = collectibles.filter(c => c.x > -30 && !c.collected);
+  
+  // Move distractions
+  distractions.forEach(d => {
+    d.x -= gameSpeed;
+    d.frame++;
+  });
+  distractions = distractions.filter(d => d.x > -40);
+  
+  // Move mirrors
+  mirrors.forEach(m => {
+    m.x -= gameSpeed;
+  });
+  mirrors = mirrors.filter(m => m.x > -40);
 
   // Move bg elements
   bgElements.forEach(el => {
@@ -878,8 +1275,42 @@ function update() {
   for (let o of obstacles) {
     if (px < o.x + o.width*0.7 && px + pw > o.x + o.width*0.15 &&
         py < o.y + o.height*0.8 && py + ph > o.y + o.height*0.1) {
-      die();
-      return;
+      // Touching a zombie doesn't kill you — it drops your presence
+      // This is the real metaphor: other zombies pull you toward drift
+      presence -= 20;
+      if (presence < 0) presence = 0;
+      screenShake = 12;
+      addParticle(o.x + o.width/2, o.y + o.height/2, '#6a2a2a');
+      addParticle(o.x + o.width/2, o.y + o.height/2, '#6a2a2a');
+      // Knock the obstacle away so we don't drain again
+      o.x = -100;
+    }
+  }
+
+  // Distraction interaction — pass near = lose presence
+  for (let d of distractions) {
+    if (!d.triggered &&
+        px < d.x + d.width + 10 && px + pw > d.x - 10 &&
+        py < d.y + d.height + 20 && py + ph > d.y - 20) {
+      d.triggered = true;
+      presence -= 15;
+      if (presence < 0) presence = 0;
+      // Little sparkle particle
+      for (let i = 0; i < 4; i++) addParticle(d.x + d.width/2, d.y + d.height/2, '#d4af37');
+    }
+  }
+
+  // Mirror interaction — pass near = gain presence, see yourself
+  for (let m of mirrors) {
+    if (!m.triggered &&
+        px < m.x + m.width + 15 && px + pw > m.x - 15) {
+      m.triggered = true;
+      presence = Math.min(PRESENCE_MAX, presence + 35);
+      screenShake = 5;
+      addParticle(m.x + m.width/2, m.y + m.height/2, '#5a9a4a');
+      addParticle(m.x + m.width/2, m.y + m.height/2, '#5a9a4a');
+      // Show a thought when you see yourself
+      if (Math.random() < 0.5) showThought();
     }
   }
 
@@ -890,6 +1321,9 @@ function update() {
         py < c.y + c.height && py + ph > c.y) {
       c.collected = true;
       tapes++;
+      // Catching a tape mid-air is a deliberate action — boosts presence
+      const boost = !player.grounded ? 12 : 6;
+      presence = Math.min(PRESENCE_MAX, presence + boost);
       addParticle(c.x, c.y, '#4a7a3a');
     }
   }
@@ -912,8 +1346,44 @@ function die() {
   gameState = 'dead';
   deathCount++;
   stopAllAudio();
+  const quote = DEMON_DEATH_QUOTES[Math.min(deathCount - 1, DEMON_DEATH_QUOTES.length - 1)];
+  document.getElementById('death-quote').textContent = quote;
   document.getElementById('game-container').style.display = 'none';
   document.getElementById('death-screen').style.display = 'flex';
+}
+
+// ============ THE CHOICE ============
+// After 2 full loops, the Demon pauses and asks you a question.
+// "Keep running" = loop again, stay in the village, music continues
+// "Step outside" = reveal the streaming links, the real exit
+function makeChoice(choice) {
+  if (choice === 'stay') {
+    // Keep playing — reset and loop again with more intensity
+    document.getElementById('choice-screen').style.display = 'none';
+    document.getElementById('game-container').style.display = 'block';
+    distance = 0;
+    currentTrack = 0;
+    loopCount = 0; // reset so they can reach the choice again
+    gameSpeed = 5;
+    obstacles = [];
+    collectibles = [];
+    distractions = [];
+    mirrors = [];
+    presence = 100;
+    isZombie = false;
+    zombieTimer = 0;
+    screenShake = 20;
+    gameState = 'playing';
+    showThought("you chose to stay.");
+    setTimeout(() => { playTrackAudio(0); }, 500);
+    updateHUD();
+    updatePresenceMeter();
+  } else {
+    // Step outside — show the win screen with streaming links
+    document.getElementById('choice-screen').style.display = 'none';
+    document.getElementById('win-screen').style.display = 'flex';
+    gameState = 'win';
+  }
 }
 
 function updateHUD() {
@@ -970,6 +1440,76 @@ function draw() {
     ctx.fillRect(gx, groundY + 5, 30, 3);
     ctx.fillRect(gx + 60, groundY + 12, 20, 2);
   }
+
+  // Distractions — shiny golden objects floating above the ground
+  // These represent "the next thing" you shouldn't chase
+  distractions.forEach(d => {
+    if (d.triggered) return;
+    ctx.save();
+    const dy = d.y + Math.sin(d.frame * 0.08) * 4;
+    ctx.translate(d.x + d.width/2, dy + d.height/2);
+    ctx.rotate(d.frame * 0.02);
+    // Outer glow
+    const dgrad = ctx.createRadialGradient(0, 0, 0, 0, 0, 30);
+    dgrad.addColorStop(0, 'rgba(212,175,55,0.5)');
+    dgrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = dgrad;
+    ctx.fillRect(-30, -30, 60, 60);
+    // Diamond shape
+    ctx.fillStyle = '#d4af37';
+    ctx.beginPath();
+    ctx.moveTo(0, -9);
+    ctx.lineTo(7, 0);
+    ctx.lineTo(0, 9);
+    ctx.lineTo(-7, 0);
+    ctx.closePath();
+    ctx.fill();
+    // Inner highlight
+    ctx.fillStyle = '#f4cf57';
+    ctx.beginPath();
+    ctx.moveTo(0, -5);
+    ctx.lineTo(3, 0);
+    ctx.lineTo(0, 3);
+    ctx.lineTo(-3, 0);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  });
+  
+  // Mirrors — tall thin reflective panels
+  mirrors.forEach(m => {
+    ctx.save();
+    if (m.triggered) {
+      ctx.globalAlpha = 0.3;
+    }
+    // Mirror frame
+    ctx.fillStyle = '#2a2a2a';
+    ctx.fillRect(m.x - 2, m.y - 2, m.width + 4, m.height + 4);
+    // Reflective surface — shows a faint green glow and flickering reflection
+    const mgrad = ctx.createLinearGradient(m.x, m.y, m.x, m.y + m.height);
+    mgrad.addColorStop(0, 'rgba(74,122,58,0.4)');
+    mgrad.addColorStop(0.5, 'rgba(45,90,30,0.6)');
+    mgrad.addColorStop(1, 'rgba(74,122,58,0.3)');
+    ctx.fillStyle = mgrad;
+    ctx.fillRect(m.x, m.y, m.width, m.height);
+    // If close to player, show reflection (a tiny head or zombie head)
+    const distToPlayer = Math.abs((m.x + m.width/2) - (player.x + PLAYER_SIZE/2));
+    if (distToPlayer < 150 && !m.triggered) {
+      // Show a small version of current state
+      const reflectY = m.y + m.height/2 - 8;
+      if (isZombie) {
+        drawZombie(m.x + 2, reflectY, m.width - 4, 16);
+      } else {
+        drawHead(m.x + 2, reflectY, m.width - 4, 16);
+      }
+    }
+    // Glimmer
+    ctx.globalAlpha = 0.6 + Math.sin(frameCount * 0.1) * 0.2;
+    ctx.strokeStyle = '#5a9a4a';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(m.x, m.y, m.width, m.height);
+    ctx.restore();
+  });
 
   // Collectibles (cassette tapes)
   collectibles.forEach(c => {
@@ -1068,21 +1608,43 @@ function draw() {
   ctx.ellipse(player.x + PLAYER_SIZE/2, groundY + 2, PLAYER_SIZE*0.35, 4, 0, 0, Math.PI*2);
   ctx.fill();
   
-  // Player head
-  ctx.drawImage(headImg, player.x, drawY + drawYOffset, PLAYER_SIZE, drawH);
-  
-  // Crown glow effect
-  ctx.globalAlpha = 0.15 + Math.sin(frameCount*0.05)*0.05;
-  const crownGrad = ctx.createRadialGradient(
-    player.x + PLAYER_SIZE/2, drawY + drawYOffset, 0,
-    player.x + PLAYER_SIZE/2, drawY + drawYOffset, PLAYER_SIZE
-  );
-  crownGrad.addColorStop(0, 'rgba(74,122,58,0.3)');
-  crownGrad.addColorStop(1, 'transparent');
-  ctx.fillStyle = crownGrad;
-  ctx.beginPath();
-  ctx.arc(player.x + PLAYER_SIZE/2, drawY + drawYOffset + PLAYER_SIZE/2, PLAYER_SIZE, 0, Math.PI*2);
-  ctx.fill();
+  // Player head — switches to zombie version when drifting
+  if (isZombie) {
+    // Zombie Ube — desaturated, green-tinted, slightly transparent
+    ctx.globalAlpha = 0.75;
+    ctx.filter = 'saturate(0.4) brightness(0.7)';
+    ctx.drawImage(zombieImg, player.x, drawY + drawYOffset, PLAYER_SIZE, drawH);
+    ctx.filter = 'none';
+    ctx.globalAlpha = 1;
+    // Red/dark aura
+    ctx.globalAlpha = 0.2 + Math.sin(frameCount*0.08)*0.1;
+    const zombieAura = ctx.createRadialGradient(
+      player.x + PLAYER_SIZE/2, drawY + drawYOffset + PLAYER_SIZE/2, 0,
+      player.x + PLAYER_SIZE/2, drawY + drawYOffset + PLAYER_SIZE/2, PLAYER_SIZE
+    );
+    zombieAura.addColorStop(0, 'rgba(106,42,42,0.4)');
+    zombieAura.addColorStop(1, 'transparent');
+    ctx.fillStyle = zombieAura;
+    ctx.beginPath();
+    ctx.arc(player.x + PLAYER_SIZE/2, drawY + drawYOffset + PLAYER_SIZE/2, PLAYER_SIZE, 0, Math.PI*2);
+    ctx.fill();
+  } else {
+    // Present Ube — fully colored, glowing green aura
+    ctx.drawImage(headImg, player.x, drawY + drawYOffset, PLAYER_SIZE, drawH);
+    
+    // Crown glow effect
+    ctx.globalAlpha = 0.15 + Math.sin(frameCount*0.05)*0.05;
+    const crownGrad = ctx.createRadialGradient(
+      player.x + PLAYER_SIZE/2, drawY + drawYOffset, 0,
+      player.x + PLAYER_SIZE/2, drawY + drawYOffset, PLAYER_SIZE
+    );
+    crownGrad.addColorStop(0, 'rgba(74,122,58,0.3)');
+    crownGrad.addColorStop(1, 'transparent');
+    ctx.fillStyle = crownGrad;
+    ctx.beginPath();
+    ctx.arc(player.x + PLAYER_SIZE/2, drawY + drawYOffset + PLAYER_SIZE/2, PLAYER_SIZE, 0, Math.PI*2);
+    ctx.fill();
+  }
   ctx.restore();
 
   // Particles
@@ -1098,6 +1660,42 @@ function draw() {
     ctx.globalAlpha = (screenShake - 5) / 10;
     ctx.fillStyle = '#2d5a1e';
     ctx.fillRect(0, 0, canvasW, canvasH);
+    ctx.globalAlpha = 1;
+  }
+  
+  // Zombie state overlay — world loses color when you're drifting
+  if (isZombie) {
+    // Desaturation tint — deep red/gray wash
+    const zombieIntensity = Math.min(1, (PRESENCE_ZOMBIE_THRESHOLD - presence) / PRESENCE_ZOMBIE_THRESHOLD);
+    ctx.globalAlpha = 0.25 * zombieIntensity;
+    ctx.fillStyle = '#2a0505';
+    ctx.fillRect(0, 0, canvasW, canvasH);
+    
+    // Vignette — closing in on you
+    const vignette = ctx.createRadialGradient(
+      canvasW/2, canvasH/2, canvasW * 0.2,
+      canvasW/2, canvasH/2, canvasW * 0.7
+    );
+    vignette.addColorStop(0, 'transparent');
+    vignette.addColorStop(1, 'rgba(0,0,0,0.6)');
+    ctx.globalAlpha = zombieIntensity;
+    ctx.fillStyle = vignette;
+    ctx.fillRect(0, 0, canvasW, canvasH);
+    
+    // Pulsing red at edges when getting close to death
+    if (zombieTimer > ZOMBIE_DEATH_TIME * 0.6) {
+      const dangerPulse = 0.3 + Math.sin(frameCount * 0.3) * 0.2;
+      ctx.globalAlpha = dangerPulse * (zombieTimer / ZOMBIE_DEATH_TIME);
+      const dangerGrad = ctx.createRadialGradient(
+        canvasW/2, canvasH/2, canvasW * 0.3,
+        canvasW/2, canvasH/2, canvasW * 0.8
+      );
+      dangerGrad.addColorStop(0, 'transparent');
+      dangerGrad.addColorStop(1, 'rgba(140,30,30,0.8)');
+      ctx.fillStyle = dangerGrad;
+      ctx.fillRect(0, 0, canvasW, canvasH);
+    }
+    
     ctx.globalAlpha = 1;
   }
 
