@@ -83,14 +83,17 @@
   /* ── CONTENT: photos + links, centered together vertically ── */
   .content {
     position: absolute;
-    top: 50%;
+    top: 44%;
     left: 7vw;
     transform: translateY(-50%);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: clamp(3.5rem, 13vw, 12rem);
     z-index: 5;
   }
+
+  /* push links up so "Music" sits near the top of the photo cluster */
+  .site-links { margin-top: -1vh; }
 
   /* ── PHOTO CLUSTER ── */
   .photo-cluster {
@@ -168,13 +171,15 @@
 
   .site-links li a:hover { color: #555; }
 
-  /* ── 3D AVATAR — large, peeks up from bottom-right, cropped ── */
+  /* ── 3D AVATAR — only TOP of head shows, cropped at viewport bottom ── */
   .avatar-wrap {
     position: absolute;
-    bottom: -9vh;          /* pushed down so lower head crops off */
+    bottom: 0;
     right: 1vw;
-    width: clamp(260px, 30vw, 480px);
-    z-index: 1;            /* behind text (text is far left, no overlap) */
+    width: clamp(300px, 34vw, 560px);
+    height: 46vh;          /* visible window — image is taller, so bottom crops */
+    overflow: hidden;      /* hides the lower face / shoulders */
+    z-index: 1;
     pointer-events: none;
     line-height: 0;
   }
@@ -183,7 +188,7 @@
     width: 100%;
     height: auto;
     display: block;
-    object-fit: contain;
+    /* image sits at top of window; everything below the window is cut off */
   }
 
   /* ── ANIMATIONS ── */
@@ -201,7 +206,7 @@
     .photo-cluster { width: 34vw; height: 46vw; }
     .site-links li a { font-size: clamp(2.6rem, 7vw, 4.5rem); }
     .site-links li a .arr { font-size: clamp(1.4rem, 4vw, 2.6rem); }
-    .avatar-wrap { width: 38vw; bottom: -7vh; }
+    .avatar-wrap { width: 42vw; height: 42vh; }
   }
 
   /* ── PHONE (matches mobile reference) ── */
@@ -232,13 +237,14 @@
     .site-links li a { font-size: clamp(1.8rem, 7vw, 2.6rem); }
     .site-links li a .arr { font-size: clamp(1rem, 4vw, 1.5rem); gap: 6px; }
 
-    /* avatar: big, centered-right at bottom, only top of head shows */
+    /* avatar: big, bottom, only top of head shows (cropped) */
     .avatar-wrap {
-      width: 82vw;
-      max-width: 420px;
+      width: 88vw;
+      max-width: 460px;
       right: 0;
       left: auto;
-      bottom: -8vh;
+      bottom: 0;
+      height: 34vh;
     }
   }
 
@@ -246,7 +252,7 @@
   @media (max-width: 380px) {
     .content { top: 12vh; }
     .site-links li a { font-size: 1.7rem; }
-    .avatar-wrap { width: 88vw; bottom: -6vh; }
+    .avatar-wrap { width: 94vw; height: 30vh; }
   }
 </style>
 </head>
