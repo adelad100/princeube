@@ -12,11 +12,11 @@
 <meta property="og:description" content="Minneapolis born. Atlanta raised. Stream now.">
 <meta property="og:type" content="profile">
 <meta property="og:url" content="https://princeube.com">
-<meta property="og:image" content="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/87/1b/1d/871b1d60-0047-4f94-617c-e6d6058350b6/artwork.jpg/1200x630wp-60.jpg">
+<meta property="og:image" content="https://princeube.com/IMG_1462.jpeg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Prince Ube — Ube Soul">
-<meta name="twitter:image" content="https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/87/1b/1d/871b1d60-0047-4f94-617c-e6d6058350b6/artwork.jpg/1200x630wp-60.jpg">
-<link rel="icon" type="image/png" href="/ube_logo.png">
+<meta name="twitter:image" content="https://princeube.com/IMG_1462.jpeg">
+<link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -54,11 +54,11 @@
     position: relative;
   }
 
-  /* ── NAV: top-left, tight ── */
+  /* ── NAV ── */
   nav {
     position: absolute;
-    top: 22px;
-    left: 28px;
+    top: 20px;
+    left: 24px;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -66,95 +66,91 @@
   }
 
   .nav-logo {
-    height: 34px;
+    height: 36px;
     width: auto;
     mix-blend-mode: multiply;
   }
 
   .nav-name {
     font-family: 'Caveat', cursive;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 500;
     color: #1a1a1a;
     text-decoration: none;
   }
 
-  /* ── PHOTO CLUSTER: left side, vertically centered ── */
-  /* In the wireframe the cluster sits ~20% from left, 
-     vertically centered slightly above mid */
+  /* ── PHOTO CLUSTER ── */
+  /* Left ~15% from left edge, vertically centered */
   .photo-cluster {
     position: absolute;
-    left: 13%;
+    left: 14%;
     top: 50%;
-    transform: translateY(-52%);
-    width: 220px;
-    height: 270px;
+    transform: translateY(-50%);
+    width: 200px;
+    height: 250px;
   }
 
-  /* Portrait photo: upper-right of cluster */
+  /* Your portrait: top, slightly right within cluster */
   .photo-you {
     position: absolute;
     top: 0;
-    left: 30px;
-    width: 158px;
-    height: 192px;
+    left: 28px;
+    width: 155px;
+    height: 185px;
     object-fit: cover;
     object-position: center top;
-    border-radius: 22px;
+    border-radius: 20px;
     z-index: 2;
-    background: #b8c8d8;
   }
 
-  /* Plant photo: lower-left, overlapping portrait */
+  /* Plant: bottom-left, overlapping portrait */
   .photo-plant {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 124px;
-    height: 142px;
+    width: 118px;
+    height: 135px;
     object-fit: cover;
-    border-radius: 16px;
+    object-position: center top;
+    border-radius: 14px;
     z-index: 3;
-    opacity: 0.92;
-    background: #c5d4bc;
   }
 
-  /* >>> arrows: right side of portrait */
+  /* >>> beside the portrait */
   .arrows {
     position: absolute;
-    top: 88px;
-    left: 184px;
+    top: 82px;
+    left: 178px;
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 2px;
     z-index: 4;
   }
 
   .arrows span {
     font-family: 'Caveat', cursive;
-    font-size: 1rem;
-    color: #888;
+    font-size: 0.95rem;
+    color: #999;
     letter-spacing: -0.06em;
-    line-height: 1.5;
+    line-height: 1.6;
   }
 
-  /* ── NAV LINKS: right half, vertically centered ── */
-  /* In wireframe they sit roughly centered-right, 
-     Music at ~35% from top, Ehoro at ~50% */
+  /* ── SITE LINKS ── */
+  /* Right half of page, vertically centered */
   .site-links {
     position: absolute;
-    left: 52%;
+    left: 51%;
     top: 50%;
-    transform: translateY(-60%);
+    transform: translateY(-55%);
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 1.4rem;
   }
 
   .site-links li a {
     font-family: 'Caveat', cursive;
-    font-size: 2.6rem;
+    font-size: 2.5rem;
     font-weight: 500;
     color: #1a1a1a;
     text-decoration: none;
@@ -167,22 +163,22 @@
   }
 
   .site-links li a .arr {
-    color: #999;
-    font-size: 1.6rem;
+    color: #aaa;
+    font-size: 1.4rem;
     letter-spacing: -0.06em;
     font-weight: 400;
   }
 
   .site-links li a:hover { color: #555; }
 
-  /* ── 3D AVATAR: bottom-right, cropped off edge ── */
+  /* ── 3D AVATAR ── */
   .avatar-wrap {
     position: absolute;
-    bottom: -10px;
+    bottom: -20px;
     right: -10px;
-    width: 30vw;
-    max-width: 320px;
-    min-width: 180px;
+    width: 28vw;
+    max-width: 300px;
+    min-width: 160px;
     z-index: 5;
     pointer-events: none;
   }
@@ -194,100 +190,82 @@
     object-position: bottom right;
   }
 
-  /* ── MOBILE ── */
-  @media (max-width: 600px) {
-    body {
-      height: 100svh;
-      overflow: hidden;
-    }
-
-    nav {
-      top: 16px;
-      left: 18px;
-    }
-
-    .nav-logo { height: 28px; }
-    .nav-name { font-size: 1.1rem; }
-
-    /* Photo cluster: left, vertically ~40% down */
-    .photo-cluster {
-      left: 6%;
-      top: 46%;
-      transform: translateY(-50%);
-      width: 170px;
-      height: 210px;
-    }
-
-    .photo-you {
-      left: 20px;
-      width: 124px;
-      height: 150px;
-      border-radius: 18px;
-    }
-
-    .photo-plant {
-      width: 96px;
-      height: 110px;
-      border-radius: 13px;
-    }
-
-    .arrows {
-      top: 68px;
-      left: 140px;
-    }
-
-    .arrows span { font-size: 0.9rem; }
-
-    /* Links: right side */
-    .site-links {
-      left: 50%;
-      top: 44%;
-      transform: translateY(-55%);
-      gap: 1rem;
-    }
-
-    .site-links li a {
-      font-size: 1.9rem;
-    }
-
-    .site-links li a .arr {
-      font-size: 1.2rem;
-    }
-
-    /* Avatar smaller on mobile, still bottom-right */
-    .avatar-wrap {
-      width: 42vw;
-      min-width: 130px;
-      bottom: -5px;
-      right: -5px;
-    }
-  }
-
   /* ── ANIMATIONS ── */
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(8px); }
     to   { opacity: 1; transform: none; }
   }
+
+  nav            { animation: fadeIn 0.5s ease 0s both; }
   .photo-cluster { animation: fadeIn 0.6s ease 0.1s both; }
   .site-links    { animation: fadeIn 0.6s ease 0.2s both; }
-  .avatar-wrap   { animation: fadeIn 0.7s ease 0.35s both; }
+  .avatar-wrap   { animation: fadeIn 0.7s ease 0.3s both; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 600px) {
+    body { height: 100svh; }
+
+    nav { top: 14px; left: 16px; }
+    .nav-logo { height: 28px; }
+    .nav-name { font-size: 1.1rem; }
+
+    .photo-cluster {
+      left: 5%;
+      top: 42%;
+      width: 160px;
+      height: 200px;
+    }
+
+    .photo-you {
+      left: 20px;
+      width: 122px;
+      height: 148px;
+      border-radius: 16px;
+    }
+
+    .photo-plant {
+      width: 94px;
+      height: 108px;
+      border-radius: 12px;
+    }
+
+    .arrows {
+      top: 66px;
+      left: 138px;
+    }
+
+    .arrows span { font-size: 0.85rem; }
+
+    .site-links {
+      left: 48%;
+      top: 40%;
+      gap: 1rem;
+    }
+
+    .site-links li a { font-size: 1.85rem; }
+    .site-links li a .arr { font-size: 1.1rem; }
+
+    .avatar-wrap {
+      width: 44vw;
+      min-width: 120px;
+      bottom: -8px;
+      right: -6px;
+    }
+  }
 </style>
 </head>
 <body>
 
 <nav>
-  <img class="nav-logo" src="/ube_logo.png" alt="Prince Ube logo">
+  <!-- exact filename from your repo -->
+  <img class="nav-logo" src="ube_logo_1000.png" alt="Prince Ube logo">
   <a href="/" class="nav-name">Prince Ube</a>
 </nav>
 
-<!-- PHOTO CLUSTER -->
 <div class="photo-cluster">
-  <img class="photo-you"
-    src="/og-image.jpeg"
-    alt="Prince Ube">
-  <img class="photo-plant"
-    src="/zombie-village/cover.jpg"
-    alt="plant">
+  <!-- exact filenames from your repo -->
+  <img class="photo-you"  src="IMG_1462.jpeg"   alt="Prince Ube">
+  <img class="photo-plant" src="IMG_1766.JPG"   alt="plant">
   <div class="arrows">
     <span>>>></span>
     <span>>>></span>
@@ -295,7 +273,6 @@
   </div>
 </div>
 
-<!-- NAV LINKS -->
 <ul class="site-links">
   <li>
     <a href="https://linktr.ee/princeube" target="_blank" rel="noopener">
@@ -303,15 +280,15 @@
     </a>
   </li>
   <li>
-    <a href="/ehorovillage/">
+    <a href="ehorovillage.html">
       <span class="arr">>>></span> Ehorovillage
     </a>
   </li>
 </ul>
 
-<!-- 3D AVATAR -->
 <div class="avatar-wrap">
-  <img src="/IMG_0406.PNG" alt="Prince Ube 3D avatar" onerror="this.style.display='none'">
+  <!-- exact filename from your repo -->
+  <img src="IMG_0406.PNG" alt="Prince Ube 3D avatar">
 </div>
 
 </body>
