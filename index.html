@@ -80,83 +80,85 @@
     text-decoration: none;
   }
 
-  /* ── CONTENT WRAPPER: holds photos + links side by side ── */
+  /* ── CONTENT: photos (left) + links (right) ── */
   .content {
     position: absolute;
-    top: 14vh;
-    left: 5vw;
+    top: 22vh;
+    left: 6vw;
+    right: 6vw;
     display: flex;
-    align-items: center;
-    gap: clamp(3rem, 8vw, 7rem);
+    align-items: flex-start;
+    gap: clamp(3rem, 12vw, 10rem);
   }
 
   /* ── PHOTO CLUSTER ── */
   .photo-cluster {
     position: relative;
-    width: clamp(180px, 22vw, 280px);
-    height: clamp(240px, 30vw, 360px);
+    width: clamp(190px, 20vw, 300px);
+    /* taller than wide, room for plant to poke out bottom */
+    height: clamp(250px, 27vw, 400px);
     flex-shrink: 0;
   }
 
+  /* PORTRAIT — on TOP, top-left. Face always visible. */
   .photo-you {
     position: absolute;
     top: 0;
-    left: 14%;
-    width: 82%;
-    height: 65%;
+    left: 0;
+    width: 70%;
+    height: 76%;
     object-fit: cover;
     object-position: center top;
-    border-radius: clamp(14px, 2vw, 24px);
-    z-index: 2;
+    border-radius: clamp(16px, 2vw, 26px);
+    z-index: 3;          /* ON TOP of plant */
   }
 
+  /* PLANT — BEHIND portrait, pokes out bottom-right only */
   .photo-plant {
     position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 65%;
-    height: 50%;
+    top: 40%;
+    left: 38%;
+    width: 62%;
+    height: 56%;
     object-fit: cover;
-    object-position: center top;
-    border-radius: clamp(12px, 1.6vw, 20px);
-    z-index: 3;
+    object-position: center center;
+    border-radius: clamp(14px, 1.6vw, 22px);
+    z-index: 1;          /* BEHIND portrait */
   }
 
-  .arrows {
-    position: absolute;
-    top: 34%;
-    right: -14%;
-    display: flex;
-    flex-direction: column;
-    gap: 0px;
-    z-index: 4;
-  }
+  /* CASCADING ARROWS — staircase down-right over portrait's right edge */
+  .arrows { z-index: 4; }
 
   .arrows span {
+    position: absolute;
     font-family: 'Caveat', cursive;
-    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
-    font-weight: 500;
+    font-size: clamp(0.9rem, 1.4vw, 1.3rem);
+    font-weight: 600;
     color: #1a1a1a;
-    line-height: 1.6;
   }
+  /* each arrow steps DOWN and slightly RIGHT */
+  .arrows span:nth-child(1) { top: 34%; left: 58%; }
+  .arrows span:nth-child(2) { top: 46%; left: 62%; }
+  .arrows span:nth-child(3) { top: 58%; left: 66%; }
 
   /* ── SITE LINKS ── */
   .site-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: clamp(0.6rem, 2vw, 1.6rem);
+    gap: clamp(1.2rem, 4vh, 3rem);
+    padding-top: 1vh;
   }
 
   .site-links li a {
     font-family: 'Caveat', cursive;
-    font-size: clamp(2rem, 4.5vw, 3.6rem);
+    font-size: clamp(2.2rem, 4.8vw, 3.8rem);
     font-weight: 600;
     color: #1a1a1a;
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
     line-height: 1;
     transition: color 0.15s;
     white-space: nowrap;
@@ -164,27 +166,28 @@
 
   .site-links li a .arr {
     color: #1a1a1a;
-    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-size: clamp(1.3rem, 2.6vw, 2.1rem);
     font-weight: 600;
   }
 
   .site-links li a:hover { color: #555; }
 
-  /* ── 3D AVATAR ── */
+  /* ── 3D AVATAR — FULL head visible, anchored bottom-right ── */
   .avatar-wrap {
     position: absolute;
-    bottom: -2vh;
-    right: -1vw;
-    width: clamp(200px, 30vw, 380px);
+    bottom: 0;
+    right: 0;
+    width: clamp(190px, 26vw, 340px);
     z-index: 5;
     pointer-events: none;
+    line-height: 0;
   }
 
   .avatar-wrap img {
     width: 100%;
+    height: auto;
     display: block;
     object-fit: contain;
-    object-position: bottom right;
   }
 
   /* ── ANIMATIONS ── */
@@ -192,84 +195,54 @@
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: none; }
   }
-
   nav          { animation: fadeIn 0.5s ease 0s both; }
   .content     { animation: fadeIn 0.6s ease 0.12s both; }
   .avatar-wrap { animation: fadeIn 0.7s ease 0.25s both; }
 
-  /* ── MOBILE ── */
+  /* ── TABLET ── */
   @media (max-width: 768px) {
     .content {
-      top: 12vh;
-      left: 5vw;
-      right: 5vw;
-      gap: 2rem;
+      top: 18vh;
+      gap: 2.5rem;
     }
-
     .photo-cluster {
-      width: 38vw;
-      height: 50vw;
+      width: 40vw;
+      height: 54vw;
     }
-
-    .site-links li a {
-      font-size: clamp(1.8rem, 6vw, 2.8rem);
-    }
-
-    .site-links li a .arr {
-      font-size: clamp(1rem, 3.5vw, 1.6rem);
-    }
-
-    .arrows {
-      right: -18%;
-    }
-
-    .avatar-wrap {
-      width: 42vw;
-      bottom: -1vh;
-      right: -2vw;
-    }
+    .site-links li a { font-size: clamp(2rem, 6vw, 3rem); }
+    .site-links li a .arr { font-size: clamp(1.1rem, 3.5vw, 1.7rem); }
+    .avatar-wrap { width: 40vw; }
   }
 
-  /* Small phones */
-  @media (max-width: 430px) {
-    nav {
-      top: 2vh;
-      left: 4vw;
-    }
+  /* ── PHONE ── */
+  @media (max-width: 480px) {
+    nav { top: 2.5vh; left: 5vw; }
 
     .content {
-      top: 10vh;
-      left: 4vw;
-      gap: 1.2rem;
+      top: 15vh;
+      left: 6vw;
+      right: 6vw;
       flex-direction: column;
       align-items: flex-start;
+      gap: 2.5rem;
     }
 
+    /* photo cluster bigger on phone so face reads clearly */
     .photo-cluster {
-      width: 55vw;
-      height: 65vw;
+      width: 58vw;
+      height: 76vw;
     }
 
-    .arrows {
-      right: -12%;
-    }
+    .arrows span { font-size: 1rem; }
 
-    .site-links {
-      gap: 0.5rem;
-    }
+    .site-links { gap: 1.2rem; padding-top: 0; }
+    .site-links li a { font-size: 2.2rem; }
+    .site-links li a .arr { font-size: 1.3rem; }
 
-    .site-links li a {
-      font-size: 2rem;
-    }
-
-    .site-links li a .arr {
-      font-size: 1.2rem;
-    }
-
+    /* avatar bottom-right, full head, smaller */
     .avatar-wrap {
-      width: 50vw;
-      bottom: -1vh;
-      right: -3vw;
+      width: 46vw;
+      max-width: 220px;
     }
   }
 </style>
@@ -283,8 +256,11 @@
 
 <div class="content">
   <div class="photo-cluster">
-    <img class="photo-you"  src="IMG_1462.jpeg" alt="Prince Ube">
+    <!-- plant sits BEHIND, pokes out bottom-right -->
     <img class="photo-plant" src="IMG_1766.JPG"  alt="plant">
+    <!-- portrait on TOP, face always clear -->
+    <img class="photo-you"   src="IMG_1462.jpeg" alt="Prince Ube">
+    <!-- cascading arrows -->
     <div class="arrows">
       <span>>>></span>
       <span>>>></span>
