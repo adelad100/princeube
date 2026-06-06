@@ -66,7 +66,6 @@
     height: 38px;
     width: auto;
     display: block;
-    /* keep the black logo visible on cream */
     mix-blend-mode: multiply;
   }
 
@@ -76,41 +75,36 @@
     font-weight: 500;
     color: #1a1a1a;
     text-decoration: none;
-    letter-spacing: 0.01em;
   }
 
-  /* ── MAIN CONTENT ── */
+  /* ── PAGE BODY ── */
   main {
     flex: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-  }
-
-  /* ── LEFT PANEL ── */
-  .panel-left {
-    padding: 0.5rem 2rem 3rem;
+    padding: 1rem 2rem 3rem;
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
+    gap: 5vw;
     position: relative;
   }
 
+  /* ── PHOTO CLUSTER (left) ── */
   .photo-cluster {
     position: relative;
-    width: 280px;
-    height: 300px;
-    margin-bottom: 3rem;
+    width: 240px;
+    height: 280px;
+    flex-shrink: 0;
+    animation: fadeIn 0.7s ease 0.1s both;
   }
 
   .photo-you {
     position: absolute;
     top: 0;
     left: 40px;
-    width: 175px;
-    height: 200px;
+    width: 168px;
+    height: 196px;
     object-fit: cover;
     object-position: center top;
-    border-radius: 20px;
+    border-radius: 22px;
     z-index: 2;
   }
 
@@ -118,130 +112,82 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 140px;
-    height: 160px;
+    width: 130px;
+    height: 150px;
     object-fit: cover;
     border-radius: 16px;
     z-index: 1;
     opacity: 0.88;
   }
 
+  /* >>> to the right of photos */
   .arrows {
     position: absolute;
-    top: 80px;
-    left: 210px;
+    top: 90px;
+    left: 200px;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 3px;
     z-index: 3;
   }
 
   .arrows span {
     font-family: 'Caveat', cursive;
-    font-size: 1.1rem;
-    color: #888;
-    letter-spacing: -0.04em;
-    line-height: 1.3;
+    font-size: 1.05rem;
+    color: #999;
+    letter-spacing: -0.05em;
+    line-height: 1.35;
+  }
+
+  /* ── RIGHT: nav links + avatar ── */
+  .right-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    position: relative;
+    min-height: 280px;
   }
 
   .site-links {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 0.6rem;
+    gap: 0.4rem;
+    margin-top: 2rem;
+    animation: fadeIn 0.7s ease 0.25s both;
   }
 
   .site-links li a {
     font-family: 'Caveat', cursive;
-    font-size: 2.4rem;
+    font-size: clamp(2rem, 4vw, 2.6rem);
     font-weight: 500;
     color: #1a1a1a;
     text-decoration: none;
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: 0.25rem;
     transition: color 0.18s;
-    line-height: 1.15;
+    line-height: 1.2;
   }
 
   .site-links li a .arr {
-    color: #888;
-    font-size: 1.6rem;
-    letter-spacing: -0.04em;
+    color: #999;
+    font-size: 1.4rem;
+    letter-spacing: -0.05em;
   }
 
-  .site-links li a:hover { color: #444; }
+  .site-links li a:hover { color: #555; }
 
-  /* ── RIGHT PANEL ── */
-  .panel-right {
-    background: #0a0a0a;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 2rem 2.5rem;
-    overflow: hidden;
-    min-height: 480px;
-  }
-
-  .right-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .right-label {
-    font-family: 'Caveat', cursive;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: rgba(242,237,230,0.7);
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    transition: color 0.18s;
-  }
-  .right-label:hover { color: rgba(242,237,230,1); }
-
-  .right-sublabel {
-    font-family: 'Caveat', cursive;
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: rgba(242,237,230,0.55);
-    text-align: right;
-    line-height: 1.3;
-  }
-
-  .coming-soon {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-  }
-
-  .cs-drop {
-    font-family: 'Caveat', cursive;
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    font-weight: 500;
-    color: #f2ede6;
-    line-height: 1.1;
-  }
-
-  .cs-main {
-    font-family: 'Caveat', cursive;
-    font-size: clamp(3rem, 7vw, 6rem);
-    font-weight: 700;
-    color: #f2ede6;
-    line-height: 0.9;
-    letter-spacing: -0.02em;
-  }
-
+  /* 3D avatar — bottom right of page */
   .avatar-wrap {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     right: 0;
-    width: 52%;
-    z-index: 1;
+    width: clamp(220px, 28vw, 380px);
     pointer-events: none;
+    z-index: 0;
+    animation: fadeIn 0.9s ease 0.4s both;
   }
 
   .avatar-wrap img {
@@ -249,8 +195,6 @@
     display: block;
     object-fit: contain;
     object-position: bottom right;
-    mix-blend-mode: screen;
-    opacity: 0.85;
   }
 
   /* ── ANIMATIONS ── */
@@ -258,24 +202,18 @@
     from { opacity: 0; transform: translateY(10px); }
     to   { opacity: 1; transform: none; }
   }
-  .photo-cluster  { animation: fadeIn 0.7s ease 0.1s both; }
-  .site-links     { animation: fadeIn 0.7s ease 0.25s both; }
-  .coming-soon    { animation: fadeIn 0.8s ease 0.35s both; }
-  .right-top      { animation: fadeIn 0.7s ease 0.2s both; }
 
   /* ── MOBILE ── */
-  @media (max-width: 700px) {
-    main { grid-template-columns: 1fr; }
-    .panel-left { padding: 1rem 1.5rem 2.5rem; }
-    .photo-cluster { width: 240px; height: 260px; }
-    .photo-you { width: 150px; height: 175px; left: 30px; }
-    .photo-plant { width: 120px; height: 140px; }
-    .arrows { left: 180px; top: 70px; }
+  @media (max-width: 600px) {
+    main { flex-direction: column; gap: 2rem; padding: 1rem 1.5rem 2rem; }
+    .photo-cluster { width: 210px; height: 240px; }
+    .photo-you { width: 145px; height: 168px; left: 30px; }
+    .photo-plant { width: 110px; height: 128px; }
+    .arrows { left: 172px; top: 75px; }
+    .right-col { min-height: auto; }
+    .site-links { margin-top: 0; }
     .site-links li a { font-size: 2rem; }
-    .panel-right { min-height: 360px; padding: 1.5rem; }
-    .cs-main { font-size: clamp(2.8rem, 13vw, 5rem); }
-    .cs-drop { font-size: clamp(1.6rem, 6vw, 2.4rem); }
-    .avatar-wrap { width: 48%; }
+    .avatar-wrap { width: clamp(160px, 42vw, 240px); }
   }
 </style>
 </head>
@@ -287,24 +225,25 @@
 </nav>
 
 <main>
-  <!-- LEFT -->
-  <section class="panel-left">
-    <div class="photo-cluster">
-      <img class="photo-plant"
-        src="/zombie-village/cover.jpg"
-        alt="Monstera plant"
-        onerror="this.style.background='#c8d8c0';this.removeAttribute('src')">
-      <img class="photo-you"
-        src="/og-image.jpeg"
-        alt="Prince Ube"
-        onerror="this.style.background='#b0c4d8';this.removeAttribute('src')">
-      <div class="arrows">
-        <span>>>></span>
-        <span>>>></span>
-        <span>>>></span>
-      </div>
+  <!-- PHOTO CLUSTER -->
+  <div class="photo-cluster">
+    <img class="photo-plant"
+      src="/zombie-village/cover.jpg"
+      alt="Monstera plant"
+      onerror="this.style.background='#c5d4bc';this.removeAttribute('src')">
+    <img class="photo-you"
+      src="/og-image.jpeg"
+      alt="Prince Ube"
+      onerror="this.style.background='#b8c8d8';this.removeAttribute('src')">
+    <div class="arrows">
+      <span>>>></span>
+      <span>>>></span>
+      <span>>>></span>
     </div>
+  </div>
 
+  <!-- NAV LINKS -->
+  <div class="right-col">
     <ul class="site-links">
       <li>
         <a href="https://linktr.ee/princeube" target="_blank" rel="noopener">
@@ -317,24 +256,12 @@
         </a>
       </li>
     </ul>
-  </section>
+  </div>
 
-  <!-- RIGHT -->
-  <section class="panel-right" aria-label="Ehoro Village teaser">
-    <div class="right-top">
-      <a href="/ehorovillage/" class="right-label">Ehoro Village</a>
-      <div class="right-sublabel">Yoruba<br>Brand</div>
-    </div>
-
-    <div class="coming-soon">
-      <div class="cs-drop">Drop 1:</div>
-      <div class="cs-main">COMING<br>SOON!!!!</div>
-    </div>
-
-    <div class="avatar-wrap">
-      <img src="/IMG_0406.PNG" alt="Prince Ube 3D avatar" onerror="this.style.display='none'">
-    </div>
-  </section>
+  <!-- 3D AVATAR bottom-right -->
+  <div class="avatar-wrap">
+    <img src="/IMG_0406.PNG" alt="Prince Ube 3D avatar" onerror="this.style.display='none'">
+  </div>
 </main>
 
 </body>
