@@ -48,8 +48,9 @@
     background: #f0ebe2;
     font-family: 'Caveat', cursive;
     -webkit-font-smoothing: antialiased;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100dvh;
     overflow: hidden;
     position: relative;
   }
@@ -57,8 +58,8 @@
   /* ── NAV ── */
   nav {
     position: absolute;
-    top: 20px;
-    left: 24px;
+    top: 3vh;
+    left: 3.5vw;
     display: flex;
     align-items: center;
     gap: 8px;
@@ -66,92 +67,91 @@
   }
 
   .nav-logo {
-    height: 36px;
+    height: clamp(30px, 5vh, 44px);
     width: auto;
     mix-blend-mode: multiply;
   }
 
   .nav-name {
     font-family: 'Caveat', cursive;
-    font-size: 1.3rem;
+    font-size: clamp(1.1rem, 2.2vw, 1.5rem);
     font-weight: 500;
     color: #1a1a1a;
     text-decoration: none;
   }
 
-  /* ── PHOTO CLUSTER ── */
-  /* Left ~15% from left edge, vertically centered */
-  .photo-cluster {
+  /* ── CONTENT WRAPPER: holds photos + links side by side ── */
+  .content {
     position: absolute;
-    left: 14%;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 200px;
-    height: 250px;
+    top: 14vh;
+    left: 5vw;
+    display: flex;
+    align-items: center;
+    gap: clamp(3rem, 8vw, 7rem);
   }
 
-  /* Your portrait: top, slightly right within cluster */
+  /* ── PHOTO CLUSTER ── */
+  .photo-cluster {
+    position: relative;
+    width: clamp(180px, 22vw, 280px);
+    height: clamp(240px, 30vw, 360px);
+    flex-shrink: 0;
+  }
+
   .photo-you {
     position: absolute;
     top: 0;
-    left: 28px;
-    width: 155px;
-    height: 185px;
+    left: 14%;
+    width: 82%;
+    height: 65%;
     object-fit: cover;
     object-position: center top;
-    border-radius: 20px;
+    border-radius: clamp(14px, 2vw, 24px);
     z-index: 2;
   }
 
-  /* Plant: bottom-left, overlapping portrait */
   .photo-plant {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 118px;
-    height: 135px;
+    width: 65%;
+    height: 50%;
     object-fit: cover;
     object-position: center top;
-    border-radius: 14px;
+    border-radius: clamp(12px, 1.6vw, 20px);
     z-index: 3;
   }
 
-  /* >>> beside the portrait */
   .arrows {
     position: absolute;
-    top: 82px;
-    left: 178px;
+    top: 34%;
+    right: -14%;
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0px;
     z-index: 4;
   }
 
   .arrows span {
     font-family: 'Caveat', cursive;
-    font-size: 0.95rem;
-    color: #999;
-    letter-spacing: -0.06em;
+    font-size: clamp(0.8rem, 1.2vw, 1.1rem);
+    font-weight: 500;
+    color: #1a1a1a;
     line-height: 1.6;
   }
 
   /* ── SITE LINKS ── */
-  /* Right half of page, vertically centered */
   .site-links {
-    position: absolute;
-    left: 51%;
-    top: 50%;
-    transform: translateY(-55%);
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1.4rem;
+    gap: clamp(0.6rem, 2vw, 1.6rem);
   }
 
   .site-links li a {
     font-family: 'Caveat', cursive;
-    font-size: 2.5rem;
-    font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 3.6rem);
+    font-weight: 600;
     color: #1a1a1a;
     text-decoration: none;
     display: flex;
@@ -163,10 +163,9 @@
   }
 
   .site-links li a .arr {
-    color: #aaa;
-    font-size: 1.4rem;
-    letter-spacing: -0.06em;
-    font-weight: 400;
+    color: #1a1a1a;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 600;
   }
 
   .site-links li a:hover { color: #555; }
@@ -174,11 +173,9 @@
   /* ── 3D AVATAR ── */
   .avatar-wrap {
     position: absolute;
-    bottom: -20px;
-    right: -10px;
-    width: 28vw;
-    max-width: 300px;
-    min-width: 160px;
+    bottom: -2vh;
+    right: -1vw;
+    width: clamp(200px, 30vw, 380px);
     z-index: 5;
     pointer-events: none;
   }
@@ -192,64 +189,87 @@
 
   /* ── ANIMATIONS ── */
   @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: none; }
   }
 
-  nav            { animation: fadeIn 0.5s ease 0s both; }
-  .photo-cluster { animation: fadeIn 0.6s ease 0.1s both; }
-  .site-links    { animation: fadeIn 0.6s ease 0.2s both; }
-  .avatar-wrap   { animation: fadeIn 0.7s ease 0.3s both; }
+  nav          { animation: fadeIn 0.5s ease 0s both; }
+  .content     { animation: fadeIn 0.6s ease 0.12s both; }
+  .avatar-wrap { animation: fadeIn 0.7s ease 0.25s both; }
 
   /* ── MOBILE ── */
-  @media (max-width: 600px) {
-    body { height: 100svh; }
-
-    nav { top: 14px; left: 16px; }
-    .nav-logo { height: 28px; }
-    .nav-name { font-size: 1.1rem; }
+  @media (max-width: 768px) {
+    .content {
+      top: 12vh;
+      left: 5vw;
+      right: 5vw;
+      gap: 2rem;
+    }
 
     .photo-cluster {
-      left: 5%;
-      top: 42%;
-      width: 160px;
-      height: 200px;
+      width: 38vw;
+      height: 50vw;
     }
 
-    .photo-you {
-      left: 20px;
-      width: 122px;
-      height: 148px;
-      border-radius: 16px;
+    .site-links li a {
+      font-size: clamp(1.8rem, 6vw, 2.8rem);
     }
 
-    .photo-plant {
-      width: 94px;
-      height: 108px;
-      border-radius: 12px;
+    .site-links li a .arr {
+      font-size: clamp(1rem, 3.5vw, 1.6rem);
     }
 
     .arrows {
-      top: 66px;
-      left: 138px;
+      right: -18%;
     }
-
-    .arrows span { font-size: 0.85rem; }
-
-    .site-links {
-      left: 48%;
-      top: 40%;
-      gap: 1rem;
-    }
-
-    .site-links li a { font-size: 1.85rem; }
-    .site-links li a .arr { font-size: 1.1rem; }
 
     .avatar-wrap {
-      width: 44vw;
-      min-width: 120px;
-      bottom: -8px;
-      right: -6px;
+      width: 42vw;
+      bottom: -1vh;
+      right: -2vw;
+    }
+  }
+
+  /* Small phones */
+  @media (max-width: 430px) {
+    nav {
+      top: 2vh;
+      left: 4vw;
+    }
+
+    .content {
+      top: 10vh;
+      left: 4vw;
+      gap: 1.2rem;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .photo-cluster {
+      width: 55vw;
+      height: 65vw;
+    }
+
+    .arrows {
+      right: -12%;
+    }
+
+    .site-links {
+      gap: 0.5rem;
+    }
+
+    .site-links li a {
+      font-size: 2rem;
+    }
+
+    .site-links li a .arr {
+      font-size: 1.2rem;
+    }
+
+    .avatar-wrap {
+      width: 50vw;
+      bottom: -1vh;
+      right: -3vw;
     }
   }
 </style>
@@ -257,37 +277,36 @@
 <body>
 
 <nav>
-  <!-- exact filename from your repo -->
   <img class="nav-logo" src="ube_logo_1000.png" alt="Prince Ube logo">
   <a href="/" class="nav-name">Prince Ube</a>
 </nav>
 
-<div class="photo-cluster">
-  <!-- exact filenames from your repo -->
-  <img class="photo-you"  src="IMG_1462.jpeg"   alt="Prince Ube">
-  <img class="photo-plant" src="IMG_1766.JPG"   alt="plant">
-  <div class="arrows">
-    <span>>>></span>
-    <span>>>></span>
-    <span>>>></span>
+<div class="content">
+  <div class="photo-cluster">
+    <img class="photo-you"  src="IMG_1462.jpeg" alt="Prince Ube">
+    <img class="photo-plant" src="IMG_1766.JPG"  alt="plant">
+    <div class="arrows">
+      <span>>>></span>
+      <span>>>></span>
+      <span>>>></span>
+    </div>
   </div>
+
+  <ul class="site-links">
+    <li>
+      <a href="https://linktr.ee/princeube" target="_blank" rel="noopener">
+        <span class="arr">>>></span> Music
+      </a>
+    </li>
+    <li>
+      <a href="ehorovillage.html">
+        <span class="arr">>>></span> Ehorovillage
+      </a>
+    </li>
+  </ul>
 </div>
 
-<ul class="site-links">
-  <li>
-    <a href="https://linktr.ee/princeube" target="_blank" rel="noopener">
-      <span class="arr">>>></span> Music
-    </a>
-  </li>
-  <li>
-    <a href="ehorovillage.html">
-      <span class="arr">>>></span> Ehorovillage
-    </a>
-  </li>
-</ul>
-
 <div class="avatar-wrap">
-  <!-- exact filename from your repo -->
   <img src="IMG_0406.PNG" alt="Prince Ube 3D avatar">
 </div>
 
