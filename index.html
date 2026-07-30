@@ -147,6 +147,10 @@ gap: 14px;
 line-height: 1;
 transition: color 0.15s;
 white-space: nowrap;
+cursor: pointer;
+background: none;
+border: none;
+padding: 0;
 }
 
 .site-links li a .arr {
@@ -200,6 +204,103 @@ gap: 3rem;
 @media (max-width: 380px) {
 .site-links li a { font-size: 1.6rem; }
 }
+
+.modal-overlay {
+display: none;
+position: fixed;
+inset: 0;
+background: rgba(26,26,26,0.55);
+z-index: 100;
+align-items: center;
+justify-content: center;
+padding: 4vh 4vw;
+}
+
+.modal-overlay.active { display: flex; }
+
+.modal-box {
+background: #f0ebe2;
+border-radius: 20px;
+box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+width: min(480px, 100%);
+max-height: 90vh;
+overflow-y: auto;
+padding: clamp(1.6rem, 4vw, 2.6rem);
+position: relative;
+font-family: 'Caveat', cursive;
+}
+
+.modal-close {
+position: absolute;
+top: 14px;
+right: 18px;
+background: none;
+border: none;
+font-family: 'Caveat', cursive;
+font-size: 2rem;
+color: #1a1a1a;
+cursor: pointer;
+line-height: 1;
+}
+
+.modal-box h2 {
+font-size: clamp(1.8rem, 4vw, 2.4rem);
+color: #1a1a1a;
+margin-bottom: 6px;
+}
+
+.modal-sub {
+font-size: 1.1rem;
+color: #666;
+margin-bottom: 20px;
+}
+
+.modal-box label {
+display: block;
+font-size: 1.15rem;
+color: #1a1a1a;
+margin-bottom: 4px;
+margin-top: 14px;
+}
+
+.modal-box input,
+.modal-box textarea {
+width: 100%;
+font-family: 'Caveat', cursive;
+font-size: 1.15rem;
+color: #1a1a1a;
+background: #fff;
+border: 1px solid #ccc4b6;
+border-radius: 10px;
+padding: 10px 12px;
+resize: vertical;
+}
+
+.modal-box textarea { min-height: 100px; }
+
+.modal-submit {
+margin-top: 22px;
+width: 100%;
+background: #1a1a1a;
+color: #f0ebe2;
+font-family: 'Caveat', cursive;
+font-weight: 600;
+font-size: 1.4rem;
+padding: 12px;
+border: none;
+border-radius: 999px;
+cursor: pointer;
+transition: opacity 0.15s;
+}
+
+.modal-submit:hover { opacity: 0.85; }
+
+.modal-note {
+margin-top: 12px;
+font-size: 0.95rem;
+color: #777;
+text-align: center;
+}
 </style>
 </head>
 <body>
@@ -219,13 +320,13 @@ gap: 3rem;
 
 <ul class="site-links">
 <li>
-<a href="mailto:ijidakinroade@gmail.com?subject=Commission%20Inquiry&body=Hi%20Prince%2C%0A%0AI%27d%20love%20to%20commission%20a%20piece.%20Here%27s%20what%20I%20have%20in%20mind%3A%0A">
+<a href="#" id="commission-link">
 <span class="arr">>>></span> Commissions
 </a>
 <span class="sub">custom oil pastel pieces, made to order</span>
 </li>
 <li>
-<a href="mailto:ijidakinroade@gmail.com?subject=Print%20Order%3A%20Green%20Apple&body=Hi%20Prince%2C%0A%0AI%27d%20like%20to%20order%20the%20Green%20Apple%20print%20(%2425).%20My%20shipping%20address%20is%3A%0A">
+<a href="https://buy.stripe.com/5kQ7sK6f05va9bQ2557g401" target="_blank" rel="noopener">
 <span class="arr">>>></span> Buy the Apple Print
 </a>
 <span class="sub">$25, shipped to you</span>
@@ -238,6 +339,59 @@ gap: 3rem;
 </li>
 </ul>
 </div>
+
+<div class="modal-overlay" id="commission-modal">
+<div class="modal-box">
+<button class="modal-close" id="modal-close" aria-label="Close">×</button>
+<h2>Commission a piece</h2>
+<div class="modal-sub">Tell me a bit about what you have in mind and I'll get back to you.</div>
+<form id="commission-form">
+<label for="c-name">Name</label>
+<input type="text" id="c-name" required>
+
+<label for="c-email">Email</label>
+<input type="email" id="c-email" required>
+
+<label for="c-details">What would you like commissioned?</label>
+<textarea id="c-details" required placeholder="Subject, size, style, reference photos, deadline, etc."></textarea>
+
+<button type="submit" class="modal-submit">Send Request</button>
+<div class="modal-note">This opens your email app with the details filled in, addressed to Prince Ube.</div>
+</form>
+</div>
+</div>
+
+<script>
+(function() {
+var link = document.getElementById('commission-link');
+var modal = document.getElementById('commission-modal');
+var closeBtn = document.getElementById('modal-close');
+var form = document.getElementById('commission-form');
+
+link.addEventListener('click', function(e) {
+e.preventDefault();
+modal.classList.add('active');
+});
+
+closeBtn.addEventListener('click', function() {
+modal.classList.remove('active');
+});
+
+modal.addEventListener('click', function(e) {
+if (e.target === modal) modal.classList.remove('active');
+});
+
+form.addEventListener('submit', function(e) {
+e.preventDefault();
+var name = document.getElementById('c-name').value.trim();
+var email = document.getElementById('c-email').value.trim();
+var details = document.getElementById('c-details').value.trim();
+var subject = encodeURIComponent('Commission Inquiry from ' + name);
+var body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nWhat I have in mind:\n' + details);
+window.location.href = 'mailto:ubesoul99@gmail.com?subject=' + subject + '&body=' + body;
+});
+})();
+</script>
 
 </body>
 </html>
