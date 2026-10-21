@@ -1,427 +1,474 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prince Ube — Oil Pastel Art | Commissions & Prints</title>
-<meta name="description" content="Prince Ube is an oil pastel artist painting a new piece every day. Commission custom work or buy a print, straight from the artist.">
-<meta name="keywords" content="Prince Ube, oil pastel artist, art commissions, oil pastel prints, daily art, Atlanta artist">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://princeube.com/">
-<meta property="og:title" content="Prince Ube — Oil Pastel Art">
-<meta property="og:description" content="Commissions open. Prints available. New piece every day.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://princeube.com">
-<meta property="og:image" content="https://princeube.com/green-apple-print.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Prince Ube — Oil Pastel Art">
-<meta name="twitter:image" content="https://princeube.com/green-apple-print.jpg">
-<link rel="icon" type="image/png" href="favicon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>prince_ube @ Dream Builders</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Clean, professional Roblox animation, building, UX/UI and audio by prince_ube. Commissions open. Message on Discord.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<script type="application/ld+json">
-{
-"@context": "https://schema.org",
-"@type": "Person",
-"name": "Prince Ube",
-"url": "https://princeube.com",
-"jobTitle": "Oil Pastel Artist",
-"description": "Prince Ube is an oil pastel artist painting a new piece every day, taking commissions and selling prints.",
-"sameAs": [
-"https://www.instagram.com/prince_ube_paints/"
-]
-}
-</script>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-background: #f0ebe2;
-font-family: 'Caveat', cursive;
--webkit-font-smoothing: antialiased;
-width: 100%;
-min-height: 100vh;
-min-height: 100dvh;
-position: relative;
+/* Layout: one centered 1200px column; sticky name bar; hero (icon + headline) over a full-width reel; floating work cards; numbered process; contact card. */
+:root{
+  --bg:#F4EFE6; --surface:#FFFDF8; --surface-2:#EDE6D8; --fg:#15161A; --muted:#57544E; --line:#E2DACB; --line-strong:#D9D0BF;
+  --accent:#2E44F0; --accent-fg:#FFFFFF; --accent-text:#2E44F0; --media:#121318; --grid:#E6DFD2;
+  --contact-bg:#15161A; --contact-fg:#F4EFE6; --contact-muted:#C9C4BA; --contact-field:#22242B; --contact-line:#343743; --copy-bg:#F4EFE6; --copy-fg:#15161A;
+  --shadow:rgba(21,22,26,.42); --shadow-lift:rgba(21,22,26,.22); --header-bg:rgba(244,239,230,.86); --dot:#1F8A4C;
+  --solid-bg:#15161A; --solid-fg:#FFFDF8; --tag-bg:rgba(255,255,255,.16); --tag-fg:#FFFFFF; --scrim:rgba(14,15,19,.62);
+  --f-display:"Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --f-body:Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --r-card:22px; --r-media:16px;
 }
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E0F13; --surface:#17181E; --surface-2:#1B1D24; --fg:#F2EDE3; --muted:#ADA99F; --line:#262830; --line-strong:#2E3039;
+  --accent:#4F63FF; --accent-fg:#FFFFFF; --accent-text:#8E9BFF; --media:#07080B; --grid:#191B21;
+  --contact-bg:#F2EDE3; --contact-fg:#15161A; --contact-muted:#4A4843; --contact-field:#E6E0D4; --contact-line:#D3CBBB; --copy-bg:#15161A; --copy-fg:#F2EDE3;
+  --shadow:rgba(0,0,0,.85); --shadow-lift:rgba(0,0,0,.5); --header-bg:rgba(14,15,19,.85); --dot:#3CCB7F;
+  --solid-bg:#F2EDE3; --solid-fg:#0E0F13; --tag-bg:rgba(255,255,255,.14); --tag-fg:#FFFFFF; --scrim:rgba(0,0,0,.72);
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E0F13; --surface:#17181E; --surface-2:#1B1D24; --fg:#F2EDE3; --muted:#ADA99F; --line:#262830; --line-strong:#2E3039;
+  --accent:#4F63FF; --accent-fg:#FFFFFF; --accent-text:#8E9BFF; --media:#07080B; --grid:#191B21;
+  --contact-bg:#F2EDE3; --contact-fg:#15161A; --contact-muted:#4A4843; --contact-field:#E6E0D4; --contact-line:#D3CBBB; --copy-bg:#15161A; --copy-fg:#F2EDE3;
+  --shadow:rgba(0,0,0,.85); --shadow-lift:rgba(0,0,0,.5); --header-bg:rgba(14,15,19,.85); --dot:#3CCB7F;
+  --solid-bg:#F2EDE3; --solid-fg:#0E0F13; --tag-bg:rgba(255,255,255,.14); --tag-fg:#FFFFFF; --scrim:rgba(0,0,0,.72);
+  color-scheme:dark}
 
-nav {
-position: absolute;
-top: 3vh;
-left: 3.5vw;
-display: flex;
-align-items: center;
-gap: 8px;
-z-index: 10;
-}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+a{color:var(--accent-text)}
+img,video{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:8px}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+@media (min-width:720px){.wrap{padding-left:max(32px,env(safe-area-inset-left,0px));padding-right:max(32px,env(safe-area-inset-right,0px))}}
+.mono{font-family:var(--f-mono)}
+.eyebrow{font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-text)}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;margin:0;letter-spacing:-.02em}
+h2{font-size:clamp(30px,4.4vw,44px);line-height:1.06}
 
-.nav-logo {
-height: clamp(30px, 5vh, 44px);
-width: auto;
-mix-blend-mode: multiply;
-}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font:600 15px var(--f-body);text-decoration:none;border:1px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{flex:none}
+.btn-accent{background:var(--accent);color:var(--accent-fg);box-shadow:0 14px 30px -14px color-mix(in srgb,var(--accent) 75%,transparent)}
+.btn-ghost{background:var(--surface);color:var(--fg);border-color:var(--line-strong)}
+.btn-solid{background:var(--solid-bg);color:var(--solid-fg)}
+.theme-btn{min-height:44px;padding:0 14px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg);display:inline-flex;align-items:center;gap:8px;font:600 14px var(--f-body);cursor:pointer}
+.icon-btn{width:44px;height:44px;border-radius:12px;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg);display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
 
-.nav-name {
-font-family: 'Caveat', cursive;
-font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-font-weight: 500;
-color: #1a1a1a;
-text-decoration: none;
-}
+/* header */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--header-bg);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:12px}
+.brand{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;text-decoration:none;color:var(--fg);min-width:0}
+.brand b{font-family:var(--f-display);font-size:19px;letter-spacing:-.01em}
+.brand span{font-family:var(--f-mono);font-size:13px;color:var(--muted)}
+.top-actions{display:flex;align-items:center;gap:10px}
+.top .btn{min-height:44px;padding:0 16px;font-size:14px}
+@media (max-width:520px){.top .btn .long{display:none}}
 
-.nav-tagline {
-font-family: 'Caveat', cursive;
-font-size: clamp(0.9rem, 1.6vw, 1.1rem);
-color: #555;
-margin-left: 6px;
-}
+/* hero */
+.hero{background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;background-position:center}
+.hero-row{display:flex;flex-wrap:wrap;gap:clamp(24px,5vw,48px);align-items:center;padding-block:clamp(40px,8vw,80px) clamp(28px,5vw,48px)}
+.avatar{flex:none;width:clamp(120px,22vw,232px);aspect-ratio:1;border-radius:32px;overflow:hidden;background:#FFFFFF;border:1px solid var(--line);box-shadow:0 30px 60px -28px var(--shadow),0 2px 8px var(--shadow-lift)}
+.avatar img{width:100%;height:100%;object-fit:cover}
+.hero-copy{flex:1 1 440px;min-width:0;display:flex;flex-direction:column;gap:20px}
+.status{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);font:500 12px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.status i{width:8px;height:8px;border-radius:50%;background:var(--dot);box-shadow:0 0 0 4px color-mix(in srgb,var(--dot) 22%,transparent)}
+.hero h1{font-size:clamp(36px,6vw,62px);line-height:1.03;letter-spacing:-.03em;font-weight:700}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap}
+.specline{display:flex;gap:10px 16px;flex-wrap:wrap;font:500 12px var(--f-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.reel{padding-bottom:clamp(56px,9vw,96px);margin:0}
+.reel-frame{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:26px;overflow:hidden;background:var(--media);box-shadow:0 40px 80px -36px var(--shadow),0 2px 8px var(--shadow-lift)}
+.reel-frame video{width:100%;height:100%;object-fit:cover}
+.reel-tag{position:absolute;top:16px;left:16px;padding:5px 10px;border-radius:999px;background:rgba(0,0,0,.45);color:#FFFFFF;font:500 11px var(--f-mono);letter-spacing:.08em;text-transform:uppercase}
+.reel-toggle{position:absolute;right:14px;bottom:14px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.reel figcaption{margin-top:12px;font:400 12px var(--f-mono);color:var(--muted)}
 
-.content {
-position: absolute;
-top: 50%;
-left: 7vw;
-right: 5vw;
-transform: translateY(-50%);
-display: flex;
-align-items: center;
-gap: clamp(3rem, 10vw, 8rem);
-z-index: 5;
-flex-wrap: wrap;
-}
+/* work */
+.section{padding-block:clamp(48px,8vw,80px) 24px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:28px}
+.sec-head .t{display:flex;flex-direction:column;gap:8px;min-width:0;max-width:640px}
+.sec-head p{margin:0;color:var(--muted);font-size:17px}
+.filters{display:flex;gap:8px;flex-wrap:wrap}
+.chip{min-height:44px;padding:0 18px;border-radius:999px;border:1px solid var(--line-strong);background:var(--surface);color:var(--fg);font:600 14px var(--f-body);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--solid-bg);color:var(--solid-fg);border-color:var(--solid-bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:28px 24px;padding-top:6px}
 
-.art-piece {
-position: relative;
-width: clamp(220px, 24vw, 340px);
-flex-shrink: 0;
-}
+.card{position:relative;display:flex;flex-direction:column;gap:14px;text-align:left;width:100%;padding:12px 12px 18px;border:0;border-radius:var(--r-card);background:var(--surface);color:var(--fg);font:inherit;cursor:pointer;animation:bob 4.5s ease-in-out infinite;animation-delay:var(--d,0s);isolation:isolate}
+.card::before,.card::after{content:"";position:absolute;inset:0;border-radius:inherit;z-index:-1;pointer-events:none}
+.card::before{box-shadow:0 22px 44px -26px var(--shadow),0 1px 3px var(--shadow-lift);animation:shadow-rest 4.5s ease-in-out infinite;animation-delay:var(--d,0s)}
+.card::after{box-shadow:0 48px 64px -30px var(--shadow-lift);opacity:0;animation:shadow-lift 4.5s ease-in-out infinite;animation-delay:var(--d,0s)}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes shadow-rest{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes shadow-lift{0%,100%{opacity:0}50%{opacity:1}}
+.card:hover{animation-play-state:paused}
+.card:hover::before,.card:hover::after{animation-play-state:paused}
+.media{position:relative;aspect-ratio:16/10;max-width:100%;border-radius:var(--r-media);overflow:hidden;background:var(--media)}
+.media img,.media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.media video{opacity:0;transition:opacity .3s ease}
+.media video.on{opacity:1}
+.tag{position:absolute;top:12px;left:12px;z-index:1;padding:4px 10px;border-radius:999px;background:var(--tag-bg);color:var(--tag-fg);font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.tag.client{background:var(--accent);color:var(--accent-fg)}
+.kind{position:absolute;bottom:10px;right:10px;z-index:1;padding:3px 8px;border-radius:8px;background:rgba(0,0,0,.5);color:#FFFFFF;font:500 11px var(--f-mono)}
+.card-body{display:flex;flex-direction:column;gap:6px;padding:0 6px}
+.card-title{font:600 20px/1.2 var(--f-display);letter-spacing:-.01em}
+.card-meta{font:400 12px var(--f-mono);color:var(--muted)}
 
-.art-piece img {
-width: 100%;
-height: auto;
-display: block;
-border-radius: clamp(16px, 2vw, 26px);
-box-shadow: 0 12px 30px rgba(0,0,0,0.15);
-}
+/* how it works */
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:16px;counter-reset:s}
+.step{display:flex;flex-direction:column;gap:10px;padding:22px;border-radius:20px;background:var(--surface);border:1px solid var(--line)}
+.step .n{font:500 13px var(--f-mono);color:var(--accent-text)}
+.step h3{font-size:19px;line-height:1.2;letter-spacing:-.01em}
+.step p{margin:0;font-size:14px;color:var(--muted)}
 
-.price-tag {
-position: absolute;
-bottom: -18px;
-right: -14px;
-background: #1a1a1a;
-color: #f0ebe2;
-font-family: 'Caveat', cursive;
-font-weight: 700;
-font-size: clamp(1.1rem, 2vw, 1.5rem);
-padding: 6px 16px;
-border-radius: 999px;
-transform: rotate(-4deg);
-box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
+/* contact */
+.contact{padding-block:clamp(48px,8vw,80px) clamp(56px,9vw,96px)}
+.contact-card{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;padding:clamp(24px,5vw,48px);border-radius:28px;background:var(--contact-bg);color:var(--contact-fg);box-shadow:0 30px 60px -30px var(--shadow)}
+.contact-card .t{flex:1 1 340px;min-width:0;display:flex;flex-direction:column;gap:10px}
+.contact-card p{margin:0;color:var(--contact-muted)}
+.contact-card .act{flex:1 1 300px;max-width:400px;display:flex;flex-direction:column;gap:12px}
+.handle{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 10px 10px 18px;border-radius:16px;background:var(--contact-field);border:1px solid var(--contact-line)}
+.handle code{font:500 18px var(--f-mono);user-select:all;overflow-wrap:anywhere}
+.copy{min-height:44px;padding:0 16px;border-radius:12px;border:0;background:var(--copy-bg);color:var(--copy-fg);font:600 14px var(--f-body);cursor:pointer;flex:none}
+.hint{font:400 12px var(--f-mono);color:var(--contact-muted)}
 
-.art-caption {
-margin-top: 22px;
-font-family: 'Caveat', cursive;
-font-size: clamp(1.1rem, 1.8vw, 1.4rem);
-color: #333;
-}
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-block:24px;font:400 12px var(--f-mono);color:var(--muted)}
 
-.site-links {
-list-style: none;
-display: flex;
-flex-direction: column;
-gap: clamp(1.4rem, 4vh, 2.6rem);
-}
+/* project dialog */
+dialog{width:min(1100px,calc(100% - 24px));max-height:calc(100% - 24px);padding:0;border:0;border-radius:26px;background:var(--bg);color:var(--fg);box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+dialog::backdrop{background:var(--scrim)}
+.dlg{display:flex;flex-direction:column;gap:18px;padding:clamp(16px,3vw,28px)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.dlg-head .t{display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0}
+.dlg-head h3{font-size:clamp(22px,3vw,30px)}
+.pill{padding:4px 10px;border-radius:999px;background:var(--solid-bg);color:var(--solid-fg);font:500 11px var(--f-mono);letter-spacing:.06em;text-transform:uppercase}
+.dlg-body{display:flex;flex-wrap:wrap;gap:22px}
+.dlg-main{flex:1 1 560px;min-width:0;display:flex;flex-direction:column;gap:12px}
+.stage{position:relative;aspect-ratio:16/9;max-width:100%;border-radius:18px;overflow:hidden;background:var(--media);box-shadow:0 24px 48px -26px var(--shadow)}
+.stage video,.stage img{width:100%;height:100%;object-fit:contain;background:var(--media)}
+.thumbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:10px}
+.thumb{aspect-ratio:16/10;max-width:100%;border-radius:12px;overflow:hidden;border:2px solid transparent;padding:0;background:var(--media);cursor:pointer}
+.thumb[aria-current="true"]{border-color:var(--accent)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.dlg-side{flex:1 1 280px;min-width:0;display:flex;flex-direction:column;gap:14px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px;display:flex;flex-direction:column;gap:8px}
+.panel .eyebrow{color:var(--muted)}
+.spec{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.spec:last-child{border-bottom:0}
+.spec span:first-child{color:var(--muted)}
+.spec span:last-child{font:500 13px var(--f-mono);text-align:right}
+.panel p{margin:0;font-size:14px;color:var(--muted)}
 
-.site-links li a {
-font-family: 'Caveat', cursive;
-font-size: clamp(2.4rem, 5.5vw, 4.6rem);
-font-weight: 600;
-color: #1a1a1a;
-text-decoration: none;
-display: flex;
-align-items: center;
-gap: 14px;
-line-height: 1;
-transition: color 0.15s;
-white-space: nowrap;
-cursor: pointer;
-background: none;
-border: none;
-padding: 0;
-}
-
-.site-links li a .arr {
-color: #1a1a1a;
-font-size: clamp(1.6rem, 3.2vw, 2.6rem);
-font-weight: 600;
-}
-
-.site-links li a:hover { color: #555; }
-
-.site-links li .sub {
-display: block;
-font-size: clamp(0.9rem, 1.4vw, 1.1rem);
-color: #666;
-margin-top: 2px;
-font-weight: 400;
-}
-
-@keyframes fadeIn {
-from { opacity: 0; transform: translateY(6px); }
-to { opacity: 1; transform: none; }
-}
-nav { animation: fadeIn 0.5s ease 0s both; }
-.content { animation: fadeIn 0.6s ease 0.12s both; }
-
-@media (max-width: 900px) {
-.content { gap: clamp(2.5rem, 8vw, 5rem); top: 46%; }
-.art-piece { width: 34vw; }
-.site-links li a { font-size: clamp(2rem, 6vw, 3.4rem); }
-.site-links li a .arr { font-size: clamp(1.3rem, 3.6vw, 2rem); }
-}
-
-@media (max-width: 600px) {
-body { overflow-y: auto; }
-nav { top: 2.5vh; left: 5vw; position: fixed; }
-.content {
-position: static;
-transform: none;
-flex-direction: column;
-align-items: center;
-text-align: center;
-padding: 14vh 6vw 6vh;
-gap: 3rem;
-}
-.art-piece { width: 60vw; max-width: 300px; }
-.site-links { align-items: center; gap: 2.4rem; }
-.site-links li a { font-size: clamp(1.8rem, 8vw, 2.6rem); justify-content: center; }
-.site-links li a .arr { font-size: clamp(1rem, 5vw, 1.5rem); }
-}
-
-@media (max-width: 380px) {
-.site-links li a { font-size: 1.6rem; }
-}
-
-.modal-overlay {
-display: none;
-position: fixed;
-inset: 0;
-background: rgba(26,26,26,0.55);
-z-index: 100;
-align-items: center;
-justify-content: center;
-padding: 4vh 4vw;
-}
-
-.modal-overlay.active { display: flex; }
-
-.modal-box {
-background: #f0ebe2;
-border-radius: 20px;
-box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-width: min(480px, 100%);
-max-height: 90vh;
-overflow-y: auto;
-padding: clamp(1.6rem, 4vw, 2.6rem);
-position: relative;
-font-family: 'Caveat', cursive;
-}
-
-.modal-close {
-position: absolute;
-top: 14px;
-right: 18px;
-background: none;
-border: none;
-font-family: 'Caveat', cursive;
-font-size: 2rem;
-color: #1a1a1a;
-cursor: pointer;
-line-height: 1;
-}
-
-.modal-box h2 {
-font-size: clamp(1.8rem, 4vw, 2.4rem);
-color: #1a1a1a;
-margin-bottom: 6px;
-}
-
-.modal-sub {
-font-size: 1.1rem;
-color: #666;
-margin-bottom: 20px;
-}
-
-.modal-box label {
-display: block;
-font-size: 1.15rem;
-color: #1a1a1a;
-margin-bottom: 4px;
-margin-top: 14px;
-}
-
-.modal-box input,
-.modal-box textarea {
-width: 100%;
-font-family: 'Caveat', cursive;
-font-size: 1.15rem;
-color: #1a1a1a;
-background: #fff;
-border: 1px solid #ccc4b6;
-border-radius: 10px;
-padding: 10px 12px;
-resize: vertical;
-}
-
-.modal-box textarea { min-height: 100px; }
-
-.modal-submit {
-margin-top: 22px;
-width: 100%;
-background: #1a1a1a;
-color: #f0ebe2;
-font-family: 'Caveat', cursive;
-font-weight: 600;
-font-size: 1.4rem;
-padding: 12px;
-border: none;
-border-radius: 999px;
-cursor: pointer;
-transition: opacity 0.15s;
-}
-
-.modal-submit:hover { opacity: 0.85; }
-.modal-submit:disabled { opacity: 0.6; cursor: default; }
-
-.modal-note {
-margin-top: 12px;
-font-size: 0.95rem;
-color: #777;
-text-align: center;
-}
-
-.modal-success {
-font-size: 1.4rem;
-text-align: center;
-padding: 30px 0;
-color: #1a1a1a;
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .card,.card::before,.card::after{animation:none}
+  .card::after{opacity:0}
+  .btn,.btn:hover{transition:none;transform:none}
 }
 </style>
 </head>
 <body>
 
-<nav>
-<img class="nav-logo" src="ube_logo_1000.png" alt="Prince Ube logo">
-<a href="/" class="nav-name">Prince Ube</a>
-<span class="nav-tagline">oil pastel artist</span>
-</nav>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top"><b>prince_ube</b><span>@ dream builders</span></a>
+    <div class="top-actions">
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Switch to night mode">
+        <svg id="themeIcon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <span id="themeLabel">Night</span>
+      </button>
+      <a class="btn btn-solid" href="#contact">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+        <span>Message<span class="long"> on Discord</span></span>
+      </a>
+    </div>
+  </div>
+</header>
 
-<div class="content">
-<div class="art-piece">
-<img src="green-apple-print.jpg" alt="Green apple oil pastel painting by Prince Ube">
-<div class="price-tag">$25 print</div>
-<div class="art-caption">"Green Apple" — original oil pastel, available as a print</div>
-</div>
+<main id="top">
+  <section class="hero" aria-labelledby="h1">
+    <div class="wrap">
+      <div class="hero-row">
+        <div class="avatar"><img src="media/profile.png" alt="prince_ube's Roblox avatar" width="420" height="420"></div>
+        <div class="hero-copy">
+          <span class="status"><i aria-hidden="true"></i>Open for commissions</span>
+          <h1 id="h1">Clean &amp; professional Roblox animation, building &amp; more.</h1>
+          <div class="cta-row">
+            <a class="btn btn-accent" href="#contact">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+              Message prince_ube
+            </a>
+            <a class="btn btn-ghost" href="#work">See the work</a>
+          </div>
+          <div class="specline"><span>R6 + R15</span><span aria-hidden="true">·</span><span>Original work</span><span aria-hidden="true">·</span><span>Animation · Builds · UI · Audio</span></div>
+        </div>
+      </div>
+      <figure class="reel">
+        <div class="reel-frame">
+          <video id="reel" src="media/reel.mp4" poster="media/reel-poster.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Showreel: combat, movement, builds and client commissions"></video>
+          <span class="reel-tag">Showreel</span>
+          <button class="reel-toggle" id="reelBtn" type="button" aria-label="Pause showreel">
+            <svg id="reelIcon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+          </button>
+        </div>
+        <figcaption>Combat · movement · arena · fire station · client commissions</figcaption>
+      </figure>
+    </div>
+  </section>
 
-<ul class="site-links">
-<li>
-<a href="#" id="commission-link">
-<span class="arr">>>></span> Commissions
-</a>
-<span class="sub">custom oil pastel pieces, made to order</span>
-</li>
-<li>
-<a href="https://buy.stripe.com/5kQ7sK6fO5va9bQ2557g401" target="_blank" rel="noopener">
-<span class="arr">>>></span> Buy the Apple Print
-</a>
-<span class="sub">$25, shipped to you</span>
-</li>
-<li>
-<a href="https://www.instagram.com/prince_ube_paints/" target="_blank" rel="noopener">
-<span class="arr">>>></span> Instagram
-</a>
-<span class="sub">see the daily work</span>
-</li>
-</ul>
-</div>
+  <section class="section" id="work" aria-labelledby="work-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="t">
+          <span class="eyebrow">Work</span>
+          <h2 id="work-h">Recent commissions &amp; samples</h2>
+          <p>I also do UX/UI work and audio creation. I’m a sound producer too.</p>
+        </div>
+        <div class="filters" role="group" aria-label="Filter work">
+          <button class="chip" type="button" data-f="all" aria-pressed="true">All</button>
+          <button class="chip" type="button" data-f="animation" aria-pressed="false">Animations</button>
+          <button class="chip" type="button" data-f="build" aria-pressed="false">Builds</button>
+          <button class="chip" type="button" data-f="commission" aria-pressed="false">Commissions</button>
+        </div>
+      </div>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
 
-<div class="modal-overlay" id="commission-modal">
-<div class="modal-box">
-<button class="modal-close" id="modal-close" aria-label="Close">×</button>
-<h2>Commission a piece</h2>
-<div class="modal-sub">Tell me a bit about what you have in mind and I'll get back to you.</div>
-<form id="commission-form">
-<label for="c-name">Name</label>
-<input type="text" id="c-name" required>
+  <section class="section" id="how" aria-labelledby="how-h">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="t">
+          <span class="eyebrow">How it works</span>
+          <h2 id="how-h">How it works</h2>
+          <p>I don’t work for free, but I can usually find a way to work around your budget.</p>
+        </div>
+      </div>
+      <ol class="steps">
+        <li class="step"><span class="n">01</span><h3>Message me on Discord</h3><p>Send your reference, style, deadline and budget.</p></li>
+        <li class="step"><span class="n">02</span><h3>Get a quote</h3><p>A fixed price and delivery date before any work starts.</p></li>
+        <li class="step"><span class="n">03</span><h3>Work starts</h3><p>Small jobs need nothing upfront. Bigger jobs start with a deposit we agree in the quote.</p></li>
+        <li class="step"><span class="n">04</span><h3>We work until you’re happy</h3><p>Previews as I go, with revision rounds agreed in the quote.</p></li>
+        <li class="step"><span class="n">05</span><h3>Pay, get your files</h3><p>You approve the preview, pay, and get the final files.</p></li>
+      </ol>
+    </div>
+  </section>
 
-<label for="c-email">Email</label>
-<input type="email" id="c-email" required>
+  <section class="contact" id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact-card">
+        <div class="t">
+          <h2 id="contact-h">Send your reference, get a quote.</h2>
+          <p>I reply within 24 hours.</p>
+        </div>
+        <div class="act">
+          <div class="handle">
+            <code id="handle">prince_ube</code>
+            <button class="copy" id="copyBtn" type="button">Copy username</button>
+          </div>
+          <a class="btn btn-accent" href="https://discord.com/app" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>
+            Open Discord
+          </a>
+          <span class="hint" id="copyHint" aria-live="polite">Add prince_ube as a friend, then send your message.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-<label for="c-details">What would you like commissioned?</label>
-<textarea id="c-details" required placeholder="Subject, size, style, reference photos, deadline, etc."></textarea>
+<footer>
+  <div class="wrap"><span>© prince_ube @ dream builders</span><span>Small jobs paid on delivery</span></div>
+</footer>
 
-<button type="submit" class="modal-submit">Send Request</button>
-<div class="modal-note">This sends your request directly to Prince Ube.</div>
-</form>
-</div>
-</div>
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <div class="dlg">
+    <div class="dlg-head">
+      <div class="t"><span class="pill" id="dlgPill"></span><h3 id="dlgTitle"></h3></div>
+      <button class="icon-btn" id="dlgClose" type="button" aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+    </div>
+    <div class="dlg-body">
+      <div class="dlg-main">
+        <div class="stage" id="stage"></div>
+        <div class="thumbs" id="thumbs"></div>
+      </div>
+      <div class="dlg-side">
+        <div class="panel"><span class="eyebrow">Details</span><div id="specs"></div></div>
+        <div class="panel"><span class="eyebrow">About</span><p id="dlgAbout"></p></div>
+        <a class="btn btn-accent" href="#contact" id="dlgCta">Want one like this? Message me</a>
+      </div>
+    </div>
+  </div>
+</dialog>
 
 <script>
-(function() {
-var link = document.getElementById('commission-link');
-var modal = document.getElementById('commission-modal');
-var closeBtn = document.getElementById('modal-close');
-var form = document.getElementById('commission-form');
+(function(){
+  var M = 'media/';
+  var WORK = [
+    {id:'combat', cats:['animation'], tag:'Animation', title:'R6 Combat Set', meta:'R6 · combo · block · ability · ultimate', video:'combat', stills:['combat_still_01_comboimpact','combat_still_02_block','combat_still_03_ultimateanticipation'],
+     specs:[['Rig','R6'],['Moves','Stance, 4-hit combo, block, dodge, heavy, ability, hit reaction, ultimate'],['Type','Original sample']],
+     about:'A full R6 combat moveset: fighting stance, a 4-hit combo with a finisher, block, dodge, heavy attack, the Violet Pulse ability, hit reactions and the Midnight Break ultimate.'},
+    {id:'rukia', cats:['animation','commission'], tag:'Commission', client:true, title:'Hop Animation', meta:'Client commission · in-game hop', video:'rukia-hop', stills:[],
+     specs:[['Type','Client commission'],['Work','Hop animation'],['Shown','In the client’s live game']],
+     about:'A hop animation made for a client’s anime-style game, captured in their live game.'},
+    {id:'arena', cats:['build'], tag:'Build', title:'Halo Yard Arena', meta:'Stylized PvP arena · neon ring centerpiece', video:'arena', stills:['arena_still_01_overview','arena_still_02_arcade','arena_still_03_overheadplan'],
+     specs:[['Style','Stylized / low-poly'],['Type','Round-based PvP arena'],['Type of work','Original sample']],
+     about:'A round-based PvP arena built around a lit ring centerpiece, with lanes, cover and an arcade zone. Shown from the tour camera and an overhead plan.'},
+    {id:'dof', cats:['animation','commission'], tag:'Commission', client:true, title:'Run Animation', meta:'Client commission · custom run cycle', video:'dof-run', stills:[],
+     specs:[['Type','Client commission'],['Work','Run animation'],['Shown','In the client’s live game']],
+     about:'A custom run cycle made for a client, shown in their live game.'},
+    {id:'movement', cats:['animation'], tag:'Animation', title:'Midnight Motion', meta:'R6 + R15 + custom avatar · 9 movements', video:'movement', stills:['movement_still_01_threerigs','movement_still_02_sprintpose','movement_still_03_climb'],
+     specs:[['Rigs','R6, R15 and a custom avatar'],['Moves','Idle, walk, run, sprint, dash, jump, fall, land, climb'],['Type','Original sample']],
+     about:'A complete movement pack, played side by side on R6, R15 and a custom avatar so you can see it works on each rig.'},
+    {id:'station', cats:['build'], tag:'Build', title:'Station 08', meta:'Realistic fire station · exterior + interior', video:'station', stills:['station08_still_01_exterior','station08_still_02_apparatushall','station08_still_03_roofcutawayplan'],
+     specs:[['Style','Realistic'],['Includes','Exterior, apparatus hall, bunk and locker room'],['Type','Original sample']],
+     about:'A realistic fire station with a furnished interior: apparatus hall with engine, bunks, lockers, and a roof-cutaway plan view.'},
+    {id:'recoil', cats:['build','commission'], tag:'Commission', client:true, title:'Battle Map 1 · RECOIL', meta:'Client commission · desert battle map', image:'recoil-battle-map',
+     specs:[['Type','Client commission'],['Work','Battle map'],['Game','RECOIL']],
+     about:'A desert battle map built for RECOIL.'},
+    {id:'renstation', cats:['build','commission'], tag:'Commission', client:true, title:'RenStation', meta:'Client commission · space station', image:'renstation',
+     specs:[['Type','Client commission'],['Work','Space station build']],
+     about:'A space station build made for a client’s first-person game.'},
+    {id:'chop', cats:['animation','commission'], tag:'Commission', client:true, title:'Charge Animation', meta:'Client commission · weapon charge-up', image:'chop-da-log',
+     specs:[['Type','Client commission'],['Work','Weapon charge animation']],
+     about:'A weapon charge-up animation made for a client’s log-chopping game.'}
+  ];
 
-link.addEventListener('click', function(e) {
-e.preventDefault();
-modal.classList.add('active');
-});
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var grid = document.getElementById('grid');
 
-closeBtn.addEventListener('click', function() {
-modal.classList.remove('active');
-});
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 
-modal.addEventListener('click', function(e) {
-if (e.target === modal) modal.classList.remove('active');
-});
+  WORK.forEach(function(w, i){
+    var b = el('button', 'card'); b.type = 'button'; b.dataset.cats = w.cats.join(' '); b.dataset.id = w.id;
+    b.style.setProperty('--d', (-0.8 * i).toFixed(1) + 's');
+    b.setAttribute('aria-label', w.title + ', ' + w.tag + '. Open details');
+    var m = el('div', 'media');
+    var img = el('img'); img.alt = ''; img.loading = 'lazy'; img.decoding = 'async';
+    img.src = w.video ? M + w.video + '-poster.jpg' : M + 'stills/' + w.image + '.jpg';
+    m.appendChild(img);
+    var t = el('span', 'tag' + (w.client ? ' client' : ''), w.tag); m.appendChild(t);
+    if (w.video) {
+      var v = el('video'); v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', ''); v.preload = 'none';
+      v.dataset.src = M + w.video + '-preview.mp4'; v.setAttribute('aria-hidden', 'true');
+      m.appendChild(v);
+    } else {
+      m.appendChild(el('span', 'kind', 'Still'));
+    }
+    b.appendChild(m);
+    var body = el('div', 'card-body');
+    body.appendChild(el('span', 'card-title', w.title));
+    body.appendChild(el('span', 'card-meta', w.meta));
+    b.appendChild(body);
+    b.addEventListener('click', function(){ openProject(w); });
+    grid.appendChild(b);
+  });
 
-form.addEventListener('submit', function(e) {
-e.preventDefault();
-var name = document.getElementById('c-name').value.trim();
-var email = document.getElementById('c-email').value.trim();
-var details = document.getElementById('c-details').value.trim();
-var submitBtn = form.querySelector('.modal-submit');
-submitBtn.disabled = true;
-submitBtn.textContent = 'Sending...';
+  // play card previews only while visible
+  if (!reduce && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        var v = en.target.querySelector('video'); if (!v) return;
+        if (en.isIntersecting) {
+          if (!v.src) { v.src = v.dataset.src; v.addEventListener('playing', function(){ v.classList.add('on'); }); }
+          var p = v.play(); if (p && p.catch) p.catch(function(){});
+        } else { v.pause(); }
+      });
+    }, {threshold: 0.35});
+    grid.querySelectorAll('.card').forEach(function(c){ io.observe(c); });
+  }
 
-var formData = new FormData();
-formData.append('name', name);
-formData.append('email', email);
-formData.append('message', details);
-formData.append('_subject', 'Commission Inquiry from ' + name);
-formData.append('_template', 'table');
+  // filters
+  var chips = document.querySelectorAll('.chip');
+  chips.forEach(function(c){
+    c.addEventListener('click', function(){
+      var f = c.dataset.f;
+      chips.forEach(function(x){ x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+      grid.querySelectorAll('.card').forEach(function(card){
+        card.hidden = !(f === 'all' || card.dataset.cats.split(' ').indexOf(f) > -1);
+      });
+    });
+  });
 
-fetch('https://formsubmit.co/ajax/ubesoul99@gmail.com', {
-method: 'POST',
-headers: { 'Accept': 'application/json' },
-body: formData
-})
-.then(function(res) { return res.json(); })
-.then(function() {
-form.innerHTML = '<div class="modal-success">Thanks, ' + name.split(' ')[0] + '! Your request has been sent — I\'ll get back to you soon.</div>';
-})
-.catch(function() {
-submitBtn.disabled = false;
-submitBtn.textContent = 'Send Request';
-alert('Something went wrong sending your request. Please try again or email ubesoul99@gmail.com directly.');
-});
-});
+  // project dialog
+  var dlg = document.getElementById('dlg'), stage = document.getElementById('stage'), thumbs = document.getElementById('thumbs');
+  function show(kind, src, current){
+    stage.textContent = '';
+    if (kind === 'video') {
+      var v = el('video'); v.src = src; v.controls = true; v.muted = true; v.loop = true; v.playsInline = true; v.setAttribute('playsinline', '');
+      if (!reduce) v.autoplay = true;
+      stage.appendChild(v);
+    } else {
+      var im = el('img'); im.src = src; im.alt = document.getElementById('dlgTitle').textContent + ' still'; stage.appendChild(im);
+    }
+    thumbs.querySelectorAll('.thumb').forEach(function(t){ t.setAttribute('aria-current', t === current ? 'true' : 'false'); });
+  }
+  function openProject(w){
+    document.getElementById('dlgTitle').textContent = w.title;
+    document.getElementById('dlgPill').textContent = w.tag;
+    document.getElementById('dlgAbout').textContent = w.about;
+    var specs = document.getElementById('specs'); specs.textContent = '';
+    w.specs.forEach(function(s){ var r = el('div', 'spec'); r.appendChild(el('span', null, s[0])); r.appendChild(el('span', null, s[1])); specs.appendChild(r); });
+    thumbs.textContent = '';
+    var items = [];
+    if (w.video) items.push({kind:'video', src: M + w.video + '.mp4', thumb: M + w.video + '-poster.jpg', label:'Video'});
+    if (w.image) items.push({kind:'img', src: M + 'stills/' + w.image + '.jpg', thumb: M + 'stills/' + w.image + '.jpg', label:'Still'});
+    (w.stills || []).forEach(function(s, k){ items.push({kind:'img', src: M + 'stills/' + s + '.jpg', thumb: M + 'stills/' + s + '.jpg', label:'Still ' + (k + 1)}); });
+    var first = null;
+    if (items.length > 1) {
+      items.forEach(function(it){
+        var t = el('button', 'thumb'); t.type = 'button'; t.setAttribute('aria-label', it.label);
+        var im = el('img'); im.src = it.thumb; im.alt = ''; im.loading = 'lazy'; t.appendChild(im);
+        t.addEventListener('click', function(){ show(it.kind, it.src, t); });
+        thumbs.appendChild(t); if (!first) first = t;
+      });
+    }
+    show(items[0].kind, items[0].src, first);
+    if (typeof dlg.showModal === 'function') dlg.showModal(); else dlg.setAttribute('open', '');
+  }
+  function closeDlg(){ var v = stage.querySelector('video'); if (v) v.pause(); if (dlg.close) dlg.close(); else dlg.removeAttribute('open'); }
+  document.getElementById('dlgClose').addEventListener('click', closeDlg);
+  dlg.addEventListener('click', function(e){ if (e.target === dlg) closeDlg(); });
+  dlg.addEventListener('close', function(){ var v = stage.querySelector('video'); if (v) v.pause(); });
+  document.getElementById('dlgCta').addEventListener('click', function(){ closeDlg(); });
+
+  // reel play/pause
+  var reel = document.getElementById('reel'), reelBtn = document.getElementById('reelBtn'), reelIcon = document.getElementById('reelIcon');
+  var PAUSE = '<rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/>', PLAY = '<path d="M8 5l11 7-11 7z"/>';
+  function syncReel(){ var paused = reel.paused; reelIcon.innerHTML = paused ? PLAY : PAUSE; reelBtn.setAttribute('aria-label', paused ? 'Play showreel' : 'Pause showreel'); }
+  if (reduce) { reel.removeAttribute('autoplay'); reel.pause(); }
+  reel.addEventListener('play', syncReel); reel.addEventListener('pause', syncReel); syncReel();
+  reelBtn.addEventListener('click', function(){ if (reel.paused) { var p = reel.play(); if (p && p.catch) p.catch(function(){}); } else reel.pause(); });
+
+  // copy username
+  var copyBtn = document.getElementById('copyBtn'), hint = document.getElementById('copyHint');
+  function selectHandle(){ var r = document.createRange(); r.selectNodeContents(document.getElementById('handle')); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+  copyBtn.addEventListener('click', function(){
+    var done = function(){ copyBtn.textContent = 'Copied'; hint.textContent = 'Copied. Paste it into Discord’s Add Friend box.'; setTimeout(function(){ copyBtn.textContent = 'Copy username'; }, 2000); };
+    var fail = function(){ selectHandle(); hint.textContent = 'Selected. Press Ctrl+C (or long-press) to copy.'; };
+    try { if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText('prince_ube').then(done, fail); else fail(); } catch (e) { fail(); }
+  });
+
+  // day / night toggle
+  var root = document.documentElement, themeBtn = document.getElementById('themeBtn'), themeIcon = document.getElementById('themeIcon');
+  var MOON = '<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>';
+  var SUN = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  function isDark(){ var t = root.getAttribute('data-theme'); if (t) return t === 'dark'; return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches; }
+  var themeLabel = document.getElementById('themeLabel');
+  function syncTheme(){ var d = isDark(); themeIcon.innerHTML = d ? SUN : MOON; themeLabel.textContent = d ? 'Day' : 'Night'; themeBtn.setAttribute('aria-label', d ? 'Switch to day mode' : 'Switch to night mode'); }
+  try { var saved = localStorage.getItem('pu-theme'); if (saved === 'dark' || saved === 'light') root.setAttribute('data-theme', saved); } catch (e) {}
+  themeBtn.addEventListener('click', function(){ var next = isDark() ? 'light' : 'dark'; root.setAttribute('data-theme', next); try { localStorage.setItem('pu-theme', next); } catch (e) {} syncTheme(); });
+  if (window.matchMedia) { var mq = window.matchMedia('(prefers-color-scheme: dark)'); if (mq.addEventListener) mq.addEventListener('change', syncTheme); }
+  syncTheme();
 })();
 </script>
-
 </body>
 </html>
